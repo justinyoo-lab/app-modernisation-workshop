@@ -1,0 +1,12 @@
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\worker\src\main\java\com\microsoft\migration\assets\worker\config\BlobStorageConfig.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\worker\src\main\java\com\microsoft\migration\assets\worker\config\ServiceBusConfig.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\worker\src\main\java\com\microsoft\migration\assets\worker\model\ImageMetadata.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\worker\src\main\java\com\microsoft\migration\assets\worker\model\ImageProcessingMessage.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\worker\src\main\java\com\microsoft\migration\assets\worker\repository\ImageMetadataRepository.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\worker\src\main\java\com\microsoft\migration\assets\worker\service\AbstractFileProcessingService.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\worker\src\main\java\com\microsoft\migration\assets\worker\service\AzureBlobFileProcessingService.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\worker\src\main\java\com\microsoft\migration\assets\worker\service\BlobFileProcessingService.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\worker\src\main\java\com\microsoft\migration\assets\worker\service\BlobKeyValidator.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\worker\src\main\java\com\microsoft\migration\assets\worker\service\FileProcessor.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\worker\src\main\java\com\microsoft\migration\assets\worker\util\StorageUtil.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\worker\src\main\java\com\microsoft\migration\assets\worker\WorkerApplication.java

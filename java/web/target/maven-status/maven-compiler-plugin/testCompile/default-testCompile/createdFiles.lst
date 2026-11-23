@@ -1,0 +1,15 @@
+com\microsoft\migration\assets\StorageControllerDevProfileRealServerPostMigrationIT.class
+com\microsoft\migration\assets\PostMigrationTestFixtures.class
+com\microsoft\migration\assets\StorageControllerDevProfilePostMigrationIT.class
+com\microsoft\migration\assets\config\DataSourceConfigurationTest.class
+com\microsoft\migration\assets\config\ServiceBusConfigurationTest.class
+com\microsoft\migration\assets\BackupListenerPostMigrationIT.class
+com\microsoft\migration\assets\service\BlobKeyValidatorTest.class
+com\microsoft\migration\assets\service\AzureBlobServiceTest.class
+com\microsoft\migration\assets\PostMigrationTestFixtures$SeedRow.class
+com\microsoft\migration\assets\config\BlobStorageConfigurationTest.class
+com\microsoft\migration\assets\service\BackupMessageProcessorTest.class
+com\microsoft\migration\assets\repository\ImageMetadataRepositoryTest.class
+com\microsoft\migration\assets\service\BlobFileStorageServiceTest.class
+com\microsoft\migration\assets\StorageControllerNonDevProfilePostMigrationIT.class
+com\microsoft\migration\assets\StorageControllerDevProfileRealServerPostMigrationIT$1.class

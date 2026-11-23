@@ -1,0 +1,17 @@
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\web\src\main\java\com\microsoft\migration\assets\AssetsManagerApplication.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\web\src\main\java\com\microsoft\migration\assets\config\BlobStorageConfig.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\web\src\main\java\com\microsoft\migration\assets\config\ServiceBusConfig.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\web\src\main\java\com\microsoft\migration\assets\config\WebMvcConfig.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\web\src\main\java\com\microsoft\migration\assets\constants\StorageConstants.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\web\src\main\java\com\microsoft\migration\assets\controller\HomeController.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\web\src\main\java\com\microsoft\migration\assets\controller\S3Controller.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\web\src\main\java\com\microsoft\migration\assets\model\ImageMetadata.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\web\src\main\java\com\microsoft\migration\assets\model\ImageProcessingMessage.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\web\src\main\java\com\microsoft\migration\assets\model\S3StorageItem.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\web\src\main\java\com\microsoft\migration\assets\repository\ImageMetadataRepository.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\web\src\main\java\com\microsoft\migration\assets\service\AzureBlobService.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\web\src\main\java\com\microsoft\migration\assets\service\BackupMessageProcessor.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\web\src\main\java\com\microsoft\migration\assets\service\BlobFileStorageService.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\web\src\main\java\com\microsoft\migration\assets\service\BlobKeyValidator.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\web\src\main\java\com\microsoft\migration\assets\service\StorageService.java
+C:\Users\appmoduser\.copilot\repos\copilot-worktrees\app-modernisation-workshop\justinyoo-lab-didactic-guacamole\java\web\src\main\java\com\microsoft\migration\assets\service\UploadedFileValidator.java

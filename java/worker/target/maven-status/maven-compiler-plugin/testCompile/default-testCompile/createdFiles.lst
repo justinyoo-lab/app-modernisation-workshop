@@ -1,0 +1,10 @@
+com\microsoft\migration\assets\worker\service\BlobKeyValidatorTest.class
+com\microsoft\migration\assets\worker\repository\ImageMetadataRepositoryTest.class
+com\microsoft\migration\assets\worker\service\AbstractFileProcessingServiceTest$TestFileProcessingService.class
+com\microsoft\migration\assets\worker\config\BlobStorageConfigurationTest.class
+com\microsoft\migration\assets\worker\config\ServiceBusConfigurationTest.class
+com\microsoft\migration\assets\worker\service\AbstractFileProcessingServiceTest.class
+com\microsoft\migration\assets\worker\service\AzureBlobFileProcessingServiceTest.class
+com\microsoft\migration\assets\worker\service\BlobFileProcessingServiceTest.class
+com\microsoft\migration\assets\worker\service\WorkerMessageProcessingPostMigrationIT.class
+com\microsoft\migration\assets\worker\config\DataSourceConfigurationTest.class
