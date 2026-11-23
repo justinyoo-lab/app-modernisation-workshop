@@ -70,14 +70,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * at the SDK/repository boundary so no real Azure Blob Storage, Service Bus, or PostgreSQL
  * resource is ever contacted.
  * <p>
- * <b>Known production-bug carried into TC-WEB-005/TC-WEB-017 (do not "fix" in the test).</b>
- * {@code BlobKeyValidator.sanitize} (the migrated path-traversal/absolute-path guard) now throws
- * {@code IOException("Cannot access blob with relative path outside the container: " + rawKey)},
- * not the frozen spec's {@code "Cannot store file with relative path outside current directory"}
- * message; and {@code BlobFileStorageService.deleteObject}'s not-found path throws
- * {@code FileNotFoundException("Blob not found: " + sanitizedKey)}, not the frozen spec's
- * {@code "File not found: " + path} prefix. Both assertions below use the EXACT spec wording; see
- * the verification summary for these two production-bug findings.
+ * {@code BlobKeyValidator.sanitize} (the migrated path-traversal/absolute-path guard) and
+ * {@code BlobFileStorageService.deleteObject}'s not-found path were restored (task 008 follow-up
+ * remediation) to the frozen spec's exact wording for TC-WEB-005/TC-WEB-017: respectively
+ * {@code IOException("Cannot store file with relative path outside current directory")} and
+ * {@code FileNotFoundException("File not found: " + sanitizedKey)}.
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
@@ -194,9 +191,7 @@ class StorageControllerDevProfilePostMigrationIT {
 
     /**
      * Asserts the EXACT flash error message text declared by the frozen spec
-     * ({@code test-cases.md}). This is intentionally NOT loosened to match whatever the current
-     * migrated code returns: see the class-level javadoc discrepancy note and the verification
-     * summary for the production-bug finding this test is expected to surface.
+     * ({@code test-cases.md}), now restored by {@code BlobKeyValidator.sanitize}.
      */
     @Test
     void tcWeb005_uploadPathTraversalFilenameRejected() throws Exception {

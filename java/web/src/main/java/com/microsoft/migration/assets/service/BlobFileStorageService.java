@@ -128,7 +128,7 @@ public class BlobFileStorageService implements StorageService {
         String sanitizedKey = BlobKeyValidator.sanitize(key);
         BlobClient blobClient = blobContainerClient.getBlobClient(sanitizedKey);
         if (!blobClient.exists()) {
-            throw new FileNotFoundException("Blob not found: " + sanitizedKey);
+            throw new FileNotFoundException("File not found: " + sanitizedKey);
         }
         blobClient.delete();
         logger.info("Deleted blob: {}", sanitizedKey);

@@ -175,7 +175,7 @@ Entry-point types used: `HTTP`, `Message-queue listener`.
 
 **Expected Response**
 
-`500 Internal Server Error` (default Spring Boot error page/body for an uncaught `MaxUploadSizeExceededException`; the request never reaches `S3Controller.uploadObject`).
+`413 Payload Too Large` (default Spring Boot/Spring Framework error page/body for an uncaught `MaxUploadSizeExceededException`; the request never reaches `S3Controller.uploadObject`).
 
 **Resource Verification**
 

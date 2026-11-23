@@ -41,7 +41,7 @@ final class BlobKeyValidator {
             throw new IOException("Blob key must not be blank");
         }
         if (key.contains("..")) {
-            throw new IOException("Cannot access blob with relative path outside the container: " + rawKey);
+            throw new IOException("Cannot store file with relative path outside current directory");
         }
         if (isAbsolutePath(key)) {
             throw new IOException("Cannot access blob with absolute path: " + rawKey);

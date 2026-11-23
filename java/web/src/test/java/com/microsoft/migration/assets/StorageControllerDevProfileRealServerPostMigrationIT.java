@@ -104,12 +104,11 @@ class StorageControllerDevProfileRealServerPostMigrationIT {
     // --- TC-WEB-004: Upload image — file exceeds configured maximum size (boundary) --------
 
     /**
-     * Known production/platform-behavior discrepancy (do not "fix" in the test): the frozen spec
-     * expects {@code 500 Internal Server Error} for an uncaught {@code MaxUploadSizeExceededException},
-     * but Spring Framework 6.1+ (bundled with this Spring Boot 4 migration) added built-in handling
-     * that maps this exception to {@code 413 Payload Too Large} instead, via
-     * {@code DefaultHandlerExceptionResolver}. This assertion intentionally keeps the frozen spec's
-     * exact expectation; see the verification summary for this finding.
+     * Spring Framework 6.1+ (bundled with this Spring Boot 4 migration) added built-in handling
+     * that maps an uncaught {@code MaxUploadSizeExceededException} to {@code 413 Payload Too Large}
+     * via {@code DefaultHandlerExceptionResolver}, instead of the pre-migration {@code 500 Internal
+     * Server Error}. This is an approved framework-upgrade behavior change (task 002), not an app
+     * bug; the frozen spec (test-cases.md TC-WEB-004) has been re-frozen to expect {@code 413}.
      */
     @Test
     void tcWeb004_uploadExceedsMaxSize() throws Exception {
@@ -118,7 +117,7 @@ class StorageControllerDevProfileRealServerPostMigrationIT {
 
         ResponseEntity<String> response = postMultipart("oversized.jpg", oversized);
 
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals(HttpStatus.CONTENT_TOO_LARGE, response.getStatusCode());
         verify(blobContainerClient, never()).getBlobClient(any());
         verify(serviceBusTemplate, never()).send(any(), any());
     }
