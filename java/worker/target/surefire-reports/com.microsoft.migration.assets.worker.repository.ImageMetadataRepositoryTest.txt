@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.microsoft.migration.assets.worker.repository.ImageMetadataRepositoryTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.275 s -- in com.microsoft.migration.assets.worker.repository.ImageMetadataRepositoryTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.401 s -- in com.microsoft.migration.assets.worker.repository.ImageMetadataRepositoryTest
