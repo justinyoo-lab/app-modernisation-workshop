@@ -1,0 +1,82 @@
+[
+  {
+    "file": "java/web/pom.xml",
+    "description": "Dependency migration: Replaced org.springframework.boot:spring-boot-starter-amqp with com.azure.spring:spring-cloud-azure-starter and com.azure.spring:spring-messaging-azure-servicebus. This is the correct dependency set for Spring Cloud Azure messaging with Service Bus. No issues detected.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/main/java/com/microsoft/migration/assets/AssetsManagerApplication.java",
+    "description": "Changed annotation from @EnableRabbit to @EnableAzureMessaging. This correctly enables Azure messaging infrastructure instead of RabbitMQ infrastructure. Functionally equivalent in enabling messaging support.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/main/java/com/microsoft/migration/assets/config/RabbitConfig.java",
+    "description": "File deleted. This RabbitMQ-specific configuration is no longer needed as Azure Service Bus uses different configuration mechanisms (see ServiceBusConfig.java).",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/main/java/com/microsoft/migration/assets/config/ServiceBusConfig.java",
+    "description": "New file created. Provides Service Bus configuration with autoComplete(false) to match the original RabbitMQ AcknowledgeMode.MANUAL pattern. Correctly delegates queue provisioning to infrastructure (no ServiceBusAdministrationClient used). Managed identity is configured with least-privilege roles. Configuration is sound and follows best practices.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/main/java/com/microsoft/migration/assets/service/AwsS3Service.java",
+    "description": "Changed messaging from RabbitTemplate to ServiceBusTemplate. Message sending pattern changed from rabbitTemplate.convertAndSend(queue, message) to MessageBuilder.withPayload(message).build() followed by serviceBusTemplate.send(queue, serviceBusMessage). This is the correct pattern for Spring Cloud Azure Service Bus. The queue constant reference correctly updated from RabbitConfig to ServiceBusConfig. Functional behavior is preserved: message is sent after S3 upload and before metadata persistence.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/main/java/com/microsoft/migration/assets/service/LocalFileStorageService.java",
+    "description": "Changed messaging from RabbitTemplate to ServiceBusTemplate with the same message building pattern as AwsS3Service. Queue constant correctly updated. Functional behavior preserved: message sent after dev-profile file upload. Configuration injection pattern changed from constructor parameter to match the new template type. Consistent with parallel changes in AwsS3Service.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/main/java/com/microsoft/migration/assets/service/BackupMessageProcessor.java",
+    "description": "Listener pattern changed from @RabbitListener to @ServiceBusListener. Message acknowledgment handling updated: context.complete() for success (equivalent to channel.basicAck), context.abandon() for requeue (equivalent to channel.basicNack with requeue=true). Exception type in catch block broadened from IOException to Exception, which is appropriate since Service Bus operations can throw various exception types beyond IOException. The logic flow and error handling approach (try-acknowledge in success path, catch-abandon in error path) correctly mirrors the original RabbitMQ behavior.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/main/resources/application.properties",
+    "description": "RabbitMQ configuration (spring.rabbitmq.*) completely removed. Replaced with Azure Service Bus and managed identity configuration: spring.cloud.azure.credential.managed-identity-enabled=true, spring.cloud.azure.credential.client-id (externalized), spring.cloud.azure.servicebus.namespace (externalized), and spring.cloud.azure.servicebus.entity-type=queue. Comprehensive comments explain managed identity requirements and least-privilege principle. No connection strings, keys, or secrets hardcoded (only environment variable placeholders). Configuration is secure and follows Azure best practices.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/pom.xml",
+    "description": "Identical dependency migration as web module. Correct replacement of spring-boot-starter-amqp with Azure Service Bus dependencies.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/main/java/com/microsoft/migration/assets/worker/WorkerApplication.java",
+    "description": "Changed annotation from @EnableRabbit to @EnableAzureMessaging. Consistent with web module change.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/main/java/com/microsoft/migration/assets/worker/config/RabbitConfig.java",
+    "description": "File deleted. RabbitMQ configuration removed as expected.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/main/java/com/microsoft/migration/assets/worker/config/ServiceBusConfig.java",
+    "description": "New file created. Service Bus configuration identical in structure and intent to web module version. Sets autoComplete(false) to require explicit message acknowledgment. Delegates queue provisioning to infrastructure. Correctly enforces least-privilege access pattern.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/main/java/com/microsoft/migration/assets/worker/service/AbstractFileProcessingService.java",
+    "description": "Listener pattern changed from @RabbitListener to @ServiceBusListener. Message acknowledgment handling comprehensively updated: context.complete() for successful processing, context.deadLetter() for failed processing. Comments explain that deadLetter() is equivalent to the original channel.basicNack(deliveryTag, false, false) and that delayed-retry behavior is now infrastructure-level (Service Bus max-delivery-count / dead-letter configuration) rather than application-level, which is accurate. Context null checks are defensive and appropriate. Exception handling changed from IOException to Exception, which is correct for Service Bus operations. The processing logic (download, thumbnail, upload, acknowledge/dead-letter) is preserved. Functional behavior equivalent to original.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/main/resources/application.properties",
+    "description": "RabbitMQ configuration completely removed. Azure Service Bus and managed identity configuration added, identical in pattern to web module. Appropriate comments document managed identity requirements and least-privilege scope. Environment variables correctly externalized. No secrets hardcoded.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/test/java/com/microsoft/migration/assets/config/ServiceBusConfigurationTest.java",
+    "description": "New test file created. Comprehensive validation tests for Service Bus configuration: verifies no RabbitMQ properties remain, confirms no connection string/secrets hardcoded, validates managed identity is enabled, confirms Service Bus namespace is externalized. Tests are static/file-based and do not connect to any broker. Tests directly support the requirements stated in the task (no secrets in code/config/Git, managed identity enabled, externalized configuration).",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/test/java/com/microsoft/migration/assets/worker/config/ServiceBusConfigurationTest.java",
+    "description": "New test file created. Identical structure and intent to web module test. Validates configuration requirements for worker module. Tests are static and broker-agnostic.",
+    "issues": []
+  }
+]

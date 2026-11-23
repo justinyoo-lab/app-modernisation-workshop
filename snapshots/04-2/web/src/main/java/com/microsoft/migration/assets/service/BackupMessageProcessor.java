@@ -1,0 +1,58 @@
+package com.microsoft.migration.assets.service;
+
+import com.azure.messaging.servicebus.ServiceBusReceivedMessageContext;
+import com.azure.spring.messaging.servicebus.implementation.core.annotation.ServiceBusListener;
+import com.azure.spring.messaging.servicebus.support.ServiceBusMessageHeaders;
+import com.microsoft.migration.assets.model.ImageProcessingMessage;
+import lombok.extern.slf4j.Slf4j;
+import com.microsoft.migration.assets.config.BackupQueue;
+import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
+
+/**
+ * A backup message processor that serves as a monitoring and logging service.
+ * 
+ * Only enabled when the "backup" profile is active.
+ */
+@Slf4j
+@Component
+@Profile("backup") 
+public class BackupMessageProcessor {
+
+    public BackupMessageProcessor(BackupQueue backupQueue) {
+    }
+
+    /**
+     * Processes image messages from a backup queue for monitoring and resilience purposes.
+     * Uses the same Service Bus listener pattern as the worker module.
+     */
+    @ServiceBusListener(destination = "${BACKUP_SERVICE_BUS_QUEUE}")
+    public void processBackupMessage(final ImageProcessingMessage message,
+                                    @Header(ServiceBusMessageHeaders.RECEIVED_MESSAGE_CONTEXT) ServiceBusReceivedMessageContext context) {
+        try {
+            log.info("[BACKUP] Monitoring message: {}", message.getKey());
+            log.info("[BACKUP] Content type: {}, Storage: {}, Size: {}", 
+                    message.getContentType(), message.getStorageType(), message.getSize());
+            
+            // Acknowledge (complete) the message
+            if (context != null) {
+                context.complete();
+            }
+            log.info("[BACKUP] Successfully processed message: {}", message.getKey());
+        } catch (Exception e) {
+            log.error("[BACKUP] Failed to process message: " + message.getKey(), e);
+            
+            try {
+                // Abandon the message so it is made available for redelivery (equivalent to the
+                // original channel.basicNack(deliveryTag, false, true) with requeue=true).
+                if (context != null) {
+                    context.abandon();
+                }
+                log.warn("[BACKUP] Message requeued: {}", message.getKey());
+            } catch (Exception ackEx) {
+                log.error("[BACKUP] Error handling Service Bus acknowledgment: {}", message.getKey(), ackEx);
+            }
+        }
+    }
+}

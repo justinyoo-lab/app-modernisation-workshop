@@ -1,0 +1,93 @@
+{
+  "input_name": "CWE - File \u0026 Path Security",
+  "analysis_method": "LLM",
+  "status": "success",
+  "result": {
+    "finding": "Assessed 5 CWE rules in File \u0026 Path Security: 4 FOUND, 1 NOT_FOUND",
+    "confidence": "high",
+    "evidence": [
+      "Scanned application source files for file \u0026 path security patterns"
+    ],
+    "values": [
+      {
+        "id": "CWE-22",
+        "name": "Improper Limitation of a Pathname to a Restricted Directory (\u0027Path Traversal\u0027)",
+        "status": "FOUND",
+        "category": "File \u0026 Path Security",
+        "severity": "optional",
+        "storyPoint": "8",
+        "description": "The product uses external input to construct a pathname that is intended to identify a file or directory that is located underneath a restricted parent directory, but the product does not properly neutralize special elements within the pathname that can cause the pathname to resolve to a location that is outside of the restricted directory.",
+        "evidence": {
+          "files": [
+            "web/src/main/java/com/microsoft/migration/assets/service/LocalFileStorageService.java",
+            "web/src/main/java/com/microsoft/migration/assets/controller/S3Controller.java"
+          ],
+          "explanation": "LocalFileStorageService resolves external names and keys directly under rootLocation without verifying the normalized result remains beneath the restricted directory. Upload uses originalFilename at lines 89-95, and get/delete use path variables as keys at lines 109-129; S3Controller exposes these operations through /view/{key} and /delete/{key} at lines 80-99."
+        }
+      },
+      {
+        "id": "CWE-23",
+        "name": "Relative Path Traversal",
+        "status": "FOUND",
+        "category": "File \u0026 Path Security",
+        "severity": "optional",
+        "storyPoint": "5",
+        "description": "The product uses external input to construct a pathname that should be within a restricted directory, but it does not properly neutralize sequences such as .. that can resolve to a location that is outside of that directory.",
+        "evidence": {
+          "files": [
+            "web/src/main/java/com/microsoft/migration/assets/service/LocalFileStorageService.java"
+          ],
+          "explanation": "getObject, deleteObject, and thumbnail deletion at lines 109-129 call rootLocation.resolve(key) and do not normalize and enforce a rootLocation containment check. An external key containing relative traversal sequences can therefore resolve outside the storage directory."
+        }
+      },
+      {
+        "id": "CWE-36",
+        "name": "Absolute Path Traversal",
+        "status": "FOUND",
+        "category": "File \u0026 Path Security",
+        "severity": "optional",
+        "storyPoint": "5",
+        "description": "The product uses external input to construct a pathname that should be within a restricted directory, but it does not properly neutralize absolute path sequences such as /abs/path that can resolve to a location that is outside of that directory.",
+        "evidence": {
+          "files": [
+            "web/src/main/java/com/microsoft/migration/assets/service/LocalFileStorageService.java"
+          ],
+          "explanation": "The upload filename and get/delete keys are passed to Path.resolve at lines 94, 110, 120, and 129. Java Path.resolve treats an absolute external path as overriding rootLocation, and no absolute-path or containment validation is performed."
+        }
+      },
+      {
+        "id": "CWE-434",
+        "name": "Unrestricted Upload of File with Dangerous Type",
+        "status": "FOUND",
+        "category": "File \u0026 Path Security",
+        "severity": "mandatory",
+        "storyPoint": "8",
+        "description": "The product allows the upload or transfer of dangerous file types that are automatically processed within its environment.",
+        "evidence": {
+          "files": [
+            "web/src/main/java/com/microsoft/migration/assets/controller/S3Controller.java",
+            "web/src/main/java/com/microsoft/migration/assets/service/LocalFileStorageService.java",
+            "web/src/main/java/com/microsoft/migration/assets/service/AwsS3Service.java",
+            "worker/src/main/java/com/microsoft/migration/assets/worker/service/AbstractFileProcessingService.java"
+          ],
+          "explanation": "The upload endpoint accepts any MultipartFile without an allowed extension or image/MIME allowlist. The file is stored by LocalFileStorageService or AwsS3Service and a processing message is emitted; AbstractFileProcessingService then automatically reads it with ImageIO.read and writes a thumbnail."
+        }
+      },
+      {
+        "id": "CWE-611",
+        "name": "Improper Restriction of XML External Entity Reference",
+        "status": "NOT_FOUND",
+        "category": "File \u0026 Path Security",
+        "severity": "optional",
+        "storyPoint": "5",
+        "description": "The product processes an XML document that can contain XML entities with URIs that resolve to documents outside of the intended sphere of control, causing the product to embed incorrect documents into its output.",
+        "evidence": {
+          "files": [],
+          "explanation": ""
+        }
+      }
+    ]
+  },
+  "execution_time_seconds": 0,
+  "timestamp": "2026-11-22T18:17:35Z"
+}

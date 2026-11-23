@@ -1,0 +1,112 @@
+[
+  {
+    "file": "java/web/pom.xml",
+    "description": "Removed AWS SDK S3 dependency and version property management. Azure Blob Storage starter dependency is already present from task 005 and is properly shared with the dev profile.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/pom.xml",
+    "description": "Removed AWS SDK S3 dependency and version property management. Azure Blob Storage starter dependency is already present from task 005 and is properly shared with the dev profile.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/main/resources/application.properties",
+    "description": "Removed all AWS S3 configuration (accessKey, secretKey, region, bucket). Updated comments to clarify that the Azure Blob Storage private container is now shared by both dev and non-dev profiles instead of being dev-profile only.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/main/resources/application.properties",
+    "description": "Removed all AWS S3 configuration (accessKeyId, secretKey, region, bucket). Updated comments to clarify that the Azure Blob Storage private container is now shared by both dev and non-dev profiles instead of being dev-profile only.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/main/java/com/microsoft/migration/assets/model/ImageProcessingMessage.java",
+    "description": "Added 'storageType' field to allow routing messages to the correct storage backend (dev profile uses 'local', non-dev profile uses 'azure-blob'). This enables the same Service Bus queue to handle both storage types with appropriate backend service routing.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/main/java/com/microsoft/migration/assets/worker/model/ImageProcessingMessage.java",
+    "description": "Added 'storageType' field to match the web module's ImageProcessingMessage contract and enable backend service routing based on storage type.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/main/java/com/microsoft/migration/assets/config/BlobStorageConfig.java",
+    "description": "Configuration bean properly creates and returns a private BlobContainerClient used by both the dev profile (BlobFileStorageService) and the non-dev profile (AzureBlobService). Uses managed identity for authentication (passwordless). Gracefully handles scenarios where the managed identity may have read-only Blob Data permissions without container management rights. Comment correctly documents that both profiles share this container to avoid duplicate provisioning.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/main/java/com/microsoft/migration/assets/worker/config/BlobStorageConfig.java",
+    "description": "Configuration bean properly creates and returns a private BlobContainerClient used by both the dev profile (BlobFileProcessingService) and the non-dev profile (AzureBlobFileProcessingService). Uses managed identity for authentication (passwordless). Gracefully handles scenarios where the managed identity may have read-only Blob Data permissions without container management rights. Comment correctly documents that both profiles share this container to avoid duplicate provisioning.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/main/java/com/microsoft/migration/assets/service/AzureBlobService.java",
+    "description": "New non-dev/object-storage-profile service replacing the previous AWS S3-backed AwsS3Service. Implements StorageService interface and provides all required operations: listObjects, uploadObject, getObject, deleteObject. Key strengths: (1) Uses BlobKeyValidator to sanitize caller-supplied filenames and keys, closing CWE-99/CWE-22/CWE-23/CWE-36 vulnerabilities. (2) Validates filename before concatenating with UUID prefix, preventing sophisticated path-traversal attacks. (3) Publishes ImageProcessingMessage with storageType='azure-blob' for thumbnail routing. (4) Creates and maintains ImageMetadata database rows, preserving the non-dev profile's metadata write behavior verified in Phase 1 baseline. (5) Falls back to blob's lastModified when metadata is not found during list operations. (6) Tolerates thumbnail deletion failures gracefully (best-effort deletion matching previous S3 behavior). (7) Uses content-type headers appropriately. (8) Never exposes SAS URLs; bytes are always streamed through the application's S3Controller.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/main/java/com/microsoft/migration/assets/service/BlobKeyValidator.java",
+    "description": "Utility class for validating and normalizing blob keys before storage access, mitigating CWE-22, CWE-23, CWE-36, and CWE-99. Properly sanitizes caller-supplied filenames and keys by: (1) Rejecting blank/null keys; (2) Using Spring's cleanPath to normalize; (3) Rejecting any key containing '..'; (4) Detecting and rejecting absolute paths (Unix-style leading slash, Windows drive letters, UNC shares). Critically, it sanitizes the raw filename BEFORE concatenation with UUID prefix, preventing sophisticated path-traversal attacks where ../../secret.jpg could be collapsed after prefixing to defeat post-concatenation checks.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/main/java/com/microsoft/migration/assets/worker/service/AzureBlobFileProcessingService.java",
+    "description": "New non-dev/object-storage-profile thumbnail processing service replacing the previous AWS S3-backed S3FileProcessingService. Extends AbstractFileProcessingService and provides downloadOriginal and uploadThumbnail operations. Key strengths: (1) Uses BlobKeyValidator to sanitize all keys (both original and thumbnail keys), closing CWE-99/CWE-22/CWE-23/CWE-36 vulnerabilities. (2) Reports storageType='azure-blob' matching AzureBlobService for message routing. (3) Properly extracts original key from thumbnail key using _thumbnail suffix logic, then updates matching ImageMetadata row with thumbnail key/URL. (4) Generates app-relative URLs (/storage/key) rather than SAS URLs, consistent with dev profile behavior and BlobFileProcessingService. (5) Tolerates missing original metadata rows gracefully (no-op if no match found). (6) Sets content-type headers appropriately.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/main/java/com/microsoft/migration/assets/worker/service/BlobKeyValidator.java",
+    "description": "Utility class for validating and normalizing blob keys before storage access, identical implementation to the web module's version, mitigating CWE-22, CWE-23, CWE-36, and CWE-99. Properly sanitizes caller-supplied keys and prevents path-traversal attacks.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/main/java/com/microsoft/migration/assets/service/AzureBlobServiceTest.java",
+    "description": "Comprehensive unit tests for AzureBlobService covering all public methods and edge cases. All Azure Blob Storage, Service Bus, and database interactions are properly mocked. Test coverage includes: (1) Upload success path with metadata creation and message publishing; (2) Duplicate uploads creating independent messages and rows; (3) Empty file rejection; (4) Path-traversal filename rejection; (5) BlobStorageException wrapping; (6) Get object success/not-found paths; (7) Path-traversal key rejection on get; (8) Delete with original/thumbnail/metadata removal; (9) Delete leaving unrelated metadata untouched; (10) Thumbnail deletion failure tolerance; (11) Path-traversal key rejection on delete; (12) List operation resolving uploadedAt from metadata; (13) List fallback to lastModified; (14) List exception handling; (15) StorageType reporting. No live services contacted.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/main/java/com/microsoft/migration/assets/service/BlobKeyValidatorTest.java",
+    "description": "Comprehensive unit tests for BlobKeyValidator covering all validation rules. Tests confirm: (1) Simple filenames accepted; (2) Nested path keys accepted; (3) Blank/null keys rejected; (4) Relative path traversal patterns rejected (../, ../../etc/passwd, sub/../../secret, etc.); (5) Absolute path traversal patterns rejected (Unix-style, Windows drive letters, UNC shares). Validation is thorough and correctly addresses CWE-22, CWE-23, and CWE-36.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/main/java/com/microsoft/migration/assets/worker/service/AzureBlobFileProcessingServiceTest.java",
+    "description": "Comprehensive unit tests for AzureBlobFileProcessingService covering all public methods and edge cases. All Azure Blob Storage and database interactions are properly mocked. Test coverage includes: (1) StorageType reporting; (2) Download original success path; (3) Download original not-found exception; (4) Download original path-traversal rejection; (5) Upload thumbnail with file, content-type, and metadata update; (6) Upload thumbnail with no matching metadata (graceful no-op); (7) Upload thumbnail path-traversal rejection; (8) URL generation confirming app-relative path (no SAS); (9) Extract original key logic for _thumbnail suffix stripping. No live services contacted.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/main/java/com/microsoft/migration/assets/worker/service/BlobKeyValidatorTest.java",
+    "description": "Comprehensive unit tests for BlobKeyValidator covering all validation rules, identical to the web module's version. Tests confirm proper validation of blob keys and rejection of path-traversal patterns.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/main/java/com/microsoft/migration/assets/service/AwsS3Service.java",
+    "description": "DELETED: Previous AWS S3-backed service implementation is removed, replaced by AzureBlobService.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/test/java/com/microsoft/migration/assets/service/AwsS3ServiceMessagingTest.java",
+    "description": "DELETED: Previous AWS S3 service test is removed, replaced by AzureBlobServiceTest.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/main/java/com/microsoft/migration/assets/worker/service/S3FileProcessingService.java",
+    "description": "DELETED: Previous AWS S3-backed thumbnail processing service is removed, replaced by AzureBlobFileProcessingService.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/test/java/com/microsoft/migration/assets/worker/service/S3FileProcessingServiceTest.java",
+    "description": "DELETED: Previous AWS S3 thumbnail service test is removed, replaced by AzureBlobFileProcessingServiceTest.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/main/java/com/microsoft/migration/assets/config/AwsS3Config.java",
+    "description": "DELETED: Previous AWS S3 configuration bean is removed, replaced by shared BlobStorageConfig.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/main/java/com/microsoft/migration/assets/worker/config/AwsS3Config.java",
+    "description": "DELETED: Previous AWS S3 configuration bean is removed, replaced by shared BlobStorageConfig.",
+    "issues": []
+  }
+]
