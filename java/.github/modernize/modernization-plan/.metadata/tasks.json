@@ -183,6 +183,7 @@
       "dependencies": [
         "008-integrationTest-mocked-azure-services"
       ],
+      "status": "started",
       "successCriteria": {
         "passBuild": "true",
         "passUnitTests": "true"
