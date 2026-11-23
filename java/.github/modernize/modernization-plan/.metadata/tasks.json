@@ -201,6 +201,7 @@
         "009-verify-and-remediate-assessment-findings",
         "007-prepare-bicep-and-db-init"
       ],
+      "status": "started",
       "dockerfilePath": "web/Dockerfile; worker/Dockerfile"
     }
   ],
