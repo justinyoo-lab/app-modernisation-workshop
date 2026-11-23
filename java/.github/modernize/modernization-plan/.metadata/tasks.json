@@ -171,7 +171,8 @@
         "006-transform-s3-to-private-blob",
         "007-prepare-bicep-and-db-init"
       ],
-      "status": "started"
+      "status": "failed",
+      "taskSummary": "First run: 26/26 planned PostMigrationIT methods executed (18 web + 8 worker), 18 passed, 8 failed. Findings: (1) web path-traversal error message text regressed; (2) web delete-not-found error message text regressed; (3) web oversized-upload now returns 413 instead of 500 (Spring Boot 4/Framework 7 default behavior from approved task 002 upgrade); (4) worker non-dev storageType literal changed from \"s3\" to \"azure-blob\", diverging from frozen baseline contract; (5) worker TC-WKR-001 thumbnail-size expectation was a pre-existing baseline defect unrelated to migration. User decision: fix (1)(2)(4) in code, re-freeze baseline for (3)(5). Re-running after fixes."
     },
     {
       "type": "security",
