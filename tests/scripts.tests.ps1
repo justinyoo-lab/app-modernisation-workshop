@@ -360,15 +360,38 @@ try {
     Set-Content -LiteralPath (Join-Path $fixture 'license-MIT.txt') 'Fixture alternate license'
     Set-Content -LiteralPath (Join-Path $fixture 'COPYRIGHT') 'Fixture copyright'
     Set-Content -LiteralPath (Join-Path $app 'ContosoUniversity.csproj') '<Project><PropertyGroup><TargetFrameworkVersion>v4.8</TargetFrameworkVersion></PropertyGroup></Project>'
+    if ($IsWindows) {
+        $longRelativePath = Join-Path ('a' * 80) (Join-Path ('b' * 80) 'long-path.txt')
+        $longFile = Join-Path $app $longRelativePath
+        [IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($longFile)) | Out-Null
+        [IO.File]::WriteAllText($longFile, 'long path fixture')
+    }
     & git init --quiet $fixture
     & git -C $fixture config core.autocrlf false
-    & git -C $fixture add .
+    & git -C $fixture -c core.longpaths=true add .
     & git -C $fixture -c user.name=Fixture -c user.email=fixture@example.invalid commit --quiet -m "Fixture`n`nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>"
     if ($LASTEXITCODE -ne 0) { throw 'Fixture commit failed' }
     $commit = (& git -C $fixture rev-parse HEAD).Trim()
     $definition = [pscustomobject]@{ Repository=$fixture; Commit=$commit; Subdirectory='ContosoUniversity'; Required=@('ContosoUniversity.sln','ContosoUniversity.csproj','packages.config') }
     $download = Join-Path $temporary 'download with spaces'
-    Invoke-SampleDownload $download $definition $root
+    if ($IsWindows) {
+        $savedGitConfigCount = $env:GIT_CONFIG_COUNT
+        $savedGitConfigKey = $env:GIT_CONFIG_KEY_0
+        $savedGitConfigValue = $env:GIT_CONFIG_VALUE_0
+        $env:GIT_CONFIG_COUNT = '1'; $env:GIT_CONFIG_KEY_0 = 'core.longpaths'; $env:GIT_CONFIG_VALUE_0 = 'false'
+    }
+    try { Invoke-SampleDownload $download $definition $root }
+    finally {
+        if ($IsWindows) {
+            $env:GIT_CONFIG_COUNT = $savedGitConfigCount
+            $env:GIT_CONFIG_KEY_0 = $savedGitConfigKey
+            $env:GIT_CONFIG_VALUE_0 = $savedGitConfigValue
+        }
+    }
+    if ($IsWindows) {
+        Assert-True ($longFile.Length -gt 260) 'fixture exceeds the Windows legacy path limit'
+        Assert-True ([IO.File]::ReadAllText((Join-Path $download $longRelativePath)) -eq 'long path fixture') 'long path downloaded with Git long paths disabled in environment'
+    }
     Assert-True (Test-Path (Join-Path $download 'ContosoUniversity.sln')) 'flattened solution'
     Assert-True (Test-Path (Join-Path $download '.gitignore')) 'hidden files preserved'
     $workshopIgnore = Get-Content (Join-Path $root '.gitignore') -Raw

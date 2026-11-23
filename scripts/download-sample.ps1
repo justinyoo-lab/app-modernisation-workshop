@@ -52,7 +52,7 @@ function Assert-SafeDestination {
 
 function Invoke-DownloadGit {
     param([string[]]$Arguments)
-    & git @Arguments | Out-Host
+    & git -c core.longpaths=true @Arguments | Out-Host
     if ($LASTEXITCODE -ne 0) { throw "Git command failed (exit code $LASTEXITCODE). Check network access, Git settings, and destination permissions." }
 }
 
@@ -69,7 +69,7 @@ function Invoke-SampleDownload {
         Invoke-DownloadGit @('-C', $checkout, 'remote', 'add', 'origin', $Definition.Repository)
         Invoke-DownloadGit @('-C', $checkout, 'fetch', '--quiet', '--depth', '1', 'origin', $Definition.Commit)
         Invoke-DownloadGit @('-C', $checkout, '-c', 'advice.detachedHead=false', '-c', 'core.autocrlf=false', 'checkout', '--quiet', '--detach', 'FETCH_HEAD')
-        $head = (& git -C $checkout rev-parse HEAD).Trim()
+        $head = (& git -c core.longpaths=true -C $checkout rev-parse HEAD).Trim()
         if ($LASTEXITCODE -ne 0 -or $head -cne $Definition.Commit) { throw 'Upstream commit verification failed.' }
         $source = Join-Path $checkout $Definition.Subdirectory
         foreach ($required in $Definition.Required) {

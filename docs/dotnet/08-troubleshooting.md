@@ -16,6 +16,7 @@
 | 스크립트 실행 권한/인코딩/줄바꿈 | `./scripts/check-prerequisites.ps1 -Track dotnet`처럼 직접 실행합니다. `Get-ExecutionPolicy`가 `Restricted`이면 `Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned`를 현재 창에만 적용합니다. 시스템/사용자 범위는 바꾸지 않으며 조직 정책은 관리자에게 문의합니다. `.ps1`은 5.1 파서를 위해 UTF-8 BOM과 LF를 유지합니다. |
 | 엔진 인자 충돌 | `AZD_CONTAINER_RUNTIME`과 `-ContainerEngine`/`--container-engine`을 같은 값으로 맞춥니다. |
 | 다운로드 대상이 비어 있지 않음 | 기존 파일을 보존하고 다른 빈 폴더를 지정합니다. 숨김 파일과 `.git`도 기존 내용입니다. |
+| Windows에서 `Filename too long` | 다운로드 도우미는 Git 명령에만 긴 경로 설정을 적용합니다. 오류가 계속되면 워크숍 루트에서 `./scripts/download-sample.ps1 -Track dotnet -Destination 'C:/workshop-dotnet'`처럼 짧고 비어 있는 경로로 다시 시도합니다. 기존 파일은 삭제하지 않습니다. |
 | 보호 경로/심볼릭 링크/junction 오류 | 워크숍 문서, 홈/루트가 아닌 실제 일반 디렉터리를 선택합니다. 자동 삭제로 우회하지 않습니다. |
 | Git fetch/프록시/인증서 오류 | 회사 프록시와 인증서 체인을 정상 설정하고 고정 SHA 접근을 확인합니다. SSL 검증을 끄지 않습니다. |
 | 다운로드 도중 디스크 오류 | 실패한 대상의 내용을 확인하고 새 빈 경로로 재시도합니다. `.workshop-download-*`는 고유 임시 경로지만 다른 실행이 사용 중인지 확인 없이 일괄 삭제하지 않습니다. |
