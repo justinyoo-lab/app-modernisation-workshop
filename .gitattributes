@@ -1,0 +1,35 @@
+# Normalize text files and preserve the workshop's LF script convention.
+* text=auto
+*.md text eol=lf
+*.json text
+*.yaml text
+*.yml text
+*.xml text
+*.toml text
+*.sh text eol=lf
+*.bash text eol=lf
+*.ps1 text eol=lf
+java/mvnw text eol=lf
+
+# Windows command scripts use CRLF.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.pdf binary
+*.zip binary
+*.tar.gz binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+
+# Linguist overrides
+*.min.js linguist-generated
+*.min.css linguist-generated

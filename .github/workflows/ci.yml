@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  bash-tests:
+    name: Bash regression tests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - name: Prepare shell test interpreters
+        shell: bash
+        run: |
+          if [[ "$RUNNER_OS" == macOS ]]; then
+            mkdir -p "$GITHUB_WORKSPACE/.test-output/system-bash"
+            ln -s /bin/bash "$GITHUB_WORKSPACE/.test-output/system-bash/bash"
+            echo "$GITHUB_WORKSPACE/.test-output/system-bash" >> "$GITHUB_PATH"
+          else
+            sudo apt-get update
+            sudo apt-get install -y zsh
+          fi
+      - name: Run shell regression tests
+        shell: bash
+        run: |
+          bash --version
+          zsh --version
+          if [[ "$RUNNER_OS" == macOS ]]; then
+            [[ "$(bash -c 'printf "%s" "$BASH_VERSION"')" == 3.2.* ]]
+          fi
+          for script in scripts/*.sh tests/*.tests.sh; do bash -n "$script"; done
+          for suite in scripts install-prerequisites azure-actions use-java shell-portability; do
+            if [[ "$RUNNER_OS" == macOS ]]; then
+              /bin/bash "tests/$suite.tests.sh"
+            else
+              bash "tests/$suite.tests.sh"
+            fi
+          done
+          for script in infra/scripts/*.sh infra/tests/*.tests.sh; do bash -n "$script"; done
+          bash infra/tests/vm-payload.tests.sh
+
+  powershell-tests:
+    name: PowerShell regression tests
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - name: Run PowerShell tests when present
+        shell: pwsh
+        run: |
+          if (Test-Path -LiteralPath 'tests/scripts.tests.ps1') {
+            pwsh -NoLogo -NoProfile -File .\tests\scripts.tests.ps1
+          }
+          else {
+            Write-Host 'PowerShell regression tests are not present yet; skipping.'
+          }
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          pwsh -NoLogo -NoProfile -File .\tests\dotnet-original.tests.ps1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          foreach ($test in @('java-tools', 'install-prerequisites', 'windows-prerequisite-updates', 'azure-actions', 'powershell-bootstrap')) {
+            pwsh -NoLogo -NoProfile -File ".\tests\$test.tests.ps1"
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }
+      - name: Verify Windows PowerShell 5.1 entrypoints
+        shell: pwsh
+        run: |
+          foreach ($test in @('scripts', 'dotnet-original', 'java-tools', 'install-prerequisites', 'windows-prerequisite-updates', 'azure-actions', 'powershell-bootstrap')) {
+            powershell.exe -NoLogo -NoProfile -NonInteractive -File ".\tests\$test.tests.ps1"
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }

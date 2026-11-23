@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+name: appmod-windows-vm
+infra:
+  provider: bicep
+  path: infra
+  module: main
+hooks:
+  preprovision:
+    windows:
+      shell: pwsh
+      interactive: false
+      run: ./infra/scripts/preprovision.ps1
+    posix:
+      shell: sh
+      interactive: false
+      run: ./infra/scripts/preprovision.sh
+  postprovision:
+    windows:
+      shell: pwsh
+      interactive: false
+      run: ./infra/scripts/postprovision.ps1
+    posix:
+      shell: sh
+      interactive: false
+      run: ./infra/scripts/postprovision.sh

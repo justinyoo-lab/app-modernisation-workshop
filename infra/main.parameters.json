@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": {
+      "value": "${AZURE_ENV_NAME}"
+    },
+    "location": {
+      "value": "${AZURE_LOCATION}"
+    },
+    "vmSize": {
+      "value": "${VM_SIZE}"
+    },
+    "osDiskSizeGB": {
+      "value": "${VM_OS_DISK_SIZE_GB}"
+    },
+    "autoShutdownEnabled": {
+      "value": "${VM_AUTO_SHUTDOWN_ENABLED}"
+    },
+    "autoShutdownTime": {
+      "value": "${VM_AUTO_SHUTDOWN_TIME}"
+    }
+  }
+}
