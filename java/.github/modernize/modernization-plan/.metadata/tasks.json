@@ -170,7 +170,8 @@
         "005-transform-dev-local-files-to-private-blob",
         "006-transform-s3-to-private-blob",
         "007-prepare-bicep-and-db-init"
-      ]
+      ],
+      "status": "started"
     },
     {
       "type": "security",
