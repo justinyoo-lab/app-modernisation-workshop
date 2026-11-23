@@ -1,0 +1,92 @@
+[
+  {
+    "issues": [],
+    "file": "java/web/pom.xml",
+    "description": "Added spring-cloud-azure-starter-storage-blob dependency to enable Azure Blob Storage integration with managed identity authentication. Comment documents the purpose (dev-profile private storage container) and authentication approach (managed identity / passwordless). Dependency aligns with application's Azure Managed Identity strategy."
+  },
+  {
+    "issues": [],
+    "file": "java/web/src/main/java/com/microsoft/migration/assets/config/BlobStorageConfig.java",
+    "description": "New configuration class creates BlobContainerClient bean for Azure Blob Storage. Uses spring-cloud-azure-starter-storage-blob auto-configuration for passwordless authentication via managed identity. Implements best-effort container creation with graceful error handling if container already exists or identity lacks management permissions. Documentation clearly explains security model (private container, no SAS URLs, least-privilege permissions). Functional behavior mirrors previous local-file implementation's directory-creation logic."
+  },
+  {
+    "issues": [],
+    "file": "java/web/src/main/java/com/microsoft/migration/assets/service/BlobFileStorageService.java",
+    "description": "New dev-profile storage backend replacing LocalFileStorageService. Migrates uploads/downloads/deletes from Java NIO filesystem operations to Azure Blob Storage SDK. Preserves original dev-profile behavior: (1) no image_metadata database row writes (intentional dev-profile behavior per baseline), (2) storage type remains 'local' for Service Bus routing to BlobFileProcessingService, (3) caller-visible operations (list/view/delete/thumbnail) remain unchanged. Container is private (no public access); bytes streamed through application via getObject() rather than SAS URLs. All operations properly sanitize blob keys using BlobKeyValidator."
+  },
+  {
+    "issues": [],
+    "file": "java/web/src/main/java/com/microsoft/migration/assets/service/BlobKeyValidator.java",
+    "description": "New security-focused utility class validates and normalizes blob keys to prevent path traversal attacks. Improvements over previous single dot-dot check: (1) detects Unix absolute paths like /etc/passwd, (2) detects Windows drive-letter absolute paths like C:\\foo, (3) detects UNC shares like \\\\server\\share, (4) uses Spring's StringUtils.cleanPath() for consistent normalization. Addresses CWE-22 (Improper Limitation of Pathname), CWE-23 (Relative Path Traversal), CWE-36 (Absolute Path Traversal). Properly package-private scope prevents external instantiation."
+  },
+  {
+    "issues": [],
+    "file": "java/web/src/main/resources/application.properties",
+    "description": "Added dev-profile Blob Storage configuration section. Uses environment variables (AZURE_STORAGE_BLOB_ENDPOINT, AZURE_STORAGE_CONTAINER_NAME) with sensible default ('assets' container). Extensive documentation explains: (1) no connection strings/account keys stored in code, (2) least-privilege identity scoping, (3) container always private, (4) no SAS URL generation. Credentials rely on managed identity configured in spring.cloud.azure.credential.* settings (shared from Service Bus setup), consistent with passwordless authentication strategy."
+  },
+  {
+    "issues": [],
+    "file": "java/web/src/test/java/com/microsoft/migration/assets/service/BlobFileStorageServiceTest.java",
+    "description": "Comprehensive unit test suite for BlobFileStorageService. All Azure dependencies (BlobContainerClient, BlobClient, ServiceBusTemplate) properly mocked. Tests cover: (1) upload publishes ImageProcessingMessage to queue with correct payload, (2) duplicate uploads each publish independent message, (3) file not found scenarios, (4) Service Bus integration. Test approach mirrors functional expectations and verifies integration with downstream thumbnail processing."
+  },
+  {
+    "issues": [],
+    "file": "java/web/src/test/java/com/microsoft/migration/assets/service/BlobKeyValidatorTest.java",
+    "description": "Unit tests validate BlobKeyValidator's path traversal defenses. Tests verify rejection of: (1) relative paths with '..' segments, (2) Unix absolute paths, (3) Windows drive letters, (4) UNC shares, (5) blank keys. Tests confirm acceptance of normal filenames and that sanitize() properly normalizes key paths. Comprehensive coverage of CWE-22/23/36 mitigations."
+  },
+  {
+    "issues": [],
+    "file": "java/web/src/test/java/com/microsoft/migration/assets/config/BlobStorageConfigurationTest.java",
+    "description": "Tests BlobStorageConfig bean creation and container initialization. Verifies: (1) bean creation with mocked BlobServiceClient, (2) container creation when missing, (3) graceful handling when container already exists, (4) graceful handling when managed identity lacks container-creation permissions. Tests confirm best-effort initialization strategy that mirrors previous local-filesystem behavior."
+  },
+  {
+    "issues": [],
+    "file": "java/web/src/test/java/com/microsoft/migration/assets/service/LocalFileStorageServiceMessagingTest.java",
+    "description": "Pre-migration test file retained to verify Service Bus messaging contract. Presence indicates test continuity and validates that LocalFileStorageService messaging behavior expectations are preserved in BlobFileStorageService."
+  },
+  {
+    "issues": [],
+    "file": "java/worker/pom.xml",
+    "description": "Added spring-cloud-azure-starter-storage-blob dependency matching web module. Comment documents purpose (dev-profile private storage for thumbnail processing) and authentication approach (managed identity / passwordless)."
+  },
+  {
+    "issues": [],
+    "file": "java/worker/src/main/java/com/microsoft/migration/assets/worker/config/BlobStorageConfig.java",
+    "description": "Parallel to web module's BlobStorageConfig. Creates BlobContainerClient bean for thumbnail processing service. Same security model: private container, managed identity auth, best-effort container creation, no SAS URLs. Identical error handling strategy mirrors previous local-file initialization."
+  },
+  {
+    "issues": [],
+    "file": "java/worker/src/main/java/com/microsoft/migration/assets/worker/service/BlobFileProcessingService.java",
+    "description": "New dev-profile thumbnail processing backend replacing LocalFileProcessingService. Migrates original/thumbnail download/upload from Java NIO to Azure Blob Storage SDK. Preserves dev-profile storage type 'local' (matches BlobFileStorageService). All blob operations properly sanitize keys. URL generation returns app-relative path '/storage/{key}' (matches previous behavior; thumbnails not exposed via Blob SAS URLs). Extends AbstractFileProcessingService with identical contract."
+  },
+  {
+    "issues": [],
+    "file": "java/worker/src/main/java/com/microsoft/migration/assets/worker/service/BlobKeyValidator.java",
+    "description": "Parallel to web module's BlobKeyValidator (slight variation in package/comments but functionally identical). Validates worker's download/upload blob keys against path traversal attacks. Same CWE mitigations (CWE-22/23/36)."
+  },
+  {
+    "issues": [],
+    "file": "java/worker/src/main/resources/application.properties",
+    "description": "Added dev-profile Blob Storage configuration matching web module. Environment-driven endpoints and container name. Same security documentation and managed identity authentication strategy."
+  },
+  {
+    "issues": [],
+    "file": "java/worker/src/test/java/com/microsoft/migration/assets/worker/service/BlobFileProcessingServiceTest.java",
+    "description": "Unit tests for BlobFileProcessingService. All Azure SDK dependencies mocked. Tests verify: (1) download original from blob, (2) upload thumbnail to blob, (3) proper key sanitization, (4) handling of missing blobs. Tests confirm functional equivalence with previous local-filesystem implementation."
+  },
+  {
+    "issues": [],
+    "file": "java/worker/src/test/java/com/microsoft/migration/assets/worker/service/BlobKeyValidatorTest.java",
+    "description": "Path traversal defense tests for worker module's BlobKeyValidator (functionally identical to web module tests). Verifies rejection of relative path traversal, absolute paths (Unix/Windows/UNC), and blank keys."
+  },
+  {
+    "issues": [],
+    "file": "java/worker/src/test/java/com/microsoft/migration/assets/worker/config/BlobStorageConfigurationTest.java",
+    "description": "Tests worker module's BlobStorageConfig bean. Verifies container initialization, graceful error handling, and best-effort creation strategy matching web module's implementation."
+  },
+  {
+    "issues": [],
+    "file": "java/worker/src/test/java/com/microsoft/migration/assets/worker/service/LocalFileProcessingServiceTest.java",
+    "description": "Pre-migration test file retained to verify processing contract. Presence indicates test continuity and validates that LocalFileProcessingService behavior expectations are preserved in BlobFileProcessingService."
+  }
+]
