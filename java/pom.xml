@@ -17,12 +17,26 @@
     
     <properties>
         <java.version>25</java.version>
+        <spring-cloud-azure.version>7.4.0</spring-cloud-azure.version>
     </properties>
 
     <modules>
         <module>web</module>
         <module>worker</module>
     </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Azure Database for PostgreSQL managed-identity (passwordless) authentication support. -->
+            <dependency>
+                <groupId>com.azure.spring</groupId>
+                <artifactId>spring-cloud-azure-dependencies</artifactId>
+                <version>${spring-cloud-azure.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <pluginManagement>

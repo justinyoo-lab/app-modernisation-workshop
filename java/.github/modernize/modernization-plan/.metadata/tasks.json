@@ -48,6 +48,7 @@
       "dependencies": [
         "002-upgrade-jdk25-spring-boot-4"
       ],
+      "status": "success",
       "skills": [
         {
           "name": "migration-mi-postgresql",
