@@ -115,6 +115,7 @@
       "dependencies": [
         "005-transform-dev-local-files-to-private-blob"
       ],
+      "status": "started",
       "skills": [
         {
           "name": "migration-s3-to-azure-blob-storage",
