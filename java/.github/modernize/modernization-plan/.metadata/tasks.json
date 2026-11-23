@@ -146,6 +146,7 @@
       "dependencies": [
         "006-transform-s3-to-private-blob"
       ],
+      "status": "started",
       "skills": [
         {
           "name": "infrastructure-bicep-generation",
