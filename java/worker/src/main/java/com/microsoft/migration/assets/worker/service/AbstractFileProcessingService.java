@@ -135,6 +135,13 @@ public abstract class AbstractFileProcessingService implements FileProcessor {
             thumbnailWidth = (int) (maxDimension * aspectRatio);
         }
 
+        // Extreme aspect ratios (e.g. a single-pixel-tall/wide image) can truncate one of the
+        // double-derived dimensions above to zero when cast to int. A zero dimension is an
+        // invalid BufferedImage/scaling argument (CWE-681: Incorrect Conversion between Numeric
+        // Types; CWE-682: Incorrect Calculation), so clamp both dimensions to a minimum of 1px.
+        thumbnailWidth = Math.max(thumbnailWidth, 1);
+        thumbnailHeight = Math.max(thumbnailHeight, 1);
+
         // Multi-step scaling for higher quality
         // This progressive scaling produces better results than single-step scaling
         BufferedImage resultImage = progressiveScaling(originalImage, thumbnailWidth, thumbnailHeight);
@@ -151,42 +158,52 @@ public abstract class AbstractFileProcessingService implements FileProcessor {
             extension = "jpg"; // Default to jpg if no extension found
         }
 
-        // Write the thumbnail with optimized settings for different formats
+        // Write the thumbnail with optimized settings for different formats.
+        // The ImageWriter and ImageOutputStream below are released via try-with-resources (and,
+        // for the writer, a finally block, since ImageWriter does not implement Closeable) so
+        // that a failure during setOutput/write/dispose cannot leak the resource (CWE-772:
+        // Missing Release of Resource after Effective Lifetime).
         if (extension.equalsIgnoreCase("jpg") || extension.equalsIgnoreCase("jpeg")) {
             // For JPEG, we need to set compression quality
             javax.imageio.ImageWriter jpgWriter = javax.imageio.ImageIO.getImageWritersByFormatName("jpg").next();
-            javax.imageio.ImageWriteParam jpgWriteParam = jpgWriter.getDefaultWriteParam();
-            jpgWriteParam.setCompressionMode(javax.imageio.ImageWriteParam.MODE_EXPLICIT);
-            // Higher compression quality (0.95 for maximum clarity)
-            jpgWriteParam.setCompressionQuality(0.95f);
-            
-            javax.imageio.IIOImage outputImage = new javax.imageio.IIOImage(resultImage, null, null);
-            javax.imageio.stream.ImageOutputStream outputStream = 
-                javax.imageio.ImageIO.createImageOutputStream(output.toFile());
-            jpgWriter.setOutput(outputStream);
-            jpgWriter.write(null, outputImage, jpgWriteParam);
-            jpgWriter.dispose();
-            outputStream.close();
+            try {
+                javax.imageio.ImageWriteParam jpgWriteParam = jpgWriter.getDefaultWriteParam();
+                jpgWriteParam.setCompressionMode(javax.imageio.ImageWriteParam.MODE_EXPLICIT);
+                // Higher compression quality (0.95 for maximum clarity)
+                jpgWriteParam.setCompressionQuality(0.95f);
+
+                javax.imageio.IIOImage outputImage = new javax.imageio.IIOImage(resultImage, null, null);
+                try (javax.imageio.stream.ImageOutputStream outputStream =
+                        javax.imageio.ImageIO.createImageOutputStream(output.toFile())) {
+                    jpgWriter.setOutput(outputStream);
+                    jpgWriter.write(null, outputImage, jpgWriteParam);
+                }
+            } finally {
+                jpgWriter.dispose();
+            }
         } else {
             // For PNG, use compression level 0 (no compression) for best quality
             javax.imageio.ImageWriteParam pngWriteParam = null;
             if (extension.equalsIgnoreCase("png")) {
                 javax.imageio.ImageWriter pngWriter = ImageIO.getImageWritersByFormatName("png").next();
-                pngWriteParam = pngWriter.getDefaultWriteParam();
-                if (pngWriteParam.canWriteCompressed()) {
-                    pngWriteParam.setCompressionMode(javax.imageio.ImageWriteParam.MODE_EXPLICIT);
-                    pngWriteParam.setCompressionType("Deflate");
-                    pngWriteParam.setCompressionQuality(0.0f); // 0 = best quality for PNG
-                    
-                    javax.imageio.IIOImage outputImage = new javax.imageio.IIOImage(resultImage, null, null);
-                    javax.imageio.stream.ImageOutputStream outputStream = 
-                        javax.imageio.ImageIO.createImageOutputStream(output.toFile());
-                    pngWriter.setOutput(outputStream);
-                    pngWriter.write(null, outputImage, pngWriteParam);
+                try {
+                    pngWriteParam = pngWriter.getDefaultWriteParam();
+                    if (pngWriteParam.canWriteCompressed()) {
+                        pngWriteParam.setCompressionMode(javax.imageio.ImageWriteParam.MODE_EXPLICIT);
+                        pngWriteParam.setCompressionType("Deflate");
+                        pngWriteParam.setCompressionQuality(0.0f); // 0 = best quality for PNG
+
+                        javax.imageio.IIOImage outputImage = new javax.imageio.IIOImage(resultImage, null, null);
+                        try (javax.imageio.stream.ImageOutputStream outputStream =
+                                javax.imageio.ImageIO.createImageOutputStream(output.toFile())) {
+                            pngWriter.setOutput(outputStream);
+                            pngWriter.write(null, outputImage, pngWriteParam);
+                        }
+                    } else {
+                        ImageIO.write(resultImage, extension, output.toFile());
+                    }
+                } finally {
                     pngWriter.dispose();
-                    outputStream.close();
-                } else {
-                    ImageIO.write(resultImage, extension, output.toFile());
                 }
             } else {
                 // For other formats, use regular write method

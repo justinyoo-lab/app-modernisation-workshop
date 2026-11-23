@@ -88,6 +88,10 @@ public class BlobFileStorageService implements StorageService {
             throw new IOException("Failed to store empty file");
         }
 
+        // Reject anything that is not an allowlisted image type before it is stored or queued
+        // for thumbnail processing (CWE-434: Unrestricted Upload of File with Dangerous Type).
+        UploadedFileValidator.validate(file);
+
         String key = BlobKeyValidator.sanitize(file.getOriginalFilename());
 
         BlobClient blobClient = blobContainerClient.getBlobClient(key);

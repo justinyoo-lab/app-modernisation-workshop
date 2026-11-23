@@ -104,6 +104,10 @@ public class AzureBlobService implements StorageService {
             throw new IOException("Failed to store empty file");
         }
 
+        // Reject anything that is not an allowlisted image type before it is stored or queued
+        // for thumbnail processing (CWE-434: Unrestricted Upload of File with Dangerous Type).
+        UploadedFileValidator.validate(file);
+
         // Validate/sanitize the caller-supplied filename *before* it is combined with the
         // generated UUID prefix. Validating only the final concatenated key would be unsafe: a
         // malicious filename such as "../../secret.jpg" can be collapsed by path normalization

@@ -183,11 +183,13 @@
       "dependencies": [
         "008-integrationTest-mocked-azure-services"
       ],
-      "status": "started",
+      "status": "success",
       "successCriteria": {
         "passBuild": "true",
         "passUnitTests": "true"
-      }
+      },
+      "cveReport": ".github/modernize/modernization-plan/009-verify-and-remediate-assessment-findings/final-cve-report.json",
+      "taskSummary": "Live-scanned 195 resolved Maven coordinates (web+worker) against GitHub Security Advisories; none of the assessment's listed CVE IDs matched a dependency actually present (those targeted the pre-migration Java 8/Spring Boot 2.x/AWS SDK state, already superseded by tasks 002-007). Found and fixed 1 real transitive CVE: org.apache.qpid:proton-j 0.34.1 (CVE-2026-66274, via com.azure:azure-core-amqp) pinned to patched 0.35.0 via root pom.xml dependencyManagement. 2 netty-transport-native-{epoll,kqueue} findings (CVE-2026-45536) are false positives: resolved version 4.2.19.Final is already past the 4.2.x-line patched version 4.2.15.Final; the scanner matched the advisory's separate 4.1.x range. CWE findings: confirmed and fixed CWE-434 (added UploadedFileValidator image allowlist in AzureBlobService/BlobFileStorageService), CWE-681/682 (clamped thumbnail dimensions to >=1px), CWE-772 (try-with-resources + finally dispose for ImageWriter/ImageOutputStream in AbstractFileProcessingService). CWE-662/820/22/23/36/99 are false positives already resolved by the task 005/006 Blob Storage migration (LocalFileStorageService/LocalFileProcessingService no longer exist; BlobKeyValidator already enforces path/key containment). CWE-477 is a false positive (WebMvcConfig already uses non-deprecated WebMvcConfigurer/HandlerInterceptor). CWE-259/798 (hard-coded local Docker Postgres credential in scripts/startapp.sh/.cmd) confirmed but intentionally left unchanged, consistent with task 003's explicit out-of-scope decision: local throwaway dev-only container, not a real secret, never used by the migrated app. mvnw clean verify: BUILD SUCCESS, web 62 unit + 18 IT tests pass, worker 51 unit + 8 IT tests pass, 0 failures/errors, no test deleted or weakened."
     },
     {
       "type": "containerization",
