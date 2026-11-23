@@ -35,6 +35,12 @@
             <groupId>com.azure.spring</groupId>
             <artifactId>spring-messaging-azure-servicebus</artifactId>
         </dependency>
+        <!-- Azure Blob Storage (managed identity / passwordless authentication) backing the
+             dev-profile private storage container. -->
+        <dependency>
+            <groupId>com.azure.spring</groupId>
+            <artifactId>spring-cloud-azure-starter-storage-blob</artifactId>
+        </dependency>
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>s3</artifactId>

@@ -1,0 +1,5 @@
+{
+  "file": "java/.github/modernize/modernization-plan/.metadata/tasks.json",
+  "description": "Task 005 status metadata updated from pending to started. This is an operational metadata change, not an implementation change. No actual migration code changes are present in the diff for task 005.",
+  "issues": []
+}
