@@ -1,0 +1,62 @@
+[
+  {
+    "file": "java/pom.xml",
+    "description": "Parent POM updated to include Spring Cloud Azure BOM (v7.4.0) for managed identity support. The dependency management section correctly imports the BOM with scope 'import' to manage Azure-related transitive dependencies. This version is compatible with Spring Boot 4.1.2 (the target version from task 002).",
+    "issues": []
+  },
+  {
+    "file": "java/web/pom.xml",
+    "description": "Web module POM updated with three new dependencies: (1) spring-cloud-azure-starter-jdbc-postgresql for passwordless authentication, (2) H2 database with test scope for unit tests, (3) spring-boot-starter-data-jpa-test with test scope for @DataJpaTest support. All test dependencies are correctly scoped and will not leak into production. The existing postgresql driver (runtime scope) is retained.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/main/resources/application.properties",
+    "description": "Production configuration migrated from local PostgreSQL to Azure Database for PostgreSQL Flexible Server with managed identity authentication. Original code (localhost:5432 with hardcoded credentials) replaced with: (1) externalized POSTGRESQL_SERVER, POSTGRESQL_PORT, POSTGRESQL_DATABASE environment variables, (2) mandatory TLS (sslmode=require), (3) passwordless enabled (spring.datasource.azure.passwordless-enabled=true), (4) managed identity enabled (spring.cloud.azure.credential.managed-identity-enabled=true), (5) optional AZURE_MANAGED_IDENTITY_CLIENT_ID for user-assigned identities. Extensive comments document configuration options for different Azure clouds and authentication scenarios. No credential is hardcoded. Application database principal (POSTGRESQL_USERNAME) is distinct from operator identity, as required by task specification.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/pom.xml",
+    "description": "Worker module POM updated with the same three new dependencies as web module for consistency and feature parity. All test dependencies are correctly scoped. No issues identified.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/main/resources/application.properties",
+    "description": "Production configuration migrated identically to web module. Same managed identity, TLS, environment variable externalization, and documentation as web module. Configuration is consistent across both modules.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/test/java/com/microsoft/migration/assets/config/DataSourceConfigurationTest.java",
+    "description": "New test class validates that production datasource configuration meets security and Azure requirements. Test methods: (1) datasourceUrlTargetsAzurePostgresqlFlexibleServerOverTls() verifies endpoint is Azure service with sslmode=require, (2) noDatabasePasswordIsConfigured() verifies no password in config and passwordless is enabled, (3) managedIdentityAuthenticationIsEnabled() verifies managed identity flag, (4) applicationDatabasePrincipalIsExternalizedNotHardcoded() verifies principal is supplied via environment (${...} placeholder), not hardcoded. Tests only parse properties file without opening database connection. All assertions are well-reasoned and directly support the migration requirements.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/test/java/com/microsoft/migration/assets/repository/ImageMetadataRepositoryTest.java",
+    "description": "New repository-facing integration test verifies that Spring Data JPA operations preserve entity behavior after datasource migration. Uses @DataJpaTest and in-memory H2 database (never connects to live Azure database). Test methods: (1) savesAndRetrievesEntityPreservingS3PathMetadata() verifies CRUD and metadata fields (S3 URL, thumbnail URL), (2) updatingEntityRefreshesLastModifiedButKeepsUploadedAt() verifies timestamp behavior is preserved, (3) findAllAndDeleteBehaveLikeStandardJpaRepository() verifies standard JPA operations. Tests verify that existing application behavior is preserved after managed identity migration. All assertions use AssertJ fluently.",
+    "issues": []
+  },
+  {
+    "file": "java/web/src/test/resources/application.properties",
+    "description": "Test-only configuration that overrides production settings for unit tests. Points to in-memory H2 database (jdbc:h2:mem:assets_manager_test) in PostgreSQL compatibility mode (MODE=PostgreSQL). Correctly disables managed identity (spring.cloud.azure.credential.managed-identity-enabled=false) and passwordless mode (spring.datasource.azure.passwordless-enabled=false) since tests run without Azure credentials. This isolation ensures unit tests do not require Azure environment or credentials to run. Hibernate DDL is set to create-drop for clean test isolation.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/test/java/com/microsoft/migration/assets/worker/config/DataSourceConfigurationTest.java",
+    "description": "Identical to web module DataSourceConfigurationTest. Validates production datasource configuration meets security requirements (TLS, managed identity, no hardcoded credentials, externalized principal). No issues identified.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/test/java/com/microsoft/migration/assets/worker/repository/ImageMetadataRepositoryTest.java",
+    "description": "Identical to web module ImageMetadataRepositoryTest. Verifies repository behavior and S3 metadata preservation using in-memory H2 database. No issues identified.",
+    "issues": []
+  },
+  {
+    "file": "java/worker/src/test/resources/application.properties",
+    "description": "Test-only configuration for worker module. Identical to web version except database name (assets_manager_worker_test) for test isolation. Correctly disables Azure-specific configuration for unit tests. No issues identified.",
+    "issues": []
+  },
+  {
+    "file": "java/.github/modernize/modernization-plan/.metadata/tasks.json",
+    "description": "Metadata file updated with 'status': 'started' for task 003. This is a tracking change, not code change. No functional issues.",
+    "issues": []
+  }
+]

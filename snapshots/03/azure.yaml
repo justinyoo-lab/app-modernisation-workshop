@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+# azd project definition for assets-manager (web + worker), modernization task
+# 010-prepare-container-apps-azd-artifacts.
+#
+# IMPORTANT (participant-only procedure — see plan.md "별도 DB 초기화 및 참가자 azd 절차"):
+#   This file and the Dockerfiles below were prepared and validated with LOCAL container
+#   builds only (`docker build`). No `azd provision`, `azd deploy`, `az acr build`, or any
+#   remote/ACR-Tasks build was run as part of this task, and no images were published to any
+#   registry. Running `azd up` / `azd provision` / `azd deploy` is a separate, participant-approved
+#   step that provisions the Bicep template in infra/ (main.bicep) and only then builds+pushes+
+#   deploys these images to the Azure Container Registry and Container Apps it creates.
+name: assets-manager
+
+metadata:
+  template: assets-manager-java@0.0.1
+
+# Provisioning uses the existing Bicep template from task 007-prepare-bicep-and-db-init.
+# provision is NOT invoked by this containerization task.
+infra:
+  provider: bicep
+  path: infra
+  module: main
+
+services:
+  web:
+    project: ./web
+    language: java
+    host: containerapp
+    docker:
+      path: ./Dockerfile
+      context: ..
+      platform: linux/amd64
+      remoteBuild: false
+
+  worker:
+    project: ./worker
+    language: java
+    host: containerapp
+    docker:
+      path: ./Dockerfile
+      context: ..
+      platform: linux/amd64
+      remoteBuild: false

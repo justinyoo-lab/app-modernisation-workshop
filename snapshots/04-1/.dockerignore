@@ -1,0 +1,27 @@
+## Repository-root .dockerignore
+## Build context for web/Dockerfile and worker/Dockerfile is this directory (java/),
+## required because the Maven build is a multi-module reactor (root pom.xml + web + worker).
+
+**/target/
+**/.classpath
+**/.project
+**/.settings
+**/.idea
+**/*.iml
+**/.vscode
+
+.git
+.github
+.azure
+logs/
+pids/
+storage/
+uploads/
+infra/
+doc-media/
+
+*.md
+!README.md
+
+.env
+.env.*

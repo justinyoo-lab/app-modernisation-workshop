@@ -1,0 +1,101 @@
+{
+  "input_name": "CWE - Concurrency \u0026 Synchronization",
+  "analysis_method": "LLM",
+  "status": "success",
+  "result": {
+    "finding": "Assessed 6 CWE rules in Concurrency \u0026 Synchronization: 2 FOUND, 4 NOT_FOUND",
+    "confidence": "high",
+    "evidence": [
+      "Scanned application source files for concurrency \u0026 synchronization patterns",
+      "Reviewed Spring web, RabbitMQ listeners, S3 clients, and local filesystem operations for shared-state and locking behavior"
+    ],
+    "values": [
+      {
+        "id": "CWE-543",
+        "name": "Use of Singleton Pattern Without Synchronization in a Multithreaded Context",
+        "status": "NOT_FOUND",
+        "category": "Concurrency \u0026 Synchronization",
+        "severity": "potential",
+        "storyPoint": "5",
+        "description": "The product uses the singleton pattern when creating a resource within a multithreaded environment.",
+        "evidence": {
+          "files": [],
+          "explanation": ""
+        }
+      },
+      {
+        "id": "CWE-567",
+        "name": "Unsynchronized Access to Shared Data in a Multithreaded Context",
+        "status": "NOT_FOUND",
+        "category": "Concurrency \u0026 Synchronization",
+        "severity": "potential",
+        "storyPoint": "5",
+        "description": "The product does not properly synchronize shared data, such as static variables across threads, which can lead to undefined behavior and unpredictable data changes.",
+        "evidence": {
+          "files": [],
+          "explanation": ""
+        }
+      },
+      {
+        "id": "CWE-662",
+        "name": "Improper Synchronization",
+        "status": "FOUND",
+        "category": "Concurrency \u0026 Synchronization",
+        "severity": "potential",
+        "storyPoint": "8",
+        "description": "The product utilizes multiple threads or processes to allow temporary access to a shared resource that can only be exclusive to one process at a time, but it does not properly synchronize these actions, which might cause simultaneous accesses of this resource by multiple threads or processes.",
+        "evidence": {
+          "files": [
+            "web/src/main/java/com/microsoft/migration/assets/service/LocalFileStorageService.java",
+            "worker/src/main/java/com/microsoft/migration/assets/worker/service/LocalFileProcessingService.java"
+          ],
+          "explanation": "LocalFileStorageService.uploadObject() and deleteObject() (lines 95 and 124) overwrite or delete shared files under rootLocation while the web application is serving requests concurrently. LocalFileProcessingService.uploadThumbnail() (line 49) writes to the same rootLocation filename space without synchronization, so concurrent thumbnail writes, original uploads, and deletions can access the same exclusive file path simultaneously."
+        }
+      },
+      {
+        "id": "CWE-667",
+        "name": "Improper Locking",
+        "status": "NOT_FOUND",
+        "category": "Concurrency \u0026 Synchronization",
+        "severity": "potential",
+        "storyPoint": "8",
+        "description": "The product does not properly acquire or release a lock on a resource, leading to unexpected resource state changes and behaviors.",
+        "evidence": {
+          "files": [],
+          "explanation": ""
+        }
+      },
+      {
+        "id": "CWE-820",
+        "name": "Missing Synchronization",
+        "status": "FOUND",
+        "category": "Concurrency \u0026 Synchronization",
+        "severity": "potential",
+        "storyPoint": "8",
+        "description": "The product utilizes a shared resource in a concurrent manner but does not attempt to synchronize access to the resource.",
+        "evidence": {
+          "files": [
+            "web/src/main/java/com/microsoft/migration/assets/service/LocalFileStorageService.java",
+            "worker/src/main/java/com/microsoft/migration/assets/worker/service/LocalFileProcessingService.java"
+          ],
+          "explanation": "Concurrent web requests use Files.copy(..., REPLACE_EXISTING) and Files.delete() on shared local storage paths (LocalFileStorageService lines 95 and 124), and the worker service writes thumbnails to derived paths (LocalFileProcessingService line 49) without any lock or synchronization mechanism."
+        }
+      },
+      {
+        "id": "CWE-821",
+        "name": "Incorrect Synchronization",
+        "status": "NOT_FOUND",
+        "category": "Concurrency \u0026 Synchronization",
+        "severity": "potential",
+        "storyPoint": "8",
+        "description": "The product utilizes a shared resource in a concurrent manner, but it does not correctly synchronize access to the resource.",
+        "evidence": {
+          "files": [],
+          "explanation": ""
+        }
+      }
+    ]
+  },
+  "execution_time_seconds": 0,
+  "timestamp": "2026-11-23T02:17:53Z"
+}

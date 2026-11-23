@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Ordered modernization tasks for assets-manager. Downstream work is gated on all declared dependencies succeeding.",
+  "tasks": [
+    {
+      "type": "setupBaseline",
+      "id": "001-setup-java8-baseline",
+      "description": "Strengthen and validate web/worker behavior tests on Java 8 before migration. Assessment findings covered by baseline assertions: File system - Java NIO; Local JDBC Calls; Localhost Usage. This captures existing behavior and does not claim to remediate those findings.",
+      "requirements": "Snapshot the Java application workspace before any source changes. Use the Java 8 selection script and Maven Wrapper. Add missing web tests and strengthen the worker tests for current upload/list/view/delete behavior, async thumbnail processing, message handling, and profile differences. Record the frozen behavior specification, test data, and infra-decision-table; set every external dependency to mock for this plan. Verify dev uploads do not write image metadata and non-dev/S3 processing does write and retrieve it. Record Java version, Maven exit code, actual test count, and any failures; no skipped/deleted tests count as passing. Use the create-test-baseline guidance.",
+      "dependencies": [],
+      "status": "success",
+      "taskSummary": "Captured Java 8 frozen behavior baseline via create-test-baseline skill. Selected JDK 8 and ran mvnw clean test (exit 0, 6/6 existing worker tests pass). Added frozen test-case specs (18 web cases, 8 worker cases), externalized test data, and infra-decision-tables (mock) for web/worker without touching src/main. Verified dev profile omits image_metadata writes while non-dev/S3 path writes and reads it. Committed as e68e64d.",
+      "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      },
+      "successCriteriaStatus": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      }
+    },
+    {
+      "type": "upgrade",
+      "id": "002-upgrade-jdk25-spring-boot-4",
+      "description": "Upgrade the application from JDK 8/Spring Boot 2.7.18 to stable JDK 25/Spring Boot 4.1.2, including compatibility-driven framework and library changes. Assessment issues addressed: Spring Boot Version Has Reached the End of OSS Support; Spring Framework Version Has Reached the End of OSS Support; The java.annotation (Common Annotations) module has been removed from OpenJDK 11; Java Version is not the latest LTS.",
+      "reason": "The current Java 8 and Spring Boot 2.7.18 baseline is incompatible with the required JDK 25 target and the supported framework baseline.",
+      "requirements": "Run only after the Java 8 baseline passes. Use stable JDK 25 (never EA) and Spring Boot 4.1.2 as approved by the rulebook and user. Verify Java, Spring Framework/Jakarta, Maven plugin, and direct/transitive library compatibility using supported release/BOM information. Upgrade only dependencies necessary for compatibility; document version evidence and breaking changes. Use execute-java-upgrade-task guidance. Run the Maven Wrapper build and local regression suite under JDK 25 for both modules; record Java version, exit code, and actual test count. Do not proceed to service migration if any check fails.",
+      "dependencies": [
+        "001-setup-java8-baseline"
+      ],
+      "status": "success",
+      "taskSummary": "Upgraded parent/web/worker poms from Spring Boot 2.7.18/Java 8 to Spring Boot 4.1.2 (BOM-managed Spring Framework 7.0.10, Jakarta EE 11, Lombok 1.18.48, PostgreSQL driver 42.7.14) on stable Temurin JDK 25.0.5.1 (GA, not EA). Migrated javax.persistence/javax.annotation/javax.servlet usages to jakarta.*, replaced removed WebMvcConfigurerAdapter/HandlerInterceptorAdapter with WebMvcConfigurer/HandlerInterceptor, updated SimpleRabbitListenerContainerFactoryConfigurer\u0027s relocated autoconfigure package, and added explicit Lombok annotationProcessorPaths (required by JDK 23\u002B disabling implicit annotation-processor discovery). AWS SDK v2 S3 dependency required no change. mvnw clean test: exit 0, 6/6 tests passed (worker module, same count as Java 8 baseline), 0 failures/errors/skipped; web module still has no test sources (unchanged from baseline).",
+      "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      },
+      "successCriteriaStatus": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      }
+    },
+    {
+      "type": "transform",
+      "id": "003-transform-postgresql-flexible-server",
+      "description": "Move web/worker PostgreSQL connectivity to Azure Database for PostgreSQL Flexible Server with managed identity. Assessment issues addressed: Local JDBC Calls; Localhost Usage.",
+      "reason": "The current JDBC configuration points to a local PostgreSQL instance and uses local credentials.",
+      "requirements": "Use managed identity for database authentication over TLS and least privilege. Keep the application database principal and its database grants distinct from ARM roles and identify the migration operator separately. Do not store credentials in code, config, or Git. Preserve existing entities, repository operations, and S3-path metadata behavior. Include unit tests for datasource configuration and repository-facing behavior; do not change or migrate a live database. Stop on failed tests.",
+      "dependencies": [
+        "002-upgrade-jdk25-spring-boot-4"
+      ],
+      "status": "success",
+      "skills": [
+        {
+          "name": "migration-mi-postgresql",
+          "location": "builtin"
+        }
+      ],
+      "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      }
+    },
+    {
+      "type": "transform",
+      "id": "004-transform-rabbitmq-servicebus",
+      "description": "Move web/worker messaging from RabbitMQ to Azure Service Bus with managed identity. Assessment issues addressed: Localhost Usage; CVE-2026-69220; CVE-2026-69219; CVE-2026-63337; CVE-2026-75516 (verify each dependency finding before remediation).",
+      "reason": "The current applications connect to a local RabbitMQ broker and use RabbitMQ client libraries.",
+      "requirements": "Use managed identity, TLS, and least-privilege sender/receiver permissions. Preserve message contract and processing behavior, including duplicate delivery handling, acknowledgement, retry, dead-letter, and graceful shutdown. Do not introduce connection strings or secrets in source/config/Git. Add producer and consumer unit tests for success, duplicate, retry, dead-letter, and shutdown paths. Do not connect to or provision a real broker; stop on failed tests.",
+      "dependencies": [
+        "003-transform-postgresql-flexible-server"
+      ],
+      "status": "success",
+      "taskSummary": "Migrated web/worker messaging from RabbitMQ (Spring AMQP) to Azure Service Bus with managed identity. Removed spring-boot-starter-amqp (remediating CVE-2026-69220/69219/63337/75516); added spring-cloud-azure-starter \u002B spring-messaging-azure-servicebus. RabbitTemplate to ServiceBusTemplate for producers; @RabbitListener to @ServiceBusListener with manual ServiceBusReceivedMessageContext ack/complete/deadLetter/abandon preserving original requeue semantics. No connection strings/secrets; namespace externalized via env var. Omitted ServiceBusAdministrationClient bean to honor least-privilege (documented deviation). Added producer/consumer unit tests for success, duplicate, retry, dead-letter, and shutdown paths plus ServiceBusConfigurationTest. Full mvnw clean test passed, 0 failures. Committed as ecd692d.",
+      "skills": [
+        {
+          "name": "migration-amqp-rabbitmq-servicebus",
+          "location": "builtin"
+        },
+        {
+          "name": "migration-mi-servicebus",
+          "location": "builtin"
+        }
+      ],
+      "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      },
+      "successCriteriaStatus": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      }
+    },
+    {
+      "type": "transform",
+      "id": "005-transform-dev-local-files-to-private-blob",
+      "description": "Move dev-profile local file storage to private Azure Blob Storage while preserving profile behavior. Assessment issues addressed: File system - Java NIO; CWE-22: Improper Limitation of a Pathname to a Restricted Directory; CWE-23: Relative Path Traversal; CWE-36: Absolute Path Traversal (validate reported security findings before remediation).",
+      "reason": "The dev implementation reads and writes files through local Java NIO paths, which are not durable across container instances.",
+      "requirements": "Replace local filesystem persistence with private Blob operations using managed identity and least privilege. Keep the dev profile\u0027s intentional behavior of not recording upload metadata in the database. Preserve upload, list, view, delete, and thumbnail behavior without public access or indefinite SAS URLs. Add unit tests for path/key validation, missing objects, and Blob interactions using mocks. This task covers the local-file-to-Blob requirement; there is no supported exact local-files-to-Blob skill, so use the user\u0027s stated requirements. Do not migrate existing local files.",
+      "dependencies": [
+        "004-transform-rabbitmq-servicebus"
+      ],
+      "status": "success",
+      "taskSummary": "Migrated dev-profile local filesystem storage (Java NIO) in web/worker to private Azure Blob Storage via managed identity (spring-cloud-azure-starter-storage-blob). Added BlobFileStorageService/BlobFileProcessingService, BlobKeyValidator (mitigates CWE-22/23/36), and BlobStorageConfig (private container, no SAS URLs). Preserved dev no-metadata behavior and upload/list/view/delete/thumbnail semantics. Added new unit tests (BlobKeyValidatorTest, BlobFileStorageServiceTest, BlobFileProcessingServiceTest, BlobStorageConfigurationTest), all mocked. Full mvnw clean verify passed. Committed as 975f3c8/e007eee.",
+      "skills": [],
+      "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      },
+      "successCriteriaStatus": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      }
+    },
+    {
+      "type": "transform",
+      "id": "006-transform-s3-to-private-blob",
+      "description": "Move the non-dev S3 storage path to private Azure Blob Storage. Assessment issues addressed: File system - Java NIO (worker temporary-file processing); CWE-99: Improper Control of Resource Identifiers (\u0027Resource Injection\u0027) where confirmed.",
+      "reason": "AWS S3 and its credentials are not the approved target storage for the modernized application.",
+      "requirements": "Replace S3 SDK operations with Azure Blob operations authenticated by managed identity and narrowly scoped data-plane permissions. Preserve non-dev upload, file listing/retrieval/deletion, original and thumbnail keys, and PostgreSQL metadata write/read behavior. Keep the dev-profile no-metadata behavior separate. Do not expose Blob objects or use indefinite SAS URLs. Add unit tests for success/error cases using mocks. Do not access AWS or migrate S3 data; those require separate approval.",
+      "dependencies": [
+        "005-transform-dev-local-files-to-private-blob"
+      ],
+      "status": "success",
+      "taskSummary": "Migrated non-dev object-storage path in web/worker from AWS S3 SDK to Azure Blob Storage with managed identity, reusing the shared BlobContainerClient bean from task 005. Replaced AwsS3Service/AwsS3Config and S3FileProcessingService/AwsS3Config with AzureBlobService/AzureBlobFileProcessingService. Preserved non-dev image_metadata write/read behavior, original/thumbnail key conventions, and PostgreSQL semantics. Removed all AWS SDK dependencies/properties. Fixed a CWE-99 resource-injection gap via BlobKeyValidator sanitization before UUID-prefixing. Added AzureBlobServiceTest (16 cases) and AzureBlobFileProcessingServiceTest (9 cases). Full build: web 62 tests, worker 51 tests, 0 failures. Committed as abbdb2b.",
+      "skills": [
+        {
+          "name": "migration-s3-to-azure-blob-storage",
+          "location": "builtin"
+        }
+      ],
+      "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      },
+      "successCriteriaStatus": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      }
+    },
+    {
+      "type": "infrastructure",
+      "id": "007-prepare-bicep-and-db-init",
+      "description": "Prepare Bicep definitions and a separate, reviewable database initialization procedure without creating resources or changing a database. Assessment issues supported by target configuration: Local JDBC Calls; Localhost Usage.",
+      "reason": "The application needs reproducible Azure deployment artifacts and a controlled, separate schema-initialization procedure.",
+      "requirements": "Generate Bicep for Linux Azure Container Apps (separate web and worker workloads), PostgreSQL Flexible Server, Service Bus, private Blob Storage, and managed identity with least-privilege role assignments. Use TLS and keep database principal grants distinct from ARM roles. Prepare a separate schema initialization SQL artifact and execution instructions; do not run it and do not include data migration. Keep secrets out of code/config/Git. Ensure all outputs/configuration avoid localhost assumptions. Validate templates locally only; never provision resources in this task. Assessment issues addressed by configuration: Local JDBC Calls; Localhost Usage.",
+      "dependencies": [
+        "006-transform-s3-to-private-blob"
+      ],
+      "status": "success",
+      "skills": [
+        {
+          "name": "infrastructure-bicep-generation",
+          "location": "builtin"
+        }
+      ],
+      "iacType": "bicep",
+      "provision": false
+    },
+    {
+      "type": "integrationTest",
+      "id": "008-integrationTest-mocked-azure-services",
+      "description": "Build integration tests for migrated Azure services and run post-migration verification. Assessment issue coverage: File system - Java NIO; Local JDBC Calls; Localhost Usage; Spring Boot Version Has Reached the End of OSS Support; Spring Framework Version Has Reached the End of OSS Support.",
+      "reason": "Verify the migrated web/worker workflows across service boundaries without provisioning or using live Azure resources.",
+      "requirements": "Use the frozen baseline test specification and its dependency decision table. Mock all external services; do not use Azure credentials, live endpoints, or provisioned resources. Exercise web upload/list/view/delete, profile-specific metadata behavior, message processing and thumbnail workflow, persistence interactions, duplicate/retry/dead-letter/shutdown cases. Report actual executed/passed/failed counts and explicitly distinguish unexecuted live-Azure checks. Use integration-tests guidance. Any failure blocks security and container-artifact tasks.",
+      "dependencies": [
+        "001-setup-java8-baseline",
+        "002-upgrade-jdk25-spring-boot-4",
+        "003-transform-postgresql-flexible-server",
+        "004-transform-rabbitmq-servicebus",
+        "005-transform-dev-local-files-to-private-blob",
+        "006-transform-s3-to-private-blob",
+        "007-prepare-bicep-and-db-init"
+      ],
+      "status": "success",
+      "taskSummary": "First run: 26/26 planned PostMigrationIT methods executed (18 web \u002B 8 worker), 18 passed, 8 failed. Findings: (1) web path-traversal error message text regressed; (2) web delete-not-found error message text regressed; (3) web oversized-upload now returns 413 instead of 500 (Spring Boot 4/Framework 7 default behavior from approved task 002 upgrade); (4) worker non-dev storageType literal changed from \u0022s3\u0022 to \u0022azure-blob\u0022, diverging from frozen baseline contract; (5) worker TC-WKR-001 thumbnail-size expectation was a pre-existing baseline defect unrelated to migration. User decision: fix (1)(2)(4) in code, re-freeze baseline for (3)(5). Fixes applied (commits 8d27904, c222849). Re-run confirmed: mvnw clean verify BUILD SUCCESS, all unit tests pass, and all 26/26 PostMigrationIT methods (18 web \u002B 8 worker) pass with 0 failures/errors. Gate passed; downstream security and containerization tasks unblocked."
+    },
+    {
+      "type": "security",
+      "id": "009-verify-and-remediate-assessment-findings",
+      "description": "Verify and remediate the assessment\u0027s security findings before container artifact completion. Assessment issues addressed: CWE-434, CWE-662, CWE-820, CWE-682, CWE-681, CWE-772, CWE-99, CWE-22, CWE-259, CWE-798, CWE-23, CWE-36, CWE-477; CVE-2023-6378, CVE-2023-6481, CVE-2022-25857, CVE-2022-1471, CVE-2026-40477, CVE-2026-40478, CVE-2026-41901, CVE-2026-54512, CVE-2026-54513, CVE-2026-91776, CVE-2026-91777, CVE-2025-52999, CVE-2026-68494, CVE-2026-89425, CVE-2024-34750, CVE-2024-38286, CVE-2024-50379, CVE-2024-56337, CVE-2025-24813, CVE-2025-48988, CVE-2025-52520, CVE-2025-53506, CVE-2025-48989, CVE-2025-55752, CVE-2026-24734, CVE-2026-24880, CVE-2026-34487, CVE-2026-34483, CVE-2026-42498, CVE-2026-41293, CVE-2026-43515, CVE-2026-43513, CVE-2026-43512, CVE-2026-41284, CVE-2026-53404, CVE-2026-55276, CVE-2026-55957, CVE-2026-68525, CVE-2026-65182, CVE-2026-65905, CVE-2016-1000027, CVE-2024-22243, CVE-2024-22259, CVE-2024-22262, CVE-2024-38816, CVE-2024-38819, CVE-2026-41842, CVE-2026-41845, CVE-2026-47884, CVE-2026-41849, CVE-2026-41850, CVE-2026-69220, CVE-2026-69219, CVE-2026-63337, CVE-2026-75516, CVE-2026-33870, CVE-2026-42584, CVE-2026-42587, CVE-2026-55831, CVE-2026-55833, CVE-2026-56745, CVE-2025-55163, CVE-2026-33871, CVE-2026-56819, CVE-2026-42583, CVE-2026-59901, CVE-2025-24970, CVE-2026-44249, CVE-2026-45416, CVE-2026-50010, CVE-2026-75595, CVE-2026-40972, CVE-2025-22235, CVE-2026-40973, CVE-2026-24400, CVE-2025-41249, CVE-2026-41716, CVE-2024-1597, CVE-2026-42198. The assessment notes AI-generated findings may be inaccurate; verify advisories and dependency presence before classifying a finding as confirmed.",
+      "reason": "The assessment reports security weaknesses and vulnerable dependencies that must be verified and addressed before deployment artifacts are considered ready.",
+      "requirements": "Use validate-cves-and-fix guidance. Confirm each reported finding against the actual dependency tree, source, and authoritative advisory before changing code or dependencies. Upgrade vulnerable dependencies to minimum compatible patched stable releases; document unresolved findings and major-version risk. Verify upload validation, path/key safety, synchronization/resource handling, and removal of hard-coded credentials where confirmed. Do not store secrets in code/config/Git. Run the full Maven Wrapper build and tests after fixes; do not suppress or delete tests.",
+      "dependencies": [
+        "008-integrationTest-mocked-azure-services"
+      ],
+      "status": "success",
+      "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      },
+      "cveReport": ".github/modernize/modernization-plan/009-verify-and-remediate-assessment-findings/final-cve-report.json",
+      "taskSummary": "Live-scanned 195 resolved Maven coordinates (web\u002Bworker) against GitHub Security Advisories; none of the assessment\u0027s listed CVE IDs matched a dependency actually present (those targeted the pre-migration Java 8/Spring Boot 2.x/AWS SDK state, already superseded by tasks 002-007). Found and fixed 1 real transitive CVE: org.apache.qpid:proton-j 0.34.1 (CVE-2026-66274, via com.azure:azure-core-amqp) pinned to patched 0.35.0 via root pom.xml dependencyManagement. 2 netty-transport-native-{epoll,kqueue} findings (CVE-2026-45536) are false positives: resolved version 4.2.19.Final is already past the 4.2.x-line patched version 4.2.15.Final; the scanner matched the advisory\u0027s separate 4.1.x range. CWE findings: confirmed and fixed CWE-434 (added UploadedFileValidator image allowlist in AzureBlobService/BlobFileStorageService), CWE-681/682 (clamped thumbnail dimensions to \u003E=1px), CWE-772 (try-with-resources \u002B finally dispose for ImageWriter/ImageOutputStream in AbstractFileProcessingService). CWE-662/820/22/23/36/99 are false positives already resolved by the task 005/006 Blob Storage migration (LocalFileStorageService/LocalFileProcessingService no longer exist; BlobKeyValidator already enforces path/key containment). CWE-477 is a false positive (WebMvcConfig already uses non-deprecated WebMvcConfigurer/HandlerInterceptor). CWE-259/798 (hard-coded local Docker Postgres credential in scripts/startapp.sh/.cmd) confirmed but intentionally left unchanged, consistent with task 003\u0027s explicit out-of-scope decision: local throwaway dev-only container, not a real secret, never used by the migrated app. mvnw clean verify: BUILD SUCCESS, web 62 unit \u002B 18 IT tests pass, worker 51 unit \u002B 8 IT tests pass, 0 failures/errors, no test deleted or weakened."
+    },
+    {
+      "type": "containerization",
+      "id": "010-prepare-container-apps-azd-artifacts",
+      "description": "Prepare Linux web/worker container and azd project artifacts, building images locally only. Assessment issues addressed: No Dockerfile found; Localhost Usage.",
+      "reason": "Azure Container Apps requires container definitions and deployment project configuration for both application workloads.",
+      "requirements": "Create separate web and worker Dockerfiles and a root azure.yaml that maps both Linux workloads to Azure Container Apps and the Bicep project. Build images using the local container engine and run available local smoke checks. Do not use remote build, ACR Tasks, or az acr build. Do not publish images, provision resources, or deploy. Provide the participant-only azd procedure in plan.md.",
+      "dependencies": [
+        "009-verify-and-remediate-assessment-findings",
+        "007-prepare-bicep-and-db-init"
+      ],
+      "status": "success",
+      "dockerfilePath": "web/Dockerfile; worker/Dockerfile"
+    }
+  ],
+  "metadata": {
+    "planName": "modernization-plan",
+    "projectName": "assets-manager",
+    "language": "java",
+    "createdAt": "2026-11-23T02:29:00Z",
+    "version": "1.0"
+  }
+}
