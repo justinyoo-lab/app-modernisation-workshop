@@ -9,8 +9,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Provides the {@link BlobContainerClient} bean used by the dev-profile storage backend
- * ({@code BlobFileStorageService}) for its private Azure Blob Storage container.
+ * Provides the {@link BlobContainerClient} bean used by both storage backends in this module for
+ * their shared private Azure Blob Storage container: the dev-profile {@code BlobFileStorageService}
+ * and the non-dev/object-storage-profile {@code AzureBlobService} (which previously used Amazon
+ * S3). Since the two profiles are mutually exclusive at runtime, both can safely share the same
+ * client/container configuration.
  * <p>
  * The underlying {@link BlobServiceClient} bean is created by the
  * {@code spring-cloud-azure-starter-storage-blob} auto-configuration using the
@@ -20,11 +23,8 @@ import org.springframework.context.annotation.Configuration;
  * <p>
  * The container is only ever created private (no {@code PublicAccessType} is set, so anonymous
  * access stays disabled) and this bean never generates a SAS URL - callers stream bytes through
- * the application instead (see {@code BlobFileStorageService}/{@code S3Controller}).
- * <p>
- * This bean/config is intentionally reusable: a future migration of the non-dev AWS S3 path to
- * Blob Storage can inject the same {@link BlobContainerClient} (or add a sibling bean here) rather
- * than duplicating client setup.
+ * the application instead (see {@code BlobFileStorageService}/{@code AzureBlobService}/
+ * {@code S3Controller}).
  */
 @Configuration
 public class BlobStorageConfig {
