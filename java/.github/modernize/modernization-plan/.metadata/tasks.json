@@ -94,9 +94,14 @@
       "dependencies": [
         "004-transform-rabbitmq-servicebus"
       ],
-      "status": "started",
+      "status": "success",
+      "taskSummary": "Migrated dev-profile local filesystem storage (Java NIO) in web/worker to private Azure Blob Storage via managed identity (spring-cloud-azure-starter-storage-blob). Added BlobFileStorageService/BlobFileProcessingService, BlobKeyValidator (mitigates CWE-22/23/36), and BlobStorageConfig (private container, no SAS URLs). Preserved dev no-metadata behavior and upload/list/view/delete/thumbnail semantics. Added new unit tests (BlobKeyValidatorTest, BlobFileStorageServiceTest, BlobFileProcessingServiceTest, BlobStorageConfigurationTest), all mocked. Full mvnw clean verify passed. Committed as 975f3c8/e007eee.",
       "skills": [],
       "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      },
+      "successCriteriaStatus": {
         "passBuild": "true",
         "passUnitTests": "true"
       }
