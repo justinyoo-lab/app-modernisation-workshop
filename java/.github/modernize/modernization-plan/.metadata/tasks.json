@@ -69,6 +69,7 @@
       "dependencies": [
         "003-transform-postgresql-flexible-server"
       ],
+      "status": "started",
       "skills": [
         {
           "name": "migration-amqp-rabbitmq-servicebus",
