@@ -28,7 +28,13 @@
       "dependencies": [
         "001-setup-java8-baseline"
       ],
+      "status": "success",
+      "taskSummary": "Upgraded parent/web/worker poms from Spring Boot 2.7.18/Java 8 to Spring Boot 4.1.2 (BOM-managed Spring Framework 7.0.10, Jakarta EE 11, Lombok 1.18.48, PostgreSQL driver 42.7.14) on stable Temurin JDK 25.0.5.1 (GA, not EA). Migrated javax.persistence/javax.annotation/javax.servlet usages to jakarta.*, replaced removed WebMvcConfigurerAdapter/HandlerInterceptorAdapter with WebMvcConfigurer/HandlerInterceptor, updated SimpleRabbitListenerContainerFactoryConfigurer's relocated autoconfigure package, and added explicit Lombok annotationProcessorPaths (required by JDK 23+ disabling implicit annotation-processor discovery). AWS SDK v2 S3 dependency required no change. mvnw clean test: exit 0, 6/6 tests passed (worker module, same count as Java 8 baseline), 0 failures/errors/skipped; web module still has no test sources (unchanged from baseline).",
       "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      },
+      "successCriteriaStatus": {
         "passBuild": "true",
         "passUnitTests": "true"
       }

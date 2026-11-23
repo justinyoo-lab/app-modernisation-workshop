@@ -1,0 +1,2688 @@
+{
+  "version": "1.0.0",
+  "producer": "Java AppCAT CLI",
+  "metadata": {
+    "analysisStartTime": "2026-11-23T02:16:13.5030927Z",
+    "analysisEndTime": "2026-11-23T02:17:12.9710016Z",
+    "status": "Complete",
+    "privacyMode": "Protected",
+    "privacyModeHelpUrl": "https://aka.ms/appcat-privacy-mode",
+    "targetIds": [
+      "azure-container-apps"
+    ],
+    "targetDisplayNames": [
+      "Azure Container Apps"
+    ],
+    "capabilities": [
+      "openjdk25",
+      "containerization"
+    ],
+    "os": [
+      "linux"
+    ],
+    "domains": [
+      "java-upgrade",
+      "cloud-readiness",
+      "security"
+    ],
+    "mode": "full",
+    "minimumCveSeverity": "high"
+  },
+  "summary": {
+    "totalProjects": 1,
+    "totalIssues": 8,
+    "totalIncidents": 41,
+    "totalEffort": 225,
+    "charts": {
+      "severity": {
+        "mandatory": 38,
+        "optional": 3,
+        "potential": 0,
+        "information": 0
+      },
+      "category": {
+        "containerization": 1,
+        "deprecated-apis": 2,
+        "file-system-management": 14,
+        "framework-upgrade": 19,
+        "java-version-upgrade": 1,
+        "local-resource-access": 4
+      }
+    }
+  },
+  "projects": [
+    {
+      "path": ".",
+      "issues": 8,
+      "storyPoints": 225,
+      "properties": {
+        "appName": "assets-manager-parent",
+        "jdkVersion": "8",
+        "frameworks": [
+          "Spring Boot",
+          "Spring"
+        ],
+        "languages": [
+          "Java"
+        ],
+        "tools": [
+          "Maven"
+        ]
+      },
+      "incidents": [
+        {
+          "ruleId": "azure-java-version-02000",
+          "incidentId": "9e67bf12-5ea1-4755-8649-0fbba7ab6e65",
+          "location": "pom.xml",
+          "locationKind": "File",
+          "line": 19,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "optional"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "optional"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "optional"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-framework-version-01000",
+          "incidentId": "b1e63759-8ed8-46ed-b45c-56356b32b047",
+          "location": "web/pom.xml",
+          "locationKind": "File",
+          "line": 27,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-framework-version-01000",
+          "incidentId": "37814a28-c76e-4e08-8567-679c68b1af07",
+          "location": "web/pom.xml",
+          "locationKind": "File",
+          "line": 60,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-framework-version-01000",
+          "incidentId": "97b843a0-6568-4cc9-bbd2-be8da3572f54",
+          "location": "web/pom.xml",
+          "locationKind": "File",
+          "line": 31,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-framework-version-01000",
+          "incidentId": "a0508d89-7a49-4a7c-8407-96c8b8d64920",
+          "location": "web/pom.xml",
+          "locationKind": "File",
+          "line": 55,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-framework-version-01000",
+          "incidentId": "7e26b833-63d5-485d-a57a-7da8e91941cb",
+          "location": "worker/pom.xml",
+          "locationKind": "File",
+          "line": 23,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-framework-version-01000",
+          "incidentId": "345f44e0-f75a-47e8-84d0-eeca08a93d06",
+          "location": "worker/pom.xml",
+          "locationKind": "File",
+          "line": 49,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-framework-version-01000",
+          "incidentId": "dc270cb2-ea8a-464c-9730-80638948cc4d",
+          "location": "worker/pom.xml",
+          "locationKind": "File",
+          "line": 27,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-framework-version-01000",
+          "incidentId": "e0b3f8e1-0fbf-48b0-a6b5-d0a18e0f4698",
+          "location": "worker/pom.xml",
+          "locationKind": "File",
+          "line": 40,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-boot-to-azure-spring-boot-version-01000",
+          "incidentId": "44b9f1cc-e430-4bef-8b0e-362a8c3c84f4",
+          "location": "worker/pom.xml",
+          "locationKind": "File",
+          "line": 49,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-boot-to-azure-spring-boot-version-01000",
+          "incidentId": "295feb99-f538-437e-9e89-af3836a62154",
+          "location": "worker/pom.xml",
+          "locationKind": "File",
+          "line": 40,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-boot-to-azure-spring-boot-version-01000",
+          "incidentId": "33fa8b91-2572-4cd5-9f47-bba6886ae8d0",
+          "location": "worker/pom.xml",
+          "locationKind": "File",
+          "line": 27,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-boot-to-azure-spring-boot-version-01000",
+          "incidentId": "c0d6b704-0e1e-468e-af1e-3a955eb4b1f3",
+          "location": "worker/pom.xml",
+          "locationKind": "File",
+          "line": 23,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-boot-to-azure-spring-boot-version-01000",
+          "incidentId": "5ba4cd72-1eab-4ec2-afc5-534c75f1b523",
+          "location": "web/pom.xml",
+          "locationKind": "File",
+          "line": 27,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-boot-to-azure-spring-boot-version-01000",
+          "incidentId": "4a4a0352-05bb-49ca-8c1b-60b26298e096",
+          "location": "web/pom.xml",
+          "locationKind": "File",
+          "line": 60,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-boot-to-azure-spring-boot-version-01000",
+          "incidentId": "0ab4349d-a41c-4a56-aaa1-07e7db5f9d75",
+          "location": "web/pom.xml",
+          "locationKind": "File",
+          "line": 23,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-boot-to-azure-spring-boot-version-01000",
+          "incidentId": "d4929bdc-229e-4450-994e-918067aece5d",
+          "location": "web/pom.xml",
+          "locationKind": "File",
+          "line": 39,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-boot-to-azure-spring-boot-version-01000",
+          "incidentId": "4c9e9a0a-7c12-450e-ad3c-029750b0dff0",
+          "location": "web/pom.xml",
+          "locationKind": "File",
+          "line": 55,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-boot-to-azure-spring-boot-version-01000",
+          "incidentId": "e2936ec5-af18-4eb6-b596-d879c1488f1d",
+          "location": "web/pom.xml",
+          "locationKind": "File",
+          "line": 45,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "spring-boot-to-azure-spring-boot-version-01000",
+          "incidentId": "ee7d305b-7726-412d-8aad-01d5518c95ef",
+          "location": "web/pom.xml",
+          "locationKind": "File",
+          "line": 31,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 8,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 8,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=azure/springboot"
+          ]
+        },
+        {
+          "ruleId": "localhost-jdbc-00002",
+          "incidentId": "35125658-93ef-4a27-bd6d-b23de9b88002",
+          "location": "web/src/main/resources/application.properties",
+          "locationKind": "File",
+          "line": 20,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 5,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 5,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 5,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "localhost-jdbc-00002",
+          "incidentId": "686f3cbe-1f73-4319-a466-a16d333780e0",
+          "location": "worker/src/main/resources/application.properties",
+          "locationKind": "File",
+          "line": 17,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 5,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 5,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 5,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "localhost-00004",
+          "incidentId": "47b21bfa-7304-42c9-8954-dac39a870886",
+          "location": "worker/src/main/resources/application.properties",
+          "locationKind": "File",
+          "line": 11,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 3,
+              "severity": "optional"
+            },
+            "azure-appservice": {
+              "effort": 3,
+              "severity": "optional"
+            },
+            "azure-container-apps": {
+              "effort": 3,
+              "severity": "optional"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "localhost-00004",
+          "incidentId": "b4550d84-b594-4ada-b83b-4efde797ce6f",
+          "location": "web/src/main/resources/application.properties",
+          "locationKind": "File",
+          "line": 14,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 3,
+              "severity": "optional"
+            },
+            "azure-appservice": {
+              "effort": 3,
+              "severity": "optional"
+            },
+            "azure-container-apps": {
+              "effort": 3,
+              "severity": "optional"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "local-storage-00005",
+          "incidentId": "5d4cd5be-3f63-4336-858e-47393c85da77",
+          "location": "web/src/main/java/com/microsoft/migration/assets/service/LocalFileStorageService.java",
+          "locationKind": "File",
+          "line": 17,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 3,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "local-storage-00005",
+          "incidentId": "0b00a474-7ab7-48a9-bb35-973209794bc1",
+          "location": "worker/src/main/java/com/microsoft/migration/assets/worker/service/AbstractFileProcessingService.java",
+          "locationKind": "File",
+          "line": 17,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 3,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "local-storage-00005",
+          "incidentId": "f9a56b29-887b-4716-8e98-4f2f41fa8ba2",
+          "location": "worker/src/main/java/com/microsoft/migration/assets/worker/service/AbstractFileProcessingService.java",
+          "locationKind": "File",
+          "line": 16,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 3,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "local-storage-00005",
+          "incidentId": "02075b7e-94ed-4105-be34-c7daa36b3977",
+          "location": "worker/src/main/java/com/microsoft/migration/assets/worker/service/FileProcessor.java",
+          "locationKind": "File",
+          "line": 3,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 3,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "local-storage-00005",
+          "incidentId": "fa39fbbd-975d-41e7-92b6-b0ebb94e4fe0",
+          "location": "worker/src/main/java/com/microsoft/migration/assets/worker/service/LocalFileProcessingService.java",
+          "locationKind": "File",
+          "line": 7,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 3,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "local-storage-00005",
+          "incidentId": "34fae1cc-b068-4b93-a9a0-47e9cc9d4a5f",
+          "location": "worker/src/main/java/com/microsoft/migration/assets/worker/service/LocalFileProcessingService.java",
+          "locationKind": "File",
+          "line": 8,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 3,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "local-storage-00005",
+          "incidentId": "09cff264-4653-40d5-8ff6-ef74191112b4",
+          "location": "worker/src/main/java/com/microsoft/migration/assets/worker/service/LocalFileProcessingService.java",
+          "locationKind": "File",
+          "line": 9,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 3,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "local-storage-00005",
+          "incidentId": "7ecfbef3-3ae2-4315-a23b-1b06b8b1ecac",
+          "location": "worker/src/main/java/com/microsoft/migration/assets/worker/service/LocalFileProcessingService.java",
+          "locationKind": "File",
+          "line": 10,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 3,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "local-storage-00005",
+          "incidentId": "5dc73f19-3922-49c8-82e6-9d3cc559f69c",
+          "location": "worker/src/main/java/com/microsoft/migration/assets/worker/service/S3FileProcessingService.java",
+          "locationKind": "File",
+          "line": 15,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 3,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "local-storage-00005",
+          "incidentId": "b9601fcc-4776-4724-970c-8ef215689639",
+          "location": "worker/src/main/java/com/microsoft/migration/assets/worker/service/S3FileProcessingService.java",
+          "locationKind": "File",
+          "line": 17,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 3,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "local-storage-00005",
+          "incidentId": "e2ded614-97fe-4d68-a46d-65321e3d32ce",
+          "location": "worker/src/main/java/com/microsoft/migration/assets/worker/service/S3FileProcessingService.java",
+          "locationKind": "File",
+          "line": 16,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 3,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "local-storage-00005",
+          "incidentId": "2c2d187f-c557-4d2d-8343-dda37da784d1",
+          "location": "web/src/main/java/com/microsoft/migration/assets/service/LocalFileStorageService.java",
+          "locationKind": "File",
+          "line": 16,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 3,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "local-storage-00005",
+          "incidentId": "319d1946-0de3-4676-82b8-b29326e61689",
+          "location": "web/src/main/java/com/microsoft/migration/assets/service/LocalFileStorageService.java",
+          "locationKind": "File",
+          "line": 43,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 3,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "local-storage-00005",
+          "incidentId": "54e45bb8-d156-410a-b520-985e76d2f81b",
+          "location": "worker/src/main/java/com/microsoft/migration/assets/worker/service/LocalFileProcessingService.java",
+          "locationKind": "File",
+          "line": 27,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 3,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "dockerfile-00000",
+          "incidentId": "199b8f88-d144-4578-9c90-57d931180b93",
+          "location": "",
+          "locationKind": "",
+          "targets": {
+            "azure-aks": {
+              "effort": 3,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 3,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=cloud-readiness"
+          ]
+        },
+        {
+          "ruleId": "java-11-deprecate-javaee-00001",
+          "incidentId": "0a917577-cb2e-4d71-939c-4582b116919f",
+          "location": "web/src/main/java/com/microsoft/migration/assets/service/LocalFileStorageService.java",
+          "locationKind": "File",
+          "line": 14,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 2,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 2,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 2,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=openjdk11/openjdk8"
+          ]
+        },
+        {
+          "ruleId": "java-11-deprecate-javaee-00001",
+          "incidentId": "4a0942bf-4c71-4958-b914-2b723b565d42",
+          "location": "worker/src/main/java/com/microsoft/migration/assets/worker/service/LocalFileProcessingService.java",
+          "locationKind": "File",
+          "line": 6,
+          "column": 0,
+          "targets": {
+            "azure-aks": {
+              "effort": 2,
+              "severity": "mandatory"
+            },
+            "azure-appservice": {
+              "effort": 2,
+              "severity": "mandatory"
+            },
+            "azure-container-apps": {
+              "effort": 2,
+              "severity": "mandatory"
+            }
+          },
+          "labels": [
+            "type=violation",
+            "ruleset=openjdk11/openjdk8"
+          ]
+        }
+      ]
+    }
+  ],
+  "rules": {
+    "azure-java-version-02000": {
+      "id": "azure-java-version-02000",
+      "description": "The application is not using the latest LTS Java version. It is recommended to consider upgrading to the latest LTS version to take advantage of the newest language features, performance improvements, and extended support timelines.\nUpgrading to the latest LTS version ensures your application benefits from the most recent security enhancements and a longer support lifecycle.",
+      "title": "Java Version is not the latest LTS",
+      "severity": "optional",
+      "effort": 8,
+      "labels": [
+        "target=azure-appservice",
+        "target=azure-aks",
+        "target=azure-container-apps",
+        "source",
+        "domain=java-upgrade",
+        "category=java-version-upgrade",
+        "version",
+        "os=windows",
+        "os=linux"
+      ]
+    },
+    "dockerfile-00000": {
+      "id": "dockerfile-00000",
+      "description": "No Dockerfile was found in the project. This suggests the application may not yet be containerized. \nConsider creating a Dockerfile to enable container-based replatforming to Azure services such as Azure Container Apps or AKS.",
+      "title": "No Dockerfile found",
+      "severity": "mandatory",
+      "effort": 3,
+      "links": [
+        {
+          "url": "https://www.baeldung.com/java-dockerize-app",
+          "title": "Dockerizing a Java Application"
+        }
+      ],
+      "labels": [
+        "target=azure-aks",
+        "target=azure-container-apps",
+        "capability=containerization",
+        "source",
+        "domain=cloud-readiness",
+        "category=containerization",
+        "containerization",
+        "os=windows",
+        "os=linux"
+      ]
+    },
+    "java-11-deprecate-javaee-00001": {
+      "id": "java-11-deprecate-javaee-00001",
+      "description": "Add the \u0060jakarta.annotation\u0060 dependency to your application. E.g. update maven \u0060pom.xml\u0060.\n\n \u0060\u003CgroupId\u003Ejakarta.annotation\u003C/groupId\u003E\u0060\n\n \u0060\u003CartifactId\u003Ejakarta.annotation-api\u003C/artifactId\u003E\u0060",
+      "title": "The java.annotation (Common Annotations) module has been removed from OpenJDK 11",
+      "severity": "mandatory",
+      "effort": 2,
+      "links": [
+        {
+          "url": "https://www.oracle.com/java/technologies/javase/11-relnote-issues.html#JDK-8190378",
+          "title": "Removed Java EE modules"
+        }
+      ],
+      "labels": [
+        "source=openjdk11-",
+        "source=openjdk",
+        "capability=openjdk11\u002B",
+        "capability=openjdk",
+        "domain=java-upgrade",
+        "category=deprecated-apis",
+        "os=windows",
+        "os=linux",
+        "target=azure-appservice",
+        "target=azure-aks",
+        "target=azure-container-apps"
+      ]
+    },
+    "local-storage-00005": {
+      "id": "local-storage-00005",
+      "description": "When migrating an application that relies on the file system to Azure, it\u0027s important to consider the limitations of local storage in a cloud environment.\n An application running inside a container could lose access to a file in local storage.\n\n The following recommendations depend on the function of the file in local storage:\n\n * Determine the **storage needs** for your application: Ephemeral storage or persistent storage. Ephemeral storage only persists until the cloud environment is restarted. Persistent storage is required for data that needs to persist across restarts.\n \n * If persistent storage is needed, consider **mounting Azure File Share** or **using Azure Blob Storage**. Mount Azure file share allows your application to access files via the mount location. Azure blob storage is a scalable object store for data objects, such as text or binary files.\n\n * **Logging**: Log to standard output and use Azure Monitor to collect and analyze the logs.\n\n * **Caching**: Use Azure Managed Redis as a cache backing service.\n\n * **Configuration**: Store configuration in Azure App Configuration instead of using the file system. Also store configuration settings in environment variables so that they can be updated without code changes.",
+      "title": "File system - Java NIO",
+      "severity": "mandatory",
+      "effort": 3,
+      "labels": [
+        "target=azure-aks",
+        "target=azure-container-apps",
+        "target=azure-appservice",
+        "capability=containerization",
+        "source",
+        "domain=cloud-readiness",
+        "category=file-system-management",
+        "storage",
+        "containerization",
+        "os=windows",
+        "os=linux"
+      ]
+    },
+    "localhost-00004": {
+      "id": "localhost-00004",
+      "description": "The app is trying to use localhost, please try to migrate the resource to cloud",
+      "title": "Localhost Usage",
+      "severity": "optional",
+      "effort": 3,
+      "labels": [
+        "target=azure-aks",
+        "target=azure-container-apps",
+        "target=azure-appservice",
+        "capability=containerization",
+        "source",
+        "domain=cloud-readiness",
+        "category=local-resource-access",
+        "localhost",
+        "containerization",
+        "os=windows",
+        "os=linux"
+      ]
+    },
+    "localhost-jdbc-00002": {
+      "id": "localhost-jdbc-00002",
+      "description": "The app is trying to access local resource by JDBC, please try to migrate the resource to cloud",
+      "title": "Local JDBC Calls",
+      "severity": "mandatory",
+      "effort": 5,
+      "labels": [
+        "target=azure-aks",
+        "target=azure-container-apps",
+        "target=azure-appservice",
+        "capability=containerization",
+        "source",
+        "domain=cloud-readiness",
+        "category=local-resource-access",
+        "localhost",
+        "containerization",
+        "os=windows",
+        "os=linux"
+      ]
+    },
+    "spring-boot-to-azure-spring-boot-version-01000": {
+      "id": "spring-boot-to-azure-spring-boot-version-01000",
+      "description": "The application is using a Spring Boot version that has reached its End of OSS Support.\nWith the officially supported new versions from Spring, you can get the best experience. Here are some steps you can take to update your application to the latest version of Spring Boot:\n\n* Choose a **supported Spring Boot version**: Check out Spring Boot Support Versions and determine the most suitable supported Spring Boot version.\n\n* **Update Spring Boot version**: Update the Spring Boot version of your application. There are automated tools like Rewrite to help you with the migration.\n\n* **Address code compatibility**: Review your application\u0027s codebase for any potential compatibility issues with the target Spring Boot version. Update deprecated APIs or features, address any language or library changes, and ensure that your code follows best practices and standards.\n\n* **Test thoroughly**: Execute a comprehensive testing process to verify the compatibility and functionality of your application with the new Spring Boot version. Perform unit tests, integration tests, and system tests to validate that all components and dependencies work as expected.",
+      "title": "Spring Boot Version Has Reached the End of OSS Support",
+      "severity": "mandatory",
+      "effort": 8,
+      "links": [
+        {
+          "url": "https://learn.microsoft.com/azure/developer/java/migration/migrate-spring-boot-to-azure-container-apps",
+          "title": "Migrate Spring Boot applications to Azure Container Apps"
+        },
+        {
+          "url": "https://learn.microsoft.com/azure/container-apps/java-microservice-get-started?tabs=azure-cli",
+          "title": "Launch your first Java microservice application with managed Java components in Azure Container Apps"
+        },
+        {
+          "url": "https://spring.io/projects/spring-boot/#support",
+          "title": "Spring Boot Supported Versions"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-boot/wiki/Supported-Versions",
+          "title": "Spring Boot Support Policy"
+        }
+      ],
+      "labels": [
+        "source=springboot",
+        "target=azure-appservice",
+        "target=azure-aks",
+        "target=azure-container-apps",
+        "domain=java-upgrade",
+        "category=framework-upgrade",
+        "version",
+        "os=windows",
+        "os=linux"
+      ]
+    },
+    "spring-framework-version-01000": {
+      "id": "spring-framework-version-01000",
+      "description": "Your application is using a Spring Framework version that has reached its End of OSS Support.\nUpgrading to a supported version ensures better performance, security, and compatibility with modern tools.\n  1. Pick a Supported Version: Review the Spring Framework support policy and choose an actively supported version.\n  2. Update Your Project: Change the Spring Framework version in your pom.xml or build.gradle.\n  3. Fix Compatibility Issues: Update deprecated code, replace removed features, and ensure dependencies are compatible with the new Spring Framework version.\n  4. Thoroughly Test: Run unit, integration, and end-to-end tests to make sure everything still works after the upgrade.",
+      "title": "Spring Framework Version Has Reached the End of OSS Support",
+      "severity": "mandatory",
+      "effort": 8,
+      "links": [
+        {
+          "url": "https://spring.io/projects/spring-framework#support",
+          "title": "Spring Framework Supported Versions"
+        },
+        {
+          "url": "https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-Versions",
+          "title": "Spring Framework Support Policy"
+        }
+      ],
+      "labels": [
+        "source=spring",
+        "target=azure-appservice",
+        "target=azure-aks",
+        "target=azure-container-apps",
+        "domain=java-upgrade",
+        "category=framework-upgrade",
+        "version",
+        "os=windows",
+        "os=linux"
+      ]
+    }
+  },
+  "security": [
+    {
+      "id": "CVE-2023-6378",
+      "title": "logback serialization vulnerability",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2023-6378](https://github.com/advisories/GHSA-vmq6-5m68-f53m): logback serialization vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - ch.qos.logback:logback-classic:1.2.12 (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n  - ch.qos.logback:logback-core:1.2.12 (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n\nRecommended fix:\n  - Upgrade ch.qos.logback:logback-classic to 1.4.12 or later\n  - Upgrade ch.qos.logback:logback-core to 1.4.12 or later\n  - Upgrade ch.qos.logback:logback-classic to 1.3.12 or later\n  - Upgrade ch.qos.logback:logback-core to 1.3.12 or later\n  - Upgrade ch.qos.logback:logback-core to 1.2.13 or later\n  - Upgrade ch.qos.logback:logback-classic to 1.2.13 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:21"
+        ],
+        "explanation": "[CVE-2023-6378](https://github.com/advisories/GHSA-vmq6-5m68-f53m): logback serialization vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - ch.qos.logback:logback-classic:1.2.12 (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n  - ch.qos.logback:logback-core:1.2.12 (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n\nRecommended fix:\n  - Upgrade ch.qos.logback:logback-classic to 1.4.12 or later\n  - Upgrade ch.qos.logback:logback-core to 1.4.12 or later\n  - Upgrade ch.qos.logback:logback-classic to 1.3.12 or later\n  - Upgrade ch.qos.logback:logback-core to 1.3.12 or later\n  - Upgrade ch.qos.logback:logback-core to 1.2.13 or later\n  - Upgrade ch.qos.logback:logback-classic to 1.2.13 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2023-6481",
+      "title": "Logback is vulnerable to an attacker mounting a Denial-Of-Service attack by sending poisoned data",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2023-6481](https://github.com/advisories/GHSA-gm62-rw4g-vrc4): Logback is vulnerable to an attacker mounting a Denial-Of-Service attack by sending poisoned data\n\nSeverity: HIGH\n\nAffected dependencies:\n  - ch.qos.logback:logback-core:1.2.12 (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n\nRecommended fix:\n  - Upgrade ch.qos.logback:logback-core to 1.4.14 or later\n  - Upgrade ch.qos.logback:logback-core to 1.3.14 or later\n  - Upgrade ch.qos.logback:logback-core to 1.2.13 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:21"
+        ],
+        "explanation": "[CVE-2023-6481](https://github.com/advisories/GHSA-gm62-rw4g-vrc4): Logback is vulnerable to an attacker mounting a Denial-Of-Service attack by sending poisoned data\n\nSeverity: HIGH\n\nAffected dependencies:\n  - ch.qos.logback:logback-core:1.2.12 (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n\nRecommended fix:\n  - Upgrade ch.qos.logback:logback-core to 1.4.14 or later\n  - Upgrade ch.qos.logback:logback-core to 1.3.14 or later\n  - Upgrade ch.qos.logback:logback-core to 1.2.13 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2022-25857",
+      "title": "Uncontrolled Resource Consumption in snakeyaml",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2022-25857](https://github.com/advisories/GHSA-3mc7-4q67-w48m): Uncontrolled Resource Consumption in snakeyaml\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.yaml:snakeyaml:1.30 (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n\nRecommended fix:\n  - Upgrade org.yaml:snakeyaml to 1.31 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:21"
+        ],
+        "explanation": "[CVE-2022-25857](https://github.com/advisories/GHSA-3mc7-4q67-w48m): Uncontrolled Resource Consumption in snakeyaml\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.yaml:snakeyaml:1.30 (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n\nRecommended fix:\n  - Upgrade org.yaml:snakeyaml to 1.31 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2022-1471",
+      "title": "SnakeYaml Constructor Deserialization Remote Code Execution",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2022-1471](https://github.com/advisories/GHSA-mjmj-j48q-9wg2): SnakeYaml Constructor Deserialization Remote Code Execution\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.yaml:snakeyaml:1.30 (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n\nRecommended fix:\n  - Upgrade org.yaml:snakeyaml to 2.0 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:21"
+        ],
+        "explanation": "[CVE-2022-1471](https://github.com/advisories/GHSA-mjmj-j48q-9wg2): SnakeYaml Constructor Deserialization Remote Code Execution\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.yaml:snakeyaml:1.30 (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n\nRecommended fix:\n  - Upgrade org.yaml:snakeyaml to 2.0 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-40477",
+      "title": "Improper restriction of the scope of accessible objects in Thymeleaf expressions",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-40477](https://github.com/advisories/GHSA-r4v4-5mwr-2fwr): Improper restriction of the scope of accessible objects in Thymeleaf expressions\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.thymeleaf:thymeleaf-spring5:3.0.15.RELEASE (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n  - org.thymeleaf:thymeleaf:3.0.15.RELEASE (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n\nRecommended fix:\n  - Upgrade org.thymeleaf:thymeleaf to 3.1.4.RELEASE or later\n  - Upgrade org.thymeleaf:thymeleaf-spring5 to 3.1.4.RELEASE or later\n  - Upgrade org.thymeleaf:thymeleaf-spring6 to 3.1.4.RELEASE or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:21"
+        ],
+        "explanation": "[CVE-2026-40477](https://github.com/advisories/GHSA-r4v4-5mwr-2fwr): Improper restriction of the scope of accessible objects in Thymeleaf expressions\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.thymeleaf:thymeleaf-spring5:3.0.15.RELEASE (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n  - org.thymeleaf:thymeleaf:3.0.15.RELEASE (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n\nRecommended fix:\n  - Upgrade org.thymeleaf:thymeleaf to 3.1.4.RELEASE or later\n  - Upgrade org.thymeleaf:thymeleaf-spring5 to 3.1.4.RELEASE or later\n  - Upgrade org.thymeleaf:thymeleaf-spring6 to 3.1.4.RELEASE or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-40478",
+      "title": "Improper neutralization of specific syntax patterns for unauthorized expressions in Thymeleaf",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-40478](https://github.com/advisories/GHSA-xjw8-8c5c-9r79): Improper neutralization of specific syntax patterns for unauthorized expressions in Thymeleaf\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.thymeleaf:thymeleaf-spring5:3.0.15.RELEASE (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n  - org.thymeleaf:thymeleaf:3.0.15.RELEASE (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n\nRecommended fix:\n  - Upgrade org.thymeleaf:thymeleaf to 3.1.4.RELEASE or later\n  - Upgrade org.thymeleaf:thymeleaf-spring5 to 3.1.4.RELEASE or later\n  - Upgrade org.thymeleaf:thymeleaf-spring6 to 3.1.4.RELEASE or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:21"
+        ],
+        "explanation": "[CVE-2026-40478](https://github.com/advisories/GHSA-xjw8-8c5c-9r79): Improper neutralization of specific syntax patterns for unauthorized expressions in Thymeleaf\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.thymeleaf:thymeleaf-spring5:3.0.15.RELEASE (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n  - org.thymeleaf:thymeleaf:3.0.15.RELEASE (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n\nRecommended fix:\n  - Upgrade org.thymeleaf:thymeleaf to 3.1.4.RELEASE or later\n  - Upgrade org.thymeleaf:thymeleaf-spring5 to 3.1.4.RELEASE or later\n  - Upgrade org.thymeleaf:thymeleaf-spring6 to 3.1.4.RELEASE or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-41901",
+      "title": "Sandboxed Thymeleaf expressions vulnerable to improper recognition of unauthorized syntax patterns",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-41901](https://github.com/advisories/GHSA-c9ph-gxww-7744): Sandboxed Thymeleaf expressions vulnerable to improper recognition of unauthorized syntax patterns\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.thymeleaf:thymeleaf-spring5:3.0.15.RELEASE (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n  - org.thymeleaf:thymeleaf:3.0.15.RELEASE (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n\nRecommended fix:\n  - Upgrade org.thymeleaf:thymeleaf to 3.1.5.RELEASE or later\n  - Upgrade org.thymeleaf:thymeleaf-spring5 to 3.1.5.RELEASE or later\n  - Upgrade org.thymeleaf:thymeleaf-spring6 to 3.1.5.RELEASE or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:21"
+        ],
+        "explanation": "[CVE-2026-41901](https://github.com/advisories/GHSA-c9ph-gxww-7744): Sandboxed Thymeleaf expressions vulnerable to improper recognition of unauthorized syntax patterns\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.thymeleaf:thymeleaf-spring5:3.0.15.RELEASE (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n  - org.thymeleaf:thymeleaf:3.0.15.RELEASE (transitive, pulled by org.springframework.boot:spring-boot-starter-thymeleaf:2.7.18 at web/pom.xml:21)\n\nRecommended fix:\n  - Upgrade org.thymeleaf:thymeleaf to 3.1.5.RELEASE or later\n  - Upgrade org.thymeleaf:thymeleaf-spring5 to 3.1.5.RELEASE or later\n  - Upgrade org.thymeleaf:thymeleaf-spring6 to 3.1.5.RELEASE or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-54512",
+      "title": "jackson-databind has a PolymorphicTypeValidator bypass via generic type parameters that allows arbitrary class instantiation",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-54512](https://github.com/advisories/GHSA-j3rv-43j4-c7qm): jackson-databind has a PolymorphicTypeValidator bypass via generic type parameters that allows arbitrary class instantiation\n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.fasterxml.jackson.core:jackson-databind:2.13.5 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at worker/pom.xml:43)\n\nRecommended fix:\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.18.8 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 3.1.4 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.21.4 or later\n  - Upgrade tools.jackson.core:jackson-databind to 3.1.4 or later",
+      "evidence": {
+        "files": [
+          "worker/pom.xml:43"
+        ],
+        "explanation": "[CVE-2026-54512](https://github.com/advisories/GHSA-j3rv-43j4-c7qm): jackson-databind has a PolymorphicTypeValidator bypass via generic type parameters that allows arbitrary class instantiation\n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.fasterxml.jackson.core:jackson-databind:2.13.5 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at worker/pom.xml:43)\n\nRecommended fix:\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.18.8 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 3.1.4 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.21.4 or later\n  - Upgrade tools.jackson.core:jackson-databind to 3.1.4 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-54513",
+      "title": "jackson-databind has an array subtype allowlist bypass in BasicPolymorphicTypeValidator (allowIfSubTypeIsArray)",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-54513](https://github.com/advisories/GHSA-rmj7-2vxq-3g9f): jackson-databind has an array subtype allowlist bypass in BasicPolymorphicTypeValidator (allowIfSubTypeIsArray)\n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.fasterxml.jackson.core:jackson-databind:2.13.5 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at worker/pom.xml:43)\n\nRecommended fix:\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.18.8 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.21.4 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 3.1.4 or later\n  - Upgrade tools.jackson.core:jackson-databind to 3.1.4 or later",
+      "evidence": {
+        "files": [
+          "worker/pom.xml:43"
+        ],
+        "explanation": "[CVE-2026-54513](https://github.com/advisories/GHSA-rmj7-2vxq-3g9f): jackson-databind has an array subtype allowlist bypass in BasicPolymorphicTypeValidator (allowIfSubTypeIsArray)\n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.fasterxml.jackson.core:jackson-databind:2.13.5 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at worker/pom.xml:43)\n\nRecommended fix:\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.18.8 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.21.4 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 3.1.4 or later\n  - Upgrade tools.jackson.core:jackson-databind to 3.1.4 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-91776",
+      "title": "jackson-databind retains every unknown raw type ID ",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-91776](https://github.com/advisories/GHSA-wv8q-qhhj-9h54): jackson-databind retains every unknown raw type ID \n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.fasterxml.jackson.core:jackson-databind:2.13.5 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at worker/pom.xml:43)\n\nRecommended fix:\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.18.11 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.21.7 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.22.3 or later\n  - Upgrade tools.jackson.core:jackson-databind to 3.1.7 or later\n  - Upgrade tools.jackson.core:jackson-databind to 3.2.3 or later",
+      "evidence": {
+        "files": [
+          "worker/pom.xml:43"
+        ],
+        "explanation": "[CVE-2026-91776](https://github.com/advisories/GHSA-wv8q-qhhj-9h54): jackson-databind retains every unknown raw type ID \n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.fasterxml.jackson.core:jackson-databind:2.13.5 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at worker/pom.xml:43)\n\nRecommended fix:\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.18.11 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.21.7 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.22.3 or later\n  - Upgrade tools.jackson.core:jackson-databind to 3.1.7 or later\n  - Upgrade tools.jackson.core:jackson-databind to 3.2.3 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-91777",
+      "title": "jackson-databind quadratic forward-reference completion ",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-91777](https://github.com/advisories/GHSA-cxp5-3px4-pw24): jackson-databind quadratic forward-reference completion \n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.fasterxml.jackson.core:jackson-databind:2.13.5 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at worker/pom.xml:43)\n\nRecommended fix:\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.21.7 or later\n  - Upgrade tools.jackson.core:jackson-databind to 3.1.7 or later\n  - Upgrade tools.jackson.core:jackson-databind to 3.2.3 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.18.11 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.22.3 or later",
+      "evidence": {
+        "files": [
+          "worker/pom.xml:43"
+        ],
+        "explanation": "[CVE-2026-91777](https://github.com/advisories/GHSA-cxp5-3px4-pw24): jackson-databind quadratic forward-reference completion \n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.fasterxml.jackson.core:jackson-databind:2.13.5 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at worker/pom.xml:43)\n\nRecommended fix:\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.21.7 or later\n  - Upgrade tools.jackson.core:jackson-databind to 3.1.7 or later\n  - Upgrade tools.jackson.core:jackson-databind to 3.2.3 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.18.11 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-databind to 2.22.3 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2025-52999",
+      "title": "jackson-core can throw a StackoverflowError when processing deeply nested data",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2025-52999](https://github.com/advisories/GHSA-h46c-h94j-95f3): jackson-core can throw a StackoverflowError when processing deeply nested data\n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.fasterxml.jackson.core:jackson-core:2.13.5 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade com.fasterxml.jackson.core:jackson-core to 2.15.0 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2025-52999](https://github.com/advisories/GHSA-h46c-h94j-95f3): jackson-core can throw a StackoverflowError when processing deeply nested data\n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.fasterxml.jackson.core:jackson-core:2.13.5 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade com.fasterxml.jackson.core:jackson-core to 2.15.0 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-68494",
+      "title": "jackson-core: Async parser maxNumberLength bypass via chunked digit accumulation (incomplete fix for GHSA-72hv-8253-57qq)",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-68494](https://github.com/advisories/GHSA-r7wm-3cxj-wff9): jackson-core: Async parser maxNumberLength bypass via chunked digit accumulation (incomplete fix for GHSA-72hv-8253-57qq)\n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.fasterxml.jackson.core:jackson-core:2.13.5 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade com.fasterxml.jackson.core:jackson-core to 2.18.8 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-core to 2.21.4 or later\n  - Upgrade tools.jackson.core:jackson-core to 3.1.4 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-68494](https://github.com/advisories/GHSA-r7wm-3cxj-wff9): jackson-core: Async parser maxNumberLength bypass via chunked digit accumulation (incomplete fix for GHSA-72hv-8253-57qq)\n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.fasterxml.jackson.core:jackson-core:2.13.5 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade com.fasterxml.jackson.core:jackson-core to 2.18.8 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-core to 2.21.4 or later\n  - Upgrade tools.jackson.core:jackson-core to 3.1.4 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-89425",
+      "title": "jackson-core: UTF8DataInputJsonParser._reportInvalidToken() missing maxErrorTokenLength limit -\u003E unbounded StringBuilder growth (DoS)",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-89425](https://github.com/advisories/GHSA-7hhh-6rmp-j9qf): jackson-core: UTF8DataInputJsonParser._reportInvalidToken() missing maxErrorTokenLength limit -\u003E unbounded StringBuilder growth (DoS)\n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.fasterxml.jackson.core:jackson-core:2.13.5 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade com.fasterxml.jackson.core:jackson-core to 2.21.7 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-core to 2.22.3 or later\n  - Upgrade tools.jackson.core:jackson-core to 3.1.7 or later\n  - Upgrade tools.jackson.core:jackson-core to 3.2.3 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-core to 2.18.11 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-89425](https://github.com/advisories/GHSA-7hhh-6rmp-j9qf): jackson-core: UTF8DataInputJsonParser._reportInvalidToken() missing maxErrorTokenLength limit -\u003E unbounded StringBuilder growth (DoS)\n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.fasterxml.jackson.core:jackson-core:2.13.5 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade com.fasterxml.jackson.core:jackson-core to 2.21.7 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-core to 2.22.3 or later\n  - Upgrade tools.jackson.core:jackson-core to 3.1.7 or later\n  - Upgrade tools.jackson.core:jackson-core to 3.2.3 or later\n  - Upgrade com.fasterxml.jackson.core:jackson-core to 2.18.11 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2024-34750",
+      "title": "Apache Tomcat - Denial of Service",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2024-34750](https://github.com/advisories/GHSA-wm9w-rjj3-j356): Apache Tomcat - Denial of Service\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.0-M21 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.25 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.90 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 11.0.0-M21 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 10.1.25 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 9.0.90 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2024-34750](https://github.com/advisories/GHSA-wm9w-rjj3-j356): Apache Tomcat - Denial of Service\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.0-M21 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.25 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.90 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 11.0.0-M21 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 10.1.25 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 9.0.90 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2024-38286",
+      "title": "Apache Tomcat Allocation of Resources Without Limits or Throttling vulnerability",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2024-38286](https://github.com/advisories/GHSA-7jqf-v358-p8g7): Apache Tomcat Allocation of Resources Without Limits or Throttling vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-coyote to 11.0.0-M21 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 10.1.25 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 9.0.90 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.0-M21 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.25 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.90 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2024-38286](https://github.com/advisories/GHSA-7jqf-v358-p8g7): Apache Tomcat Allocation of Resources Without Limits or Throttling vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-coyote to 11.0.0-M21 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 10.1.25 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 9.0.90 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.0-M21 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.25 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.90 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2024-50379",
+      "title": "Apache Tomcat Time-of-check Time-of-use (TOCTOU) Race Condition vulnerability",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2024-50379](https://github.com/advisories/GHSA-5j33-cvvr-w245): Apache Tomcat Time-of-check Time-of-use (TOCTOU) Race Condition vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.2 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.34 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.98 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.2 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.34 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.98 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2024-50379](https://github.com/advisories/GHSA-5j33-cvvr-w245): Apache Tomcat Time-of-check Time-of-use (TOCTOU) Race Condition vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.2 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.34 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.98 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.2 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.34 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.98 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2024-56337",
+      "title": "Apache Tomcat Time-of-check Time-of-use (TOCTOU) Race Condition vulnerability",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2024-56337](https://github.com/advisories/GHSA-27hp-xhwr-wr2m): Apache Tomcat Time-of-check Time-of-use (TOCTOU) Race Condition vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.2 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.34 or later\n  - Upgrade org.apache.tomcat:tomcat-embed-core to 9.0.98 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.2 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.34 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.98 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2024-56337](https://github.com/advisories/GHSA-27hp-xhwr-wr2m): Apache Tomcat Time-of-check Time-of-use (TOCTOU) Race Condition vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.2 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.34 or later\n  - Upgrade org.apache.tomcat:tomcat-embed-core to 9.0.98 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.2 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.34 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.98 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2025-24813",
+      "title": "Apache Tomcat: Potential RCE and/or information disclosure and/or information corruption with partial PUT",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2025-24813](https://github.com/advisories/GHSA-83qj-6fr2-vhqg): Apache Tomcat: Potential RCE and/or information disclosure and/or information corruption with partial PUT\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.3 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.35 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.99 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.3 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.35 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.99 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2025-24813](https://github.com/advisories/GHSA-83qj-6fr2-vhqg): Apache Tomcat: Potential RCE and/or information disclosure and/or information corruption with partial PUT\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.3 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.35 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.99 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.3 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.35 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.99 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2025-48988",
+      "title": "Apache Tomcat - DoS in multipart upload",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2025-48988](https://github.com/advisories/GHSA-h3gc-qfqq-6h8f): Apache Tomcat - DoS in multipart upload\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.8 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.42 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.106 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.8 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.42 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.106 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2025-48988](https://github.com/advisories/GHSA-h3gc-qfqq-6h8f): Apache Tomcat - DoS in multipart upload\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.8 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.42 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.106 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.8 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.42 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.106 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2025-52520",
+      "title": "Apache Tomcat Catalina is vulnerable to DoS attack through bypassing of size limits",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2025-52520](https://github.com/advisories/GHSA-wr62-c79q-cv37): Apache Tomcat Catalina is vulnerable to DoS attack through bypassing of size limits\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.9 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.43 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.107 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.9 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.43 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.107 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2025-52520](https://github.com/advisories/GHSA-wr62-c79q-cv37): Apache Tomcat Catalina is vulnerable to DoS attack through bypassing of size limits\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.9 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.43 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.107 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.9 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.43 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.107 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2025-53506",
+      "title": "Apache Tomcat Coyote vulnerable to Denial of Service via excessive HTTP/2 streams",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2025-53506](https://github.com/advisories/GHSA-25xr-qj8w-c4vf): Apache Tomcat Coyote vulnerable to Denial of Service via excessive HTTP/2 streams\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-coyote to 11.0.9 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 10.1.43 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 9.0.107 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.107 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.43 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.9 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2025-53506](https://github.com/advisories/GHSA-25xr-qj8w-c4vf): Apache Tomcat Coyote vulnerable to Denial of Service via excessive HTTP/2 streams\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-coyote to 11.0.9 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 10.1.43 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 9.0.107 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.107 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.43 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.9 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2025-48989",
+      "title": "Apache Tomcat Improper Resource Shutdown or Release vulnerability",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2025-48989](https://github.com/advisories/GHSA-gqp3-2cvr-x8m3): Apache Tomcat Improper Resource Shutdown or Release vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-coyote to 11.0.10 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 10.1.44 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 9.0.108 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.10 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.44 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.108 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2025-48989](https://github.com/advisories/GHSA-gqp3-2cvr-x8m3): Apache Tomcat Improper Resource Shutdown or Release vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-coyote to 11.0.10 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 10.1.44 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 9.0.108 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.10 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.44 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.108 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2025-55752",
+      "title": "Apache Tomcat Vulnerable to Relative Path Traversal",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2025-55752](https://github.com/advisories/GHSA-wmwf-9ccg-fff5): Apache Tomcat Vulnerable to Relative Path Traversal\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat to 11.0.11 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.45 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.11 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.45 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.11 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.45 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.109 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.109 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.109 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2025-55752](https://github.com/advisories/GHSA-wmwf-9ccg-fff5): Apache Tomcat Vulnerable to Relative Path Traversal\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat to 11.0.11 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.45 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.11 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.45 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.11 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.45 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.109 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.109 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.109 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-24734",
+      "title": "Apache Tomcat has an Improper Input Validation vulnerability",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-24734](https://github.com/advisories/GHSA-mgp5-rv84-w37q): Apache Tomcat has an Improper Input Validation vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-coyote to 11.0.18 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 10.1.52 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 9.0.115 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.18 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.52 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.115 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote-ffm to 11.0.18 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote-ffm to 10.1.52 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote-ffm to 9.0.115 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-24734](https://github.com/advisories/GHSA-mgp5-rv84-w37q): Apache Tomcat has an Improper Input Validation vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-coyote to 11.0.18 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 10.1.52 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 9.0.115 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.18 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.52 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.115 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote-ffm to 11.0.18 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote-ffm to 10.1.52 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote-ffm to 9.0.115 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-24880",
+      "title": "Apache Tomcat has an HTTP Request/Response Smuggling vulnerability",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-24880](https://github.com/advisories/GHSA-563x-q5rq-57qp): Apache Tomcat has an HTTP Request/Response Smuggling vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-coyote to 9.0.116 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 10.1.52 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 11.0.20 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.116 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.52 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.20 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-24880](https://github.com/advisories/GHSA-563x-q5rq-57qp): Apache Tomcat has an HTTP Request/Response Smuggling vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-coyote to 9.0.116 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 10.1.52 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 11.0.20 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.116 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.52 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.20 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-34487",
+      "title": "Apache Tomcat vulnerable to Insertion of Sensitive Information into Log File",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-34487](https://github.com/advisories/GHSA-x4m4-345f-5h5g): Apache Tomcat vulnerable to Insertion of Sensitive Information into Log File\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat to 9.0.117 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.54 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.21 or later\n  - Upgrade org.apache.tomcat:tomcat-tribes to 9.0.117 or later\n  - Upgrade org.apache.tomcat:tomcat-tribes to 10.1.54 or later\n  - Upgrade org.apache.tomcat:tomcat-tribes to 11.0.21 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.117 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.54 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.21 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-34487](https://github.com/advisories/GHSA-x4m4-345f-5h5g): Apache Tomcat vulnerable to Insertion of Sensitive Information into Log File\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat to 9.0.117 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.54 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.21 or later\n  - Upgrade org.apache.tomcat:tomcat-tribes to 9.0.117 or later\n  - Upgrade org.apache.tomcat:tomcat-tribes to 10.1.54 or later\n  - Upgrade org.apache.tomcat:tomcat-tribes to 11.0.21 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.117 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.54 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.21 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-34483",
+      "title": "Apache Tomcat has an Improper Encoding or Escaping of Output vulnerability in the JsonAccessLogValve",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-34483](https://github.com/advisories/GHSA-rv64-5gf8-9qq8): Apache Tomcat has an Improper Encoding or Escaping of Output vulnerability in the JsonAccessLogValve\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.116 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.54 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.21 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.116 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.54 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.21 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.116 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.54 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.21 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-34483](https://github.com/advisories/GHSA-rv64-5gf8-9qq8): Apache Tomcat has an Improper Encoding or Escaping of Output vulnerability in the JsonAccessLogValve\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.116 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.54 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.21 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.116 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.54 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.21 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.116 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.54 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.21 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-42498",
+      "title": "Apache Tomcat - WebSocket authentication header exposure",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-42498](https://github.com/advisories/GHSA-fv25-8xcx-gqjc): Apache Tomcat - WebSocket authentication header exposure\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.118 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.55 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.22 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-42498](https://github.com/advisories/GHSA-fv25-8xcx-gqjc): Apache Tomcat - WebSocket authentication header exposure\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.118 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.55 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.22 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-41293",
+      "title": "Apache Tomcat - HTTP/2 request headers not validated",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-41293](https://github.com/advisories/GHSA-r29c-68gh-xp6x): Apache Tomcat - HTTP/2 request headers not validated\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.55 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.22 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 11.0.22 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-41293](https://github.com/advisories/GHSA-r29c-68gh-xp6x): Apache Tomcat - HTTP/2 request headers not validated\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.55 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.22 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat-coyote to 11.0.22 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-43515",
+      "title": "Apache Tomcat - Security constraints not correctly applied",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-43515](https://github.com/advisories/GHSA-5m62-pw8w-7w9f): Apache Tomcat - Security constraints not correctly applied\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.118 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.55 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.22 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-43515](https://github.com/advisories/GHSA-5m62-pw8w-7w9f): Apache Tomcat - Security constraints not correctly applied\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.118 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.55 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.22 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-43513",
+      "title": "Apache Tomcat: LockOutRealm treats user names as case-sensitive",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-43513](https://github.com/advisories/GHSA-5mp6-jrq3-r938): Apache Tomcat: LockOutRealm treats user names as case-sensitive\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.118 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.55 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.22 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-43513](https://github.com/advisories/GHSA-5mp6-jrq3-r938): Apache Tomcat: LockOutRealm treats user names as case-sensitive\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.118 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.55 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.22 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-43512",
+      "title": "Apache Tomcat - Digest authenticator will authenticate any unknown user",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-43512](https://github.com/advisories/GHSA-h6fc-48rj-7qqh): Apache Tomcat - Digest authenticator will authenticate any unknown user\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.118 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.55 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.22 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-43512](https://github.com/advisories/GHSA-h6fc-48rj-7qqh): Apache Tomcat - Digest authenticator will authenticate any unknown user\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.118 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.55 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.22 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-41284",
+      "title": "Apache Tomcat: Unbounded read in WebDAV LOCK and  PROPFIND handling",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-41284](https://github.com/advisories/GHSA-gx5v-xp9w-j4cg): Apache Tomcat: Unbounded read in WebDAV LOCK and  PROPFIND handling\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.118 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.55 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.22 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-41284](https://github.com/advisories/GHSA-gx5v-xp9w-j4cg): Apache Tomcat: Unbounded read in WebDAV LOCK and  PROPFIND handling\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.118 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.55 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.22 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.118 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.55 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.22 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-53404",
+      "title": "Apache Tomcat\u0027s rewrite valve has an Always-Incorrect Control Flow Implementation vulnerability",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-53404](https://github.com/advisories/GHSA-h792-v28v-ppgr): Apache Tomcat\u0027s rewrite valve has an Always-Incorrect Control Flow Implementation vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.23 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.56 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.119 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.23 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.56 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.119 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.23 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.56 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.119 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-53404](https://github.com/advisories/GHSA-h792-v28v-ppgr): Apache Tomcat\u0027s rewrite valve has an Always-Incorrect Control Flow Implementation vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.23 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.56 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.119 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.23 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.56 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.119 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.23 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.56 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.119 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-55276",
+      "title": "Apache Tomcat has an Always-Incorrect Control Flow Implementation vulnerability",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-55276](https://github.com/advisories/GHSA-mqg3-r7h5-24x4): Apache Tomcat has an Always-Incorrect Control Flow Implementation vulnerability\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.23 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.56 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.119 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.23 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.56 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.119 or later\n  - Upgrade org.apache.tomcat:tomcat-util-scan to 11.0.23 or later\n  - Upgrade org.apache.tomcat:tomcat-util-scan to 10.1.56 or later\n  - Upgrade org.apache.tomcat:tomcat-util-scan to 9.0.119 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-55276](https://github.com/advisories/GHSA-mqg3-r7h5-24x4): Apache Tomcat has an Always-Incorrect Control Flow Implementation vulnerability\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.23 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.56 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.119 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.23 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.56 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.119 or later\n  - Upgrade org.apache.tomcat:tomcat-util-scan to 11.0.23 or later\n  - Upgrade org.apache.tomcat:tomcat-util-scan to 10.1.56 or later\n  - Upgrade org.apache.tomcat:tomcat-util-scan to 9.0.119 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-55957",
+      "title": "Apache Tomcat has a Missing Critical Step in Authentication vulnerability",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-55957](https://github.com/advisories/GHSA-7895-gffq-w6jq): Apache Tomcat has a Missing Critical Step in Authentication vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.5 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.37 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.101 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.5 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.37 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.101 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.5 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.37 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.101 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-55957](https://github.com/advisories/GHSA-7895-gffq-w6jq): Apache Tomcat has a Missing Critical Step in Authentication vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.5 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.37 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.101 or later\n  - Upgrade org.apache.tomcat:tomcat to 11.0.5 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.37 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.101 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.5 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.37 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.101 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-68525",
+      "title": "Apache Tomcat\u0027s FORM authentication process has an Incorrect Authorization vulnerability",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-68525](https://github.com/advisories/GHSA-h3x4-894j-xpx5): Apache Tomcat\u0027s FORM authentication process has an Incorrect Authorization vulnerability\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat to 11.0.25 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.58 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.121 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.25 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.58 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.121 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.25 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.58 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.121 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-68525](https://github.com/advisories/GHSA-h3x4-894j-xpx5): Apache Tomcat\u0027s FORM authentication process has an Incorrect Authorization vulnerability\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat to 11.0.25 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.58 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.121 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.25 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.58 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.121 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.25 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.58 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.121 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-65182",
+      "title": "Apache Tomcat has an Improper Access Control, Incorrect Authorization vulnerability",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-65182](https://github.com/advisories/GHSA-gcx9-497g-6cp6): Apache Tomcat has an Improper Access Control, Incorrect Authorization vulnerability\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat to 11.0.25 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.58 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.121 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.25 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.58 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.121 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.25 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.58 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.121 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-65182](https://github.com/advisories/GHSA-gcx9-497g-6cp6): Apache Tomcat has an Improper Access Control, Incorrect Authorization vulnerability\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat to 11.0.25 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.58 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.121 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.25 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.58 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.121 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.25 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.58 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.121 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-65905",
+      "title": "Apache Tomcat\u0027s DIGEST authenticator has an Authentication Bypass by Capture-replay vulnerability",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-65905](https://github.com/advisories/GHSA-9xv2-5v5q-p794): Apache Tomcat\u0027s DIGEST authenticator has an Authentication Bypass by Capture-replay vulnerability\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat to 11.0.25 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.58 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.121 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.25 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.58 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.121 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.25 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.58 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.121 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-65905](https://github.com/advisories/GHSA-9xv2-5v5q-p794): Apache Tomcat\u0027s DIGEST authenticator has an Authentication Bypass by Capture-replay vulnerability\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.apache.tomcat.embed:tomcat-embed-core:9.0.83 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.apache.tomcat:tomcat to 11.0.25 or later\n  - Upgrade org.apache.tomcat:tomcat to 10.1.58 or later\n  - Upgrade org.apache.tomcat:tomcat to 9.0.121 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 11.0.25 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 10.1.58 or later\n  - Upgrade org.apache.tomcat.embed:tomcat-embed-core to 9.0.121 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 11.0.25 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 10.1.58 or later\n  - Upgrade org.apache.tomcat:tomcat-catalina to 9.0.121 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2016-1000027",
+      "title": "Pivotal Spring Framework contains unsafe Java deserialization methods",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2016-1000027](https://github.com/advisories/GHSA-4wrc-f8pq-fpqp): Pivotal Spring Framework contains unsafe Java deserialization methods\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.springframework:spring-web:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-web to 6.0.0 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2016-1000027](https://github.com/advisories/GHSA-4wrc-f8pq-fpqp): Pivotal Spring Framework contains unsafe Java deserialization methods\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.springframework:spring-web:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-web to 6.0.0 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2024-22243",
+      "title": "Spring Web vulnerable to Open Redirect or Server Side Request Forgery",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2024-22243](https://github.com/advisories/GHSA-ccgv-vj62-xf9h): Spring Web vulnerable to Open Redirect or Server Side Request Forgery\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-web:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-web to 6.1.4 or later\n  - Upgrade org.springframework:spring-web to 6.0.17 or later\n  - Upgrade org.springframework:spring-web to 5.3.32 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2024-22243](https://github.com/advisories/GHSA-ccgv-vj62-xf9h): Spring Web vulnerable to Open Redirect or Server Side Request Forgery\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-web:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-web to 6.1.4 or later\n  - Upgrade org.springframework:spring-web to 6.0.17 or later\n  - Upgrade org.springframework:spring-web to 5.3.32 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2024-22259",
+      "title": "Spring Framework URL Parsing with Host Validation Vulnerability",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2024-22259](https://github.com/advisories/GHSA-hgjh-9rj2-g67j): Spring Framework URL Parsing with Host Validation Vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-web:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-web to 6.1.5 or later\n  - Upgrade org.springframework:spring-web to 6.0.18 or later\n  - Upgrade org.springframework:spring-web to 5.3.33 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2024-22259](https://github.com/advisories/GHSA-hgjh-9rj2-g67j): Spring Framework URL Parsing with Host Validation Vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-web:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-web to 6.1.5 or later\n  - Upgrade org.springframework:spring-web to 6.0.18 or later\n  - Upgrade org.springframework:spring-web to 5.3.33 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2024-22262",
+      "title": "Spring Framework URL Parsing with Host Validation",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2024-22262](https://github.com/advisories/GHSA-2wrp-6fg6-hmc5): Spring Framework URL Parsing with Host Validation\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-web:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-web to 5.3.34 or later\n  - Upgrade org.springframework:spring-web to 6.0.19 or later\n  - Upgrade org.springframework:spring-web to 6.1.6 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2024-22262](https://github.com/advisories/GHSA-2wrp-6fg6-hmc5): Spring Framework URL Parsing with Host Validation\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-web:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-web to 5.3.34 or later\n  - Upgrade org.springframework:spring-web to 6.0.19 or later\n  - Upgrade org.springframework:spring-web to 6.1.6 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2024-38816",
+      "title": "Path traversal vulnerability in functional web frameworks",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2024-38816](https://github.com/advisories/GHSA-cx7f-g6mp-7hqm): Path traversal vulnerability in functional web frameworks\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-webmvc:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-webmvc to 6.1.13 or later\n  - Upgrade org.springframework:spring-webflux to 6.1.13 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2024-38816](https://github.com/advisories/GHSA-cx7f-g6mp-7hqm): Path traversal vulnerability in functional web frameworks\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-webmvc:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-webmvc to 6.1.13 or later\n  - Upgrade org.springframework:spring-webflux to 6.1.13 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2024-38819",
+      "title": "Spring Framework Path Traversal vulnerability",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2024-38819](https://github.com/advisories/GHSA-g5vr-rgqm-vf78): Spring Framework Path Traversal vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-webmvc:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-webflux to 6.1.14 or later\n  - Upgrade org.springframework:spring-webmvc to 6.1.14 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2024-38819](https://github.com/advisories/GHSA-g5vr-rgqm-vf78): Spring Framework Path Traversal vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-webmvc:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-webflux to 6.1.14 or later\n  - Upgrade org.springframework:spring-webmvc to 6.1.14 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-41842",
+      "title": "Spring Framework Denial of Service via Versioned Resources in Spring MVC and WebFlux",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-41842](https://github.com/advisories/GHSA-x23c-287f-qqv5): Spring Framework Denial of Service via Versioned Resources in Spring MVC and WebFlux\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-webmvc:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-webmvc to 7.0.8 or later\n  - Upgrade org.springframework:spring-webflux to 7.0.8 or later\n  - Upgrade org.springframework:spring-webmvc to 6.2.19 or later\n  - Upgrade org.springframework:spring-webflux to 6.2.19 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-41842](https://github.com/advisories/GHSA-x23c-287f-qqv5): Spring Framework Denial of Service via Versioned Resources in Spring MVC and WebFlux\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-webmvc:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-webmvc to 7.0.8 or later\n  - Upgrade org.springframework:spring-webflux to 7.0.8 or later\n  - Upgrade org.springframework:spring-webmvc to 6.2.19 or later\n  - Upgrade org.springframework:spring-webflux to 6.2.19 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-41845",
+      "title": "Spring Framework Cross-site Scripting via JavaScriptUtils",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-41845](https://github.com/advisories/GHSA-3chg-m5w7-qfv5): Spring Framework Cross-site Scripting via JavaScriptUtils\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-webmvc:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-webmvc to 7.0.8 or later\n  - Upgrade org.springframework:spring-webmvc to 6.2.19 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-41845](https://github.com/advisories/GHSA-3chg-m5w7-qfv5): Spring Framework Cross-site Scripting via JavaScriptUtils\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-webmvc:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-webmvc to 7.0.8 or later\n  - Upgrade org.springframework:spring-webmvc to 6.2.19 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-47884",
+      "title": "Spring Framework Improper Path Limitation in XsltView",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-47884](https://github.com/advisories/GHSA-pc63-qcmh-9cmg): Spring Framework Improper Path Limitation in XsltView\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.springframework:spring-webmvc:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-webmvc to 7.0.9 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-47884](https://github.com/advisories/GHSA-pc63-qcmh-9cmg): Spring Framework Improper Path Limitation in XsltView\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.springframework:spring-webmvc:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-webmvc to 7.0.9 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-41849",
+      "title": "Spring Framework Denial of Service via Integer Overflow in SpEL Expressions",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-41849](https://github.com/advisories/GHSA-775g-4xr8-78h8): Spring Framework Denial of Service via Integer Overflow in SpEL Expressions\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-expression:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-41849](https://github.com/advisories/GHSA-775g-4xr8-78h8): Spring Framework Denial of Service via Integer Overflow in SpEL Expressions\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-expression:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-41850",
+      "title": "Spring Framework Algorithmic Denial of Service via SpEL Expressions",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-41850](https://github.com/advisories/GHSA-r5w3-xv2f-j59q): Spring Framework Algorithmic Denial of Service via SpEL Expressions\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-expression:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-expression to 7.0.8 or later\n  - Upgrade org.springframework:spring-expression to 6.2.19 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-41850](https://github.com/advisories/GHSA-r5w3-xv2f-j59q): Spring Framework Algorithmic Denial of Service via SpEL Expressions\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-expression:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-web:2.7.18 at web/pom.xml:25)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-expression to 7.0.8 or later\n  - Upgrade org.springframework:spring-expression to 6.2.19 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-69220",
+      "title": "RabbitMQ Java client ValueReader: Unbounded recursive table/array nesting causes StackOverflowError DoS",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-69220](https://github.com/advisories/GHSA-93j5-89vc-pph4): RabbitMQ Java client ValueReader: Unbounded recursive table/array nesting causes StackOverflowError DoS\n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.rabbitmq:amqp-client:5.14.3 (transitive, pulled by org.springframework.boot:spring-boot-starter-amqp:2.7.18 at web/pom.xml:29, worker/pom.xml:25)\n\nRecommended fix:\n  - Upgrade com.rabbitmq:amqp-client to 5.33.1 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:29",
+          "worker/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-69220](https://github.com/advisories/GHSA-93j5-89vc-pph4): RabbitMQ Java client ValueReader: Unbounded recursive table/array nesting causes StackOverflowError DoS\n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.rabbitmq:amqp-client:5.14.3 (transitive, pulled by org.springframework.boot:spring-boot-starter-amqp:2.7.18 at web/pom.xml:29, worker/pom.xml:25)\n\nRecommended fix:\n  - Upgrade com.rabbitmq:amqp-client to 5.33.1 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-69219",
+      "title": "RabbitMQ Java client ValueReader: Oversized LongString/bytes length triggers OOM via unchecked allocation",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-69219](https://github.com/advisories/GHSA-68mj-5wr7-6fgg): RabbitMQ Java client ValueReader: Oversized LongString/bytes length triggers OOM via unchecked allocation\n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.rabbitmq:amqp-client:5.14.3 (transitive, pulled by org.springframework.boot:spring-boot-starter-amqp:2.7.18 at web/pom.xml:29, worker/pom.xml:25)\n\nRecommended fix:\n  - Upgrade com.rabbitmq:amqp-client to 5.33.1 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:29",
+          "worker/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-69219](https://github.com/advisories/GHSA-68mj-5wr7-6fgg): RabbitMQ Java client ValueReader: Oversized LongString/bytes length triggers OOM via unchecked allocation\n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.rabbitmq:amqp-client:5.14.3 (transitive, pulled by org.springframework.boot:spring-boot-starter-amqp:2.7.18 at web/pom.xml:29, worker/pom.xml:25)\n\nRecommended fix:\n  - Upgrade com.rabbitmq:amqp-client to 5.33.1 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-63337",
+      "title": "RabbitMQ Java client: Unvalidated Class.forName in JSON-RPC ProcedureDescription enables arbitrary class loading",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-63337](https://github.com/advisories/GHSA-6g32-pxv4-2wfj): RabbitMQ Java client: Unvalidated Class.forName in JSON-RPC ProcedureDescription enables arbitrary class loading\n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.rabbitmq:amqp-client:5.14.3 (transitive, pulled by org.springframework.boot:spring-boot-starter-amqp:2.7.18 at web/pom.xml:29, worker/pom.xml:25)\n\nRecommended fix:\n  - Upgrade com.rabbitmq:amqp-client to 5.33.0 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:29",
+          "worker/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-63337](https://github.com/advisories/GHSA-6g32-pxv4-2wfj): RabbitMQ Java client: Unvalidated Class.forName in JSON-RPC ProcedureDescription enables arbitrary class loading\n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.rabbitmq:amqp-client:5.14.3 (transitive, pulled by org.springframework.boot:spring-boot-starter-amqp:2.7.18 at web/pom.xml:29, worker/pom.xml:25)\n\nRecommended fix:\n  - Upgrade com.rabbitmq:amqp-client to 5.33.0 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-75516",
+      "title": "RabbitMQ Java client has frame-level OOM: Math.min(maxInboundMessageBodySize, 0) defeats frame size enforcement",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-75516](https://github.com/advisories/GHSA-jh4v-gfqj-7rhx): RabbitMQ Java client has frame-level OOM: Math.min(maxInboundMessageBodySize, 0) defeats frame size enforcement\n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.rabbitmq:amqp-client:5.14.3 (transitive, pulled by org.springframework.boot:spring-boot-starter-amqp:2.7.18 at web/pom.xml:29, worker/pom.xml:25)\n\nRecommended fix:\n  - Upgrade com.rabbitmq:amqp-client to 5.34.0 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:29",
+          "worker/pom.xml:25"
+        ],
+        "explanation": "[CVE-2026-75516](https://github.com/advisories/GHSA-jh4v-gfqj-7rhx): RabbitMQ Java client has frame-level OOM: Math.min(maxInboundMessageBodySize, 0) defeats frame size enforcement\n\nSeverity: HIGH\n\nAffected dependencies:\n  - com.rabbitmq:amqp-client:5.14.3 (transitive, pulled by org.springframework.boot:spring-boot-starter-amqp:2.7.18 at web/pom.xml:29, worker/pom.xml:25)\n\nRecommended fix:\n  - Upgrade com.rabbitmq:amqp-client to 5.34.0 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-33870",
+      "title": "Netty: HTTP Request Smuggling via Chunked Extension Quoted-String Parsing",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-33870](https://github.com/advisories/GHSA-pwqr-wmgm-9rr8): Netty: HTTP Request Smuggling via Chunked Extension Quoted-String Parsing\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec-http:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-http to 4.1.132.Final or later\n  - Upgrade io.netty:netty-codec-http to 4.2.10.Final or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:33",
+          "web/pom.xml:71",
+          "worker/pom.xml:29",
+          "worker/pom.xml:60"
+        ],
+        "explanation": "[CVE-2026-33870](https://github.com/advisories/GHSA-pwqr-wmgm-9rr8): Netty: HTTP Request Smuggling via Chunked Extension Quoted-String Parsing\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec-http:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-http to 4.1.132.Final or later\n  - Upgrade io.netty:netty-codec-http to 4.2.10.Final or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-42584",
+      "title": "Netty has HttpClientCodec response desynchronization",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-42584](https://github.com/advisories/GHSA-57rv-r2g8-2cj3): Netty has HttpClientCodec response desynchronization\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec-http:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-http to 4.2.13.Final or later\n  - Upgrade io.netty:netty-codec-http to 4.1.133.Final or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:33",
+          "web/pom.xml:71",
+          "worker/pom.xml:29",
+          "worker/pom.xml:60"
+        ],
+        "explanation": "[CVE-2026-42584](https://github.com/advisories/GHSA-57rv-r2g8-2cj3): Netty has HttpClientCodec response desynchronization\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec-http:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-http to 4.2.13.Final or later\n  - Upgrade io.netty:netty-codec-http to 4.1.133.Final or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-42587",
+      "title": "Netty: HttpContentDecompressor maxAllocation bypass when Content-Encoding set to br/zstd/snappy leads to decompression bomb DoS",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-42587](https://github.com/advisories/GHSA-f6hv-jmp6-3vwv): Netty: HttpContentDecompressor maxAllocation bypass when Content-Encoding set to br/zstd/snappy leads to decompression bomb DoS\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec-http:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n  - io.netty:netty-codec-http2:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-http to 4.2.13.Final or later\n  - Upgrade io.netty:netty-codec-http2 to 4.2.13.Final or later\n  - Upgrade io.netty:netty-codec-http to 4.1.133.Final or later\n  - Upgrade io.netty:netty-codec-http2 to 4.1.133.Final or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:33",
+          "web/pom.xml:71",
+          "worker/pom.xml:29",
+          "worker/pom.xml:60"
+        ],
+        "explanation": "[CVE-2026-42587](https://github.com/advisories/GHSA-f6hv-jmp6-3vwv): Netty: HttpContentDecompressor maxAllocation bypass when Content-Encoding set to br/zstd/snappy leads to decompression bomb DoS\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec-http:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n  - io.netty:netty-codec-http2:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-http to 4.2.13.Final or later\n  - Upgrade io.netty:netty-codec-http2 to 4.2.13.Final or later\n  - Upgrade io.netty:netty-codec-http to 4.1.133.Final or later\n  - Upgrade io.netty:netty-codec-http2 to 4.1.133.Final or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-55831",
+      "title": "Netty SPDY SETTINGS frame count materializes unbounded settings map",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-55831](https://github.com/advisories/GHSA-6jqx-86gh-f27w): Netty SPDY SETTINGS frame count materializes unbounded settings map\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec-http:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-http to 4.2.16.Final or later\n  - Upgrade io.netty:netty-codec-http to 4.1.136.Final or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:33",
+          "web/pom.xml:71",
+          "worker/pom.xml:29",
+          "worker/pom.xml:60"
+        ],
+        "explanation": "[CVE-2026-55831](https://github.com/advisories/GHSA-6jqx-86gh-f27w): Netty SPDY SETTINGS frame count materializes unbounded settings map\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec-http:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-http to 4.2.16.Final or later\n  - Upgrade io.netty:netty-codec-http to 4.1.136.Final or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-55833",
+      "title": "Netty SPDY zlib header block continues decoded expansion after maxHeaderSize truncation",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-55833](https://github.com/advisories/GHSA-mvh2-crg5-v77c): Netty SPDY zlib header block continues decoded expansion after maxHeaderSize truncation\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec-http:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-http to 4.2.16.Final or later\n  - Upgrade io.netty:netty-codec-http to 4.1.136.Final or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:33",
+          "web/pom.xml:71",
+          "worker/pom.xml:29",
+          "worker/pom.xml:60"
+        ],
+        "explanation": "[CVE-2026-55833](https://github.com/advisories/GHSA-mvh2-crg5-v77c): Netty SPDY zlib header block continues decoded expansion after maxHeaderSize truncation\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec-http:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-http to 4.2.16.Final or later\n  - Upgrade io.netty:netty-codec-http to 4.1.136.Final or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-56745",
+      "title": "Netty: [SpdyHttpDecoder] ByteBuf Reference Leak on RST_STREAM Leads to Native Memory Exhaustion",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-56745](https://github.com/advisories/GHSA-jppx-w49h-x2qq): Netty: [SpdyHttpDecoder] ByteBuf Reference Leak on RST_STREAM Leads to Native Memory Exhaustion\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec-http:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-http to 4.2.16.Final or later\n  - Upgrade io.netty:netty-codec-http to 4.1.136.Final or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:33",
+          "web/pom.xml:71",
+          "worker/pom.xml:29",
+          "worker/pom.xml:60"
+        ],
+        "explanation": "[CVE-2026-56745](https://github.com/advisories/GHSA-jppx-w49h-x2qq): Netty: [SpdyHttpDecoder] ByteBuf Reference Leak on RST_STREAM Leads to Native Memory Exhaustion\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec-http:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-http to 4.2.16.Final or later\n  - Upgrade io.netty:netty-codec-http to 4.1.136.Final or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2025-55163",
+      "title": "Netty affected by MadeYouReset HTTP/2 DDoS vulnerability",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2025-55163](https://github.com/advisories/GHSA-prj3-ccx8-p6x4): Netty affected by MadeYouReset HTTP/2 DDoS vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec-http2:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-http2 to 4.2.4.Final or later\n  - Upgrade io.netty:netty-codec-http2 to 4.1.124.Final or later\n  - Upgrade io.grpc:grpc-netty-shaded to 1.75.0 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:33",
+          "web/pom.xml:71",
+          "worker/pom.xml:29",
+          "worker/pom.xml:60"
+        ],
+        "explanation": "[CVE-2025-55163](https://github.com/advisories/GHSA-prj3-ccx8-p6x4): Netty affected by MadeYouReset HTTP/2 DDoS vulnerability\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec-http2:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-http2 to 4.2.4.Final or later\n  - Upgrade io.netty:netty-codec-http2 to 4.1.124.Final or later\n  - Upgrade io.grpc:grpc-netty-shaded to 1.75.0 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-33871",
+      "title": "Netty HTTP/2 CONTINUATION Frame Flood DoS via Zero-Byte Frame Bypass",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-33871](https://github.com/advisories/GHSA-w9fj-cfpg-grvv): Netty HTTP/2 CONTINUATION Frame Flood DoS via Zero-Byte Frame Bypass\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec-http2:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-http2 to 4.1.132.Final or later\n  - Upgrade io.netty:netty-codec-http2 to 4.2.11.Final or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:33",
+          "web/pom.xml:71",
+          "worker/pom.xml:29",
+          "worker/pom.xml:60"
+        ],
+        "explanation": "[CVE-2026-33871](https://github.com/advisories/GHSA-w9fj-cfpg-grvv): Netty HTTP/2 CONTINUATION Frame Flood DoS via Zero-Byte Frame Bypass\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec-http2:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-http2 to 4.1.132.Final or later\n  - Upgrade io.netty:netty-codec-http2 to 4.2.11.Final or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-56819",
+      "title": "Netty: HTTP/2 decompression leaks ByteBuf reference count when the decompressor channel is already closed (Direct memory leak / OOM DoS)",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-56819](https://github.com/advisories/GHSA-93wv-jw9v-4972): Netty: HTTP/2 decompression leaks ByteBuf reference count when the decompressor channel is already closed (Direct memory leak / OOM DoS)\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec-http2:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-http2 to 4.2.16.Final or later\n  - Upgrade io.netty:netty-codec-http2 to 4.1.136.Final or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:33",
+          "web/pom.xml:71",
+          "worker/pom.xml:29",
+          "worker/pom.xml:60"
+        ],
+        "explanation": "[CVE-2026-56819](https://github.com/advisories/GHSA-93wv-jw9v-4972): Netty: HTTP/2 decompression leaks ByteBuf reference count when the decompressor channel is already closed (Direct memory leak / OOM DoS)\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec-http2:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-http2 to 4.2.16.Final or later\n  - Upgrade io.netty:netty-codec-http2 to 4.1.136.Final or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-42583",
+      "title": "Netty Lz4FrameDecoder is vulnerable to resource exhaustion ",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-42583](https://github.com/advisories/GHSA-mj4r-2hfc-f8p6): Netty Lz4FrameDecoder is vulnerable to resource exhaustion \n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-compression to 4.2.13.Final or later\n  - Upgrade io.netty:netty-codec to 4.1.133.Final or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:33",
+          "web/pom.xml:71",
+          "worker/pom.xml:29",
+          "worker/pom.xml:60"
+        ],
+        "explanation": "[CVE-2026-42583](https://github.com/advisories/GHSA-mj4r-2hfc-f8p6): Netty Lz4FrameDecoder is vulnerable to resource exhaustion \n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-compression to 4.2.13.Final or later\n  - Upgrade io.netty:netty-codec to 4.1.133.Final or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-59901",
+      "title": "Netty: [Bzip2Decoder] Infinite Loop in RLE State Machine Leads to Event-Loop Thread Hang",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-59901](https://github.com/advisories/GHSA-558v-64gr-wgg4): Netty: [Bzip2Decoder] Infinite Loop in RLE State Machine Leads to Event-Loop Thread Hang\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-compression to 4.2.16.Final or later\n  - Upgrade io.netty:netty-codec to 4.1.136.Final or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:33",
+          "web/pom.xml:71",
+          "worker/pom.xml:29",
+          "worker/pom.xml:60"
+        ],
+        "explanation": "[CVE-2026-59901](https://github.com/advisories/GHSA-558v-64gr-wgg4): Netty: [Bzip2Decoder] Infinite Loop in RLE State Machine Leads to Event-Loop Thread Hang\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-codec:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-codec-compression to 4.2.16.Final or later\n  - Upgrade io.netty:netty-codec to 4.1.136.Final or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2025-24970",
+      "title": "SslHandler doesn\u0027t correctly validate packets which can lead to native crash when using native SSLEngine",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2025-24970](https://github.com/advisories/GHSA-4g8c-wm8x-jfhw): SslHandler doesn\u0027t correctly validate packets which can lead to native crash when using native SSLEngine\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-handler:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-handler to 4.1.118.Final or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:33",
+          "web/pom.xml:71",
+          "worker/pom.xml:29",
+          "worker/pom.xml:60"
+        ],
+        "explanation": "[CVE-2025-24970](https://github.com/advisories/GHSA-4g8c-wm8x-jfhw): SslHandler doesn\u0027t correctly validate packets which can lead to native crash when using native SSLEngine\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-handler:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-handler to 4.1.118.Final or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-44249",
+      "title": "Netty has an IPv6 Subnet Filter Bypass via Incorrect Comparator Masking",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-44249](https://github.com/advisories/GHSA-3qp7-7mw8-wx86): Netty has an IPv6 Subnet Filter Bypass via Incorrect Comparator Masking\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-handler:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-handler to 4.2.15.Final or later\n  - Upgrade io.netty:netty-handler to 4.1.135.Final or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:33",
+          "web/pom.xml:71",
+          "worker/pom.xml:29",
+          "worker/pom.xml:60"
+        ],
+        "explanation": "[CVE-2026-44249](https://github.com/advisories/GHSA-3qp7-7mw8-wx86): Netty has an IPv6 Subnet Filter Bypass via Incorrect Comparator Masking\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-handler:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-handler to 4.2.15.Final or later\n  - Upgrade io.netty:netty-handler to 4.1.135.Final or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-45416",
+      "title": "Netty: SNI handler pre-allocates up to 16 MiB from nine attacker bytes",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-45416](https://github.com/advisories/GHSA-x4gw-5cx5-pgmh): Netty: SNI handler pre-allocates up to 16 MiB from nine attacker bytes\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-handler:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-handler to 4.2.15.Final or later\n  - Upgrade io.netty:netty-handler to 4.1.135.Final or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:33",
+          "web/pom.xml:71",
+          "worker/pom.xml:29",
+          "worker/pom.xml:60"
+        ],
+        "explanation": "[CVE-2026-45416](https://github.com/advisories/GHSA-x4gw-5cx5-pgmh): Netty: SNI handler pre-allocates up to 16 MiB from nine attacker bytes\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-handler:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-handler to 4.2.15.Final or later\n  - Upgrade io.netty:netty-handler to 4.1.135.Final or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-50010",
+      "title": "Netty: Wrapping plain trust manager silently disables hostname verification",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-50010](https://github.com/advisories/GHSA-c653-97m9-rcg9): Netty: Wrapping plain trust manager silently disables hostname verification\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-handler:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-handler to 4.2.15.Final or later\n  - Upgrade io.netty:netty-handler to 4.1.135.Final or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:33",
+          "web/pom.xml:71",
+          "worker/pom.xml:29",
+          "worker/pom.xml:60"
+        ],
+        "explanation": "[CVE-2026-50010](https://github.com/advisories/GHSA-c653-97m9-rcg9): Netty: Wrapping plain trust manager silently disables hostname verification\n\nSeverity: HIGH\n\nAffected dependencies:\n  - io.netty:netty-handler:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-handler to 4.2.15.Final or later\n  - Upgrade io.netty:netty-handler to 4.1.135.Final or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-75595",
+      "title": "Netty: SNI Routing Bypass via Fragmented TLS ClientHello Causing Fallback to Default SslContext",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-75595](https://github.com/advisories/GHSA-c4c3-7fpv-j4q5): Netty: SNI Routing Bypass via Fragmented TLS ClientHello Causing Fallback to Default SslContext\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - io.netty:netty-handler:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-handler to 4.2.17.Final or later\n  - Upgrade io.netty:netty-handler to 4.1.137.Final or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:33",
+          "web/pom.xml:71",
+          "worker/pom.xml:29",
+          "worker/pom.xml:60"
+        ],
+        "explanation": "[CVE-2026-75595](https://github.com/advisories/GHSA-c4c3-7fpv-j4q5): Netty: SNI Routing Bypass via Fragmented TLS ClientHello Causing Fallback to Default SslContext\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - io.netty:netty-handler:4.1.101.Final (transitive, pulled by software.amazon.awssdk:s3:2.25.13 at web/pom.xml:33, web/pom.xml:71, worker/pom.xml:29, worker/pom.xml:60)\n\nRecommended fix:\n  - Upgrade io.netty:netty-handler to 4.2.17.Final or later\n  - Upgrade io.netty:netty-handler to 4.1.137.Final or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-40972",
+      "title": "Spring Boot DevTools remote secret comparison is vulnerable to timing attacks",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-40972](https://github.com/advisories/GHSA-56v8-86gj-66jp): Spring Boot DevTools remote secret comparison is vulnerable to timing attacks\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework.boot:spring-boot-devtools:2.7.18 (declared at web/pom.xml:37)\n\nRecommended fix:\n  - Upgrade org.springframework.boot:spring-boot-devtools to 4.0.6 or later\n  - Upgrade org.springframework.boot:spring-boot-devtools to 3.5.14 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:37"
+        ],
+        "explanation": "[CVE-2026-40972](https://github.com/advisories/GHSA-56v8-86gj-66jp): Spring Boot DevTools remote secret comparison is vulnerable to timing attacks\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework.boot:spring-boot-devtools:2.7.18 (declared at web/pom.xml:37)\n\nRecommended fix:\n  - Upgrade org.springframework.boot:spring-boot-devtools to 4.0.6 or later\n  - Upgrade org.springframework.boot:spring-boot-devtools to 3.5.14 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2025-22235",
+      "title": "Spring Boot EndpointRequest.to() creates wrong matcher if actuator endpoint is not exposed",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2025-22235](https://github.com/advisories/GHSA-rc42-6c7j-7h5r): Spring Boot EndpointRequest.to() creates wrong matcher if actuator endpoint is not exposed\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework.boot:spring-boot:2.7.18 (transitive, pulled by org.springframework.boot:spring-boot-devtools:2.7.18 at web/pom.xml:37)\n\nRecommended fix:\n  - Upgrade org.springframework.boot:spring-boot to 3.3.11 or later\n  - Upgrade org.springframework.boot:spring-boot to 3.4.5 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:37"
+        ],
+        "explanation": "[CVE-2025-22235](https://github.com/advisories/GHSA-rc42-6c7j-7h5r): Spring Boot EndpointRequest.to() creates wrong matcher if actuator endpoint is not exposed\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework.boot:spring-boot:2.7.18 (transitive, pulled by org.springframework.boot:spring-boot-devtools:2.7.18 at web/pom.xml:37)\n\nRecommended fix:\n  - Upgrade org.springframework.boot:spring-boot to 3.3.11 or later\n  - Upgrade org.springframework.boot:spring-boot to 3.4.5 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-40973",
+      "title": "Spring Boot accepts predictable temp directory without ownership verification",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-40973](https://github.com/advisories/GHSA-wwpq-f5c3-7hvx): Spring Boot accepts predictable temp directory without ownership verification\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework.boot:spring-boot:2.7.18 (transitive, pulled by org.springframework.boot:spring-boot-devtools:2.7.18 at web/pom.xml:37)\n\nRecommended fix:\n  - Upgrade org.springframework.boot:spring-boot to 4.0.6 or later\n  - Upgrade org.springframework.boot:spring-boot to 3.5.14 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:37"
+        ],
+        "explanation": "[CVE-2026-40973](https://github.com/advisories/GHSA-wwpq-f5c3-7hvx): Spring Boot accepts predictable temp directory without ownership verification\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework.boot:spring-boot:2.7.18 (transitive, pulled by org.springframework.boot:spring-boot-devtools:2.7.18 at web/pom.xml:37)\n\nRecommended fix:\n  - Upgrade org.springframework.boot:spring-boot to 4.0.6 or later\n  - Upgrade org.springframework.boot:spring-boot to 3.5.14 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-24400",
+      "title": "AssertJ has XML External Entity (XXE) vulnerability when parsing untrusted XML via isXmlEqualTo assertion",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-24400](https://github.com/advisories/GHSA-rqfh-9r24-8c9r): AssertJ has XML External Entity (XXE) vulnerability when parsing untrusted XML via isXmlEqualTo assertion\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.assertj:assertj-core:3.22.0 (transitive, pulled by org.springframework.boot:spring-boot-starter-test:2.7.18 at web/pom.xml:53, worker/pom.xml:38)\n\nRecommended fix:\n  - Upgrade org.assertj:assertj-core to 3.27.7 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:53",
+          "worker/pom.xml:38"
+        ],
+        "explanation": "[CVE-2026-24400](https://github.com/advisories/GHSA-rqfh-9r24-8c9r): AssertJ has XML External Entity (XXE) vulnerability when parsing untrusted XML via isXmlEqualTo assertion\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.assertj:assertj-core:3.22.0 (transitive, pulled by org.springframework.boot:spring-boot-starter-test:2.7.18 at web/pom.xml:53, worker/pom.xml:38)\n\nRecommended fix:\n  - Upgrade org.assertj:assertj-core to 3.27.7 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2025-41249",
+      "title": "Spring Framework annotation detection mechanism may result in improper authorization",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2025-41249](https://github.com/advisories/GHSA-jmp9-x22r-554x): Spring Framework annotation detection mechanism may result in improper authorization\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-core:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-test:2.7.18 at web/pom.xml:53, worker/pom.xml:38)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-core to 6.2.11 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:53",
+          "worker/pom.xml:38"
+        ],
+        "explanation": "[CVE-2025-41249](https://github.com/advisories/GHSA-jmp9-x22r-554x): Spring Framework annotation detection mechanism may result in improper authorization\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework:spring-core:5.3.31 (transitive, pulled by org.springframework.boot:spring-boot-starter-test:2.7.18 at web/pom.xml:53, worker/pom.xml:38)\n\nRecommended fix:\n  - Upgrade org.springframework:spring-core to 6.2.11 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-41716",
+      "title": "Spring Data Commons: Heap exhaustion from unbounded property-lookup cache retaining crafted string keys",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-41716](https://github.com/advisories/GHSA-9fw2-h3hf-293r): Spring Data Commons: Heap exhaustion from unbounded property-lookup cache retaining crafted string keys\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework.data:spring-data-commons:2.7.18 (transitive, pulled by org.springframework.boot:spring-boot-starter-data-jpa:2.7.18 at web/pom.xml:58, worker/pom.xml:47)\n\nRecommended fix:\n  - Upgrade org.springframework.data:spring-data-commons to 4.0.6 or later\n  - Upgrade org.springframework.data:spring-data-commons to 3.5.12 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:58",
+          "worker/pom.xml:47"
+        ],
+        "explanation": "[CVE-2026-41716](https://github.com/advisories/GHSA-9fw2-h3hf-293r): Spring Data Commons: Heap exhaustion from unbounded property-lookup cache retaining crafted string keys\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.springframework.data:spring-data-commons:2.7.18 (transitive, pulled by org.springframework.boot:spring-boot-starter-data-jpa:2.7.18 at web/pom.xml:58, worker/pom.xml:47)\n\nRecommended fix:\n  - Upgrade org.springframework.data:spring-data-commons to 4.0.6 or later\n  - Upgrade org.springframework.data:spring-data-commons to 3.5.12 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2024-1597",
+      "title": "org.postgresql:postgresql vulnerable to SQL Injection via line comment generation",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2024-1597](https://github.com/advisories/GHSA-24rp-q3w6-vc56): org.postgresql:postgresql vulnerable to SQL Injection via line comment generation\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.postgresql:postgresql:42.3.8 (declared at web/pom.xml:62, worker/pom.xml:51)\n\nRecommended fix:\n  - Upgrade org.postgresql:postgresql to 42.2.28 or later\n  - Upgrade org.postgresql:postgresql to 42.3.9 or later\n  - Upgrade org.postgresql:postgresql to 42.4.4 or later\n  - Upgrade org.postgresql:postgresql to 42.5.5 or later\n  - Upgrade org.postgresql:postgresql to 42.6.1 or later\n  - Upgrade org.postgresql:postgresql to 42.7.2 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:62",
+          "worker/pom.xml:51"
+        ],
+        "explanation": "[CVE-2024-1597](https://github.com/advisories/GHSA-24rp-q3w6-vc56): org.postgresql:postgresql vulnerable to SQL Injection via line comment generation\n\nSeverity: CRITICAL\n\nAffected dependencies:\n  - org.postgresql:postgresql:42.3.8 (declared at web/pom.xml:62, worker/pom.xml:51)\n\nRecommended fix:\n  - Upgrade org.postgresql:postgresql to 42.2.28 or later\n  - Upgrade org.postgresql:postgresql to 42.3.9 or later\n  - Upgrade org.postgresql:postgresql to 42.4.4 or later\n  - Upgrade org.postgresql:postgresql to 42.5.5 or later\n  - Upgrade org.postgresql:postgresql to 42.6.1 or later\n  - Upgrade org.postgresql:postgresql to 42.7.2 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CVE-2026-42198",
+      "title": "pgjdbc: Unbounded PBKDF2 iterations in SCRAM authentication allows CPU exhaustion DoS",
+      "category": "CVE",
+      "severity": "mandatory",
+      "description": "[CVE-2026-42198](https://github.com/advisories/GHSA-98qh-xjc8-98pq): pgjdbc: Unbounded PBKDF2 iterations in SCRAM authentication allows CPU exhaustion DoS\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.postgresql:postgresql:42.3.8 (declared at web/pom.xml:62, worker/pom.xml:51)\n\nRecommended fix:\n  - Upgrade org.postgresql:postgresql to 42.7.11 or later",
+      "evidence": {
+        "files": [
+          "web/pom.xml:62",
+          "worker/pom.xml:51"
+        ],
+        "explanation": "[CVE-2026-42198](https://github.com/advisories/GHSA-98qh-xjc8-98pq): pgjdbc: Unbounded PBKDF2 iterations in SCRAM authentication allows CPU exhaustion DoS\n\nSeverity: HIGH\n\nAffected dependencies:\n  - org.postgresql:postgresql:42.3.8 (declared at web/pom.xml:62, worker/pom.xml:51)\n\nRecommended fix:\n  - Upgrade org.postgresql:postgresql to 42.7.11 or later"
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CWE-477",
+      "title": "Use of Obsolete Function",
+      "category": "Code Quality",
+      "severity": "optional",
+      "description": "The code uses deprecated or obsolete functions, which suggests that the code has not been actively reviewed or maintained.",
+      "evidence": {
+        "files": [
+          "web/src/main/java/com/microsoft/migration/assets/config/WebMvcConfig.java"
+        ],
+        "explanation": "The WebMvcConfigurer implementation in WebMvcConfig extends deprecated WebMvcConfigurerAdapter, and its nested interceptor extends deprecated HandlerInterceptorAdapter."
+      },
+      "storyPoint": 1
+    },
+    {
+      "id": "CWE-681",
+      "title": "Incorrect Conversion between Numeric Types",
+      "category": "Code Quality",
+      "severity": "potential",
+      "description": "When converting from one data type to another, such as long to integer, data can be omitted or translated in a way that produces unexpected values. When the resulting values are used in a sensitive context, then dangerous behaviors may occur.",
+      "evidence": {
+        "files": [
+          "worker/src/main/java/com/microsoft/migration/assets/worker/service/AbstractFileProcessingService.java"
+        ],
+        "explanation": "In generateThumbnail, double-derived thumbnail dimensions are converted directly to int using (int) (maxDimension / aspectRatio) and (int) (maxDimension * aspectRatio). Extreme aspect ratios can truncate the result to zero, which is then passed to scaling and BufferedImage operations as an invalid dimension."
+      },
+      "storyPoint": 3
+    },
+    {
+      "id": "CWE-682",
+      "title": "Incorrect Calculation",
+      "category": "Code Quality",
+      "severity": "potential",
+      "description": "The product performs a calculation that generates incorrect or unintended results that are later used in security-critical decisions or resource management.",
+      "evidence": {
+        "files": [
+          "worker/src/main/java/com/microsoft/migration/assets/worker/service/AbstractFileProcessingService.java"
+        ],
+        "explanation": "The generateThumbnail dimension calculation can yield zero-width or zero-height values for extreme image aspect ratios, after which progressiveScaling and scaleImage perform resource operations with invalid dimensions."
+      },
+      "storyPoint": 5
+    },
+    {
+      "id": "CWE-772",
+      "title": "Missing Release of Resource after Effective Lifetime",
+      "category": "Code Quality",
+      "severity": "potential",
+      "description": "The product does not release a resource after its effective lifetime has ended, i.e., after the resource is no longer needed.",
+      "evidence": {
+        "files": [
+          "worker/src/main/java/com/microsoft/migration/assets/worker/service/AbstractFileProcessingService.java"
+        ],
+        "explanation": "generateThumbnail creates ImageOutputStream resources and closes them only in the normal success path after write and dispose operations. If writer setup or image writing throws, the stream and writer resources are not released by a try-with-resources or finally block."
+      },
+      "storyPoint": 3
+    },
+    {
+      "id": "CWE-662",
+      "title": "Improper Synchronization",
+      "category": "Concurrency \u0026 Synchronization",
+      "severity": "potential",
+      "description": "The product utilizes multiple threads or processes to allow temporary access to a shared resource that can only be exclusive to one process at a time, but it does not properly synchronize these actions, which might cause simultaneous accesses of this resource by multiple threads or processes.",
+      "evidence": {
+        "files": [
+          "web/src/main/java/com/microsoft/migration/assets/service/LocalFileStorageService.java",
+          "worker/src/main/java/com/microsoft/migration/assets/worker/service/LocalFileProcessingService.java"
+        ],
+        "explanation": "LocalFileStorageService.uploadObject() and deleteObject() (lines 95 and 124) overwrite or delete shared files under rootLocation while the web application is serving requests concurrently. LocalFileProcessingService.uploadThumbnail() (line 49) writes to the same rootLocation filename space without synchronization, so concurrent thumbnail writes, original uploads, and deletions can access the same exclusive file path simultaneously."
+      },
+      "storyPoint": 8
+    },
+    {
+      "id": "CWE-820",
+      "title": "Missing Synchronization",
+      "category": "Concurrency \u0026 Synchronization",
+      "severity": "potential",
+      "description": "The product utilizes a shared resource in a concurrent manner but does not attempt to synchronize access to the resource.",
+      "evidence": {
+        "files": [
+          "web/src/main/java/com/microsoft/migration/assets/service/LocalFileStorageService.java",
+          "worker/src/main/java/com/microsoft/migration/assets/worker/service/LocalFileProcessingService.java"
+        ],
+        "explanation": "Concurrent web requests use Files.copy(..., REPLACE_EXISTING) and Files.delete() on shared local storage paths (LocalFileStorageService lines 95 and 124), and the worker service writes thumbnails to derived paths (LocalFileProcessingService line 49) without any lock or synchronization mechanism."
+      },
+      "storyPoint": 8
+    },
+    {
+      "id": "CWE-259",
+      "title": "Use of Hard-coded Password",
+      "category": "Credentials \u0026 Secrets",
+      "severity": "optional",
+      "description": "The product contains a hard-coded password, which it uses for its own inbound authentication or for outbound communication to external components.",
+      "evidence": {
+        "files": [
+          "scripts/startapp.sh",
+          "scripts/startapp.cmd"
+        ],
+        "explanation": "The PostgreSQL startup scripts hard-code the password as POSTGRES_PASSWORD=postgres (scripts/startapp.sh line 11 and scripts/startapp.cmd line 9) for the database container\u0027s inbound authentication."
+      },
+      "storyPoint": 5
+    },
+    {
+      "id": "CWE-798",
+      "title": "Use of Hard-coded Credentials",
+      "category": "Credentials \u0026 Secrets",
+      "severity": "optional",
+      "description": "The product contains hard-coded credentials, such as a password or cryptographic key.",
+      "evidence": {
+        "files": [
+          "scripts/startapp.sh",
+          "scripts/startapp.cmd"
+        ],
+        "explanation": "The PostgreSQL username and password are hard-coded together for container startup: POSTGRES_USER=postgres and POSTGRES_PASSWORD=postgres (scripts/startapp.sh lines 10-11 and scripts/startapp.cmd line 9)."
+      },
+      "storyPoint": 5
+    },
+    {
+      "id": "CWE-22",
+      "title": "Improper Limitation of a Pathname to a Restricted Directory (\u0027Path Traversal\u0027)",
+      "category": "File \u0026 Path Security",
+      "severity": "optional",
+      "description": "The product uses external input to construct a pathname that is intended to identify a file or directory that is located underneath a restricted parent directory, but the product does not properly neutralize special elements within the pathname that can cause the pathname to resolve to a location that is outside of the restricted directory.",
+      "evidence": {
+        "files": [
+          "web/src/main/java/com/microsoft/migration/assets/service/LocalFileStorageService.java",
+          "web/src/main/java/com/microsoft/migration/assets/controller/S3Controller.java"
+        ],
+        "explanation": "LocalFileStorageService resolves external names and keys directly under rootLocation without verifying the normalized result remains beneath the restricted directory. Upload uses originalFilename at lines 89-95, and get/delete use path variables as keys at lines 109-129; S3Controller exposes these operations through /view/{key} and /delete/{key} at lines 80-99."
+      },
+      "storyPoint": 8
+    },
+    {
+      "id": "CWE-23",
+      "title": "Relative Path Traversal",
+      "category": "File \u0026 Path Security",
+      "severity": "optional",
+      "description": "The product uses external input to construct a pathname that should be within a restricted directory, but it does not properly neutralize sequences such as .. that can resolve to a location that is outside of that directory.",
+      "evidence": {
+        "files": [
+          "web/src/main/java/com/microsoft/migration/assets/service/LocalFileStorageService.java"
+        ],
+        "explanation": "getObject, deleteObject, and thumbnail deletion at lines 109-129 call rootLocation.resolve(key) and do not normalize and enforce a rootLocation containment check. An external key containing relative traversal sequences can therefore resolve outside the storage directory."
+      },
+      "storyPoint": 5
+    },
+    {
+      "id": "CWE-36",
+      "title": "Absolute Path Traversal",
+      "category": "File \u0026 Path Security",
+      "severity": "optional",
+      "description": "The product uses external input to construct a pathname that should be within a restricted directory, but it does not properly neutralize absolute path sequences such as /abs/path that can resolve to a location that is outside of that directory.",
+      "evidence": {
+        "files": [
+          "web/src/main/java/com/microsoft/migration/assets/service/LocalFileStorageService.java"
+        ],
+        "explanation": "The upload filename and get/delete keys are passed to Path.resolve at lines 94, 110, 120, and 129. Java Path.resolve treats an absolute external path as overriding rootLocation, and no absolute-path or containment validation is performed."
+      },
+      "storyPoint": 5
+    },
+    {
+      "id": "CWE-434",
+      "title": "Unrestricted Upload of File with Dangerous Type",
+      "category": "File \u0026 Path Security",
+      "severity": "mandatory",
+      "description": "The product allows the upload or transfer of dangerous file types that are automatically processed within its environment.",
+      "evidence": {
+        "files": [
+          "web/src/main/java/com/microsoft/migration/assets/controller/S3Controller.java",
+          "web/src/main/java/com/microsoft/migration/assets/service/LocalFileStorageService.java",
+          "web/src/main/java/com/microsoft/migration/assets/service/AwsS3Service.java",
+          "worker/src/main/java/com/microsoft/migration/assets/worker/service/AbstractFileProcessingService.java"
+        ],
+        "explanation": "The upload endpoint accepts any MultipartFile without an allowed extension or image/MIME allowlist. The file is stored by LocalFileStorageService or AwsS3Service and a processing message is emitted; AbstractFileProcessingService then automatically reads it with ImageIO.read and writes a thumbnail."
+      },
+      "storyPoint": 8
+    },
+    {
+      "id": "CWE-99",
+      "title": "Improper Control of Resource Identifiers (\u0027Resource Injection\u0027)",
+      "category": "Injection Attacks",
+      "severity": "potential",
+      "description": "The product receives input from an upstream component, but it does not restrict or incorrectly restricts the input before it is used as an identifier for a resource that may be outside the intended sphere of control.",
+      "evidence": {
+        "files": [
+          "web/src/main/java/com/microsoft/migration/assets/service/LocalFileStorageService.java",
+          "worker/src/main/java/com/microsoft/migration/assets/worker/service/LocalFileProcessingService.java",
+          "web/src/main/java/com/microsoft/migration/assets/controller/S3Controller.java"
+        ],
+        "explanation": "The externally controlled path variable key is used to construct and manipulate local file paths without confirming that the resolved path remains beneath rootLocation. In LocalFileStorageService, getObject() and deleteObject() call rootLocation.resolve(key) at lines 110 and 120, and LocalFileProcessingService uses rootLocation.resolve(key) for download and thumbnail paths at lines 38 and 47. S3Controller exposes key through @PathVariable and passes it to getObject/deleteObject at lines 80 and 97."
+      },
+      "storyPoint": 3
+    }
+  ],
+  "rearchitect": []
+}
