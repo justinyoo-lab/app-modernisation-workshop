@@ -69,7 +69,8 @@
       "dependencies": [
         "003-transform-postgresql-flexible-server"
       ],
-      "status": "started",
+      "status": "success",
+      "taskSummary": "Migrated web/worker messaging from RabbitMQ (Spring AMQP) to Azure Service Bus with managed identity. Removed spring-boot-starter-amqp (remediating CVE-2026-69220/69219/63337/75516); added spring-cloud-azure-starter + spring-messaging-azure-servicebus. RabbitTemplate to ServiceBusTemplate for producers; @RabbitListener to @ServiceBusListener with manual ServiceBusReceivedMessageContext ack/complete/deadLetter/abandon preserving original requeue semantics. No connection strings/secrets; namespace externalized via env var. Omitted ServiceBusAdministrationClient bean to honor least-privilege (documented deviation). Added producer/consumer unit tests for success, duplicate, retry, dead-letter, and shutdown paths plus ServiceBusConfigurationTest. Full mvnw clean test passed, 0 failures. Committed as ecd692d.",
       "skills": [
         {
           "name": "migration-amqp-rabbitmq-servicebus",
@@ -81,6 +82,10 @@
         }
       ],
       "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      },
+      "successCriteriaStatus": {
         "passBuild": "true",
         "passUnitTests": "true"
       }
@@ -115,7 +120,8 @@
       "dependencies": [
         "005-transform-dev-local-files-to-private-blob"
       ],
-      "status": "started",
+      "status": "success",
+      "taskSummary": "Migrated non-dev object-storage path in web/worker from AWS S3 SDK to Azure Blob Storage with managed identity, reusing the shared BlobContainerClient bean from task 005. Replaced AwsS3Service/AwsS3Config and S3FileProcessingService/AwsS3Config with AzureBlobService/AzureBlobFileProcessingService. Preserved non-dev image_metadata write/read behavior, original/thumbnail key conventions, and PostgreSQL semantics. Removed all AWS SDK dependencies/properties. Fixed a CWE-99 resource-injection gap via BlobKeyValidator sanitization before UUID-prefixing. Added AzureBlobServiceTest (16 cases) and AzureBlobFileProcessingServiceTest (9 cases). Full build: web 62 tests, worker 51 tests, 0 failures. Committed as abbdb2b.",
       "skills": [
         {
           "name": "migration-s3-to-azure-blob-storage",
@@ -123,6 +129,10 @@
         }
       ],
       "successCriteria": {
+        "passBuild": "true",
+        "passUnitTests": "true"
+      },
+      "successCriteriaStatus": {
         "passBuild": "true",
         "passUnitTests": "true"
       }
