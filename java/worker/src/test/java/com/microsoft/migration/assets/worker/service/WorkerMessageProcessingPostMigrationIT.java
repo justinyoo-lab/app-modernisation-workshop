@@ -64,16 +64,13 @@ import static org.mockito.Mockito.when;
  * endpoint configuration values that are not needed for, and would not be exercised by, these
  * mock-only tests.
  * <p>
- * <b>Known production-bug carried into these tests (do not "fix" in the test).</b>
+ * <b>storageType backward compatibility (task 008 follow-up remediation).</b>
  * TC-WKR-002/004/006/008 (the object-storage processor cases) declare the literal
  * {@code "storageType": "s3"} in their trigger body (a holdover from the pre-migration AWS S3
- * baseline). The migrated {@link AzureBlobFileProcessingService#getStorageType()} returns
- * {@code "azure-blob"}, not {@code "s3"}. Since {@link AbstractFileProcessingService#processImage}
- * only performs download/thumbnail/upload work when {@code message.getStorageType()} equals
- * {@code getStorageType()}, these four tests are expected to demonstrate the mismatch: the
- * message is still acknowledged (treated as a no-op success), but none of the declared
- * happy-path/boundary/special-input/failure resource effects occur. The trigger bodies below are
- * copied byte-for-byte from the frozen spec; they are not "corrected" to {@code "azure-blob"}.
+ * baseline). {@link AzureBlobFileProcessingService#getStorageType()} returns {@code "azure-blob"},
+ * but {@link AbstractFileProcessingService#matchesStorageType} now accepts both the current
+ * {@code "azure-blob"} literal and the legacy {@code "s3"} literal, so these four tests correctly
+ * exercise the full download/thumbnail/upload path for messages still carrying the legacy literal.
  */
 class WorkerMessageProcessingPostMigrationIT {
 
@@ -137,19 +134,18 @@ class WorkerMessageProcessingPostMigrationIT {
 
     /**
      * KNOWN SPEC DEFECT (verified against real execution, not a migration-introduced production
-     * bug): {@code test-cases.md} declares the expected thumbnail as {@code max(width,height)=600,
-     * min(width,height)=400} for the 300x200 {@code sample.jpg} fixture. Both the pre-migration
-     * baseline ({@code git show 62d8ff6:.../AbstractFileProcessingService.java}) and the current
-     * migrated code contain the identical "don't scale up images already smaller than the target
-     * bound" guard in {@code progressiveScaling}, so a 300x200 source (which is already smaller
-     * than the computed 600x400 target box) is never upscaled and the thumbnail stays 300x200 —
-     * exactly the same no-upscale rule TC-WKR-003 (for {@code tiny.jpg}) correctly documents. This
-     * is a baseline-authoring defect in the frozen spec (present since Phase 1, unrelated to this
-     * migration), not a regression caused by the migration; it requires a re-freeze of
-     * TC-WKR-001's expected dimensions to {@code 300x200}, not a production-code fix. Per the
-     * verify-test-baseline skill (Step 7/Step 8), the test below is kept faithful to the frozen
-     * spec's literal numbers (not "corrected" here) so the conflict is surfaced rather than
-     * papered over; see {@code verification-summary.md} for the full finding.
+     * bug): {@code test-cases.md} previously declared the expected thumbnail as
+     * {@code max(width,height)=600, min(width,height)=400} for the 300x200 {@code sample.jpg}
+     * fixture. Both the pre-migration baseline ({@code git show
+     * 62d8ff6:.../AbstractFileProcessingService.java}) and the current migrated code contain the
+     * identical "don't scale up images already smaller than the target bound" guard in
+     * {@code progressiveScaling}, so a 300x200 source (which is already smaller than the computed
+     * 600x400 target box) is never upscaled and the thumbnail stays 300x200 — exactly the same
+     * no-upscale rule TC-WKR-003 (for {@code tiny.jpg}) correctly documents. This was a
+     * baseline-authoring defect in the frozen spec (present since Phase 1, unrelated to this
+     * migration); {@code test-cases.md}'s TC-WKR-001 expected dimensions have been re-frozen to
+     * {@code 300x200} (task 008 follow-up remediation) and the assertions below now match that
+     * re-frozen spec.
      */
     @Test
     void tcWkr001_processImageLocalHappyPath() throws Exception {
@@ -179,12 +175,12 @@ class WorkerMessageProcessingPostMigrationIT {
         verify(context, never()).deadLetter();
         verify(context, never()).abandon();
 
-        // Resource Verification: 600x400 thumbnail (aspect ratio of 300x200 preserved).
+        // Resource Verification: 300x200 thumbnail (no upscale; source already at/below the 600px bound).
         assertNotNull(uploadedThumbnail.get(), "thumbnail must have been uploaded");
         BufferedImage thumbnail = ImageIO.read(new ByteArrayInputStream(uploadedThumbnail.get()));
         assertNotNull(thumbnail, "uploaded thumbnail bytes must be a readable JPEG image");
-        assertEquals(600, Math.max(thumbnail.getWidth(), thumbnail.getHeight()));
-        assertEquals(400, Math.min(thumbnail.getWidth(), thumbnail.getHeight()));
+        assertEquals(300, thumbnail.getWidth());
+        assertEquals(200, thumbnail.getHeight());
         ArgumentCaptor<BlobHttpHeaders> headers = ArgumentCaptor.forClass(BlobHttpHeaders.class);
         verify(thumbnailBlob).setHttpHeaders(headers.capture());
         assertEquals("image/jpeg", headers.getValue().getContentType());
@@ -240,23 +236,19 @@ class WorkerMessageProcessingPostMigrationIT {
         verify(context, times(1)).complete();
         verify(context, never()).deadLetter();
 
-        // Resource Verification: thumbnail object exists, correct dimensions and content-type.
+        // Resource Verification: 300x200 thumbnail (no upscale; source already at/below the 600px bound).
         assertNotNull(uploadedThumbnail.get(),
-                "KNOWN PRODUCTION BUG (storageType literal mismatch, see class javadoc): "
-                        + "expected the thumbnail to be uploaded, but AzureBlobFileProcessingService"
-                        + ".getStorageType() returns \"azure-blob\" while the frozen trigger body"
-                        + " declares storageType \"s3\", so processImage silently skips processing");
+                "thumbnail must have been uploaded (storageType \"s3\" is accepted as a legacy "
+                        + "alias for \"azure-blob\")");
         BufferedImage thumbnail = ImageIO.read(new ByteArrayInputStream(uploadedThumbnail.get()));
         assertNotNull(thumbnail);
-        assertEquals(600, Math.max(thumbnail.getWidth(), thumbnail.getHeight()));
-        assertEquals(400, Math.min(thumbnail.getWidth(), thumbnail.getHeight()));
+        assertEquals(300, thumbnail.getWidth());
+        assertEquals(200, thumbnail.getHeight());
         ArgumentCaptor<BlobHttpHeaders> headers = ArgumentCaptor.forClass(BlobHttpHeaders.class);
         verify(thumbnailBlob).setHttpHeaders(headers.capture());
         assertEquals("image/jpeg", headers.getValue().getContentType());
 
-        assertEquals("11111111-1111-4111-8111-111111111111-sample_thumbnail.jpg", targetRow.getThumbnailKey(),
-                "KNOWN PRODUCTION BUG (storageType literal mismatch): thumbnailKey was never set because "
-                        + "processing was skipped");
+        assertEquals("11111111-1111-4111-8111-111111111111-sample_thumbnail.jpg", targetRow.getThumbnailKey());
         assertNotNull(targetRow.getThumbnailUrl());
 
         // Negative Verification: only one row updated, others untouched.
@@ -345,17 +337,15 @@ class WorkerMessageProcessingPostMigrationIT {
         verify(context, times(1)).complete();
         verify(context, never()).deadLetter();
 
-        assertNotNull(uploadedThumbnail.get(),
-                "KNOWN PRODUCTION BUG (storageType literal mismatch, see class javadoc): thumbnail was never uploaded");
+        assertNotNull(uploadedThumbnail.get(), "thumbnail must have been uploaded");
         BufferedImage thumbnail = ImageIO.read(new ByteArrayInputStream(uploadedThumbnail.get()));
         assertNotNull(thumbnail);
-        assertEquals(600, thumbnail.getHeight());
-        assertEquals(300, thumbnail.getWidth());
+        assertEquals(150, thumbnail.getWidth());
+        assertEquals(300, thumbnail.getHeight());
         assertTrue(thumbnail.getColorModel().hasAlpha(), "alpha channel must be preserved");
 
         assertEquals("22222222-2222-4222-8222-222222222222-sample-portrait_thumbnail.png",
-                targetRow.getThumbnailKey(),
-                "KNOWN PRODUCTION BUG (storageType literal mismatch): thumbnailKey was never set");
+                targetRow.getThumbnailKey());
         assertNotNull(targetRow.getThumbnailUrl());
         assertNull(unrelatedRow1.getThumbnailKey());
         assertNull(unrelatedRow2.getThumbnailKey());
@@ -430,15 +420,13 @@ class WorkerMessageProcessingPostMigrationIT {
         verify(context, times(1)).complete();
         verify(context, never()).deadLetter();
 
-        assertNotNull(uploadedThumbnail.get(),
-                "KNOWN PRODUCTION BUG (storageType literal mismatch, see class javadoc): thumbnail was never uploaded");
+        assertNotNull(uploadedThumbnail.get(), "thumbnail must have been uploaded");
         BufferedImage thumbnail = ImageIO.read(new ByteArrayInputStream(uploadedThumbnail.get()));
         assertNotNull(thumbnail);
-        assertEquals(600, thumbnail.getHeight());
-        assertEquals(300, thumbnail.getWidth());
+        assertEquals(150, thumbnail.getWidth());
+        assertEquals(300, thumbnail.getHeight());
 
-        assertEquals("테스트 이미지_thumbnail.png", row.getThumbnailKey(),
-                "KNOWN PRODUCTION BUG (storageType literal mismatch): thumbnailKey was never set");
+        assertEquals("테스트 이미지_thumbnail.png", row.getThumbnailKey());
         assertNotNull(row.getThumbnailUrl());
 
         // Negative Verification: no additional row created.
@@ -517,10 +505,6 @@ class WorkerMessageProcessingPostMigrationIT {
 
         // Resource Verification: rejected without requeue (dead-lettered), not acknowledged.
         verify(context, times(1)).deadLetter();
-        // KNOWN PRODUCTION BUG (storageType literal mismatch, see class javadoc): because
-        // "s3" != "azure-blob", processImage treats this as a storage-type mismatch and
-        // acknowledges (complete()) instead of ever reaching the corrupt-image decode path, so
-        // this assertion is expected to fail against the migrated code.
         verify(context, never()).complete();
 
         // Negative Verification: no thumbnail object created, metadata row left untouched.

@@ -37,7 +37,7 @@ public abstract class AbstractFileProcessingService implements FileProcessor {
             thumbnailFile = tempDir.resolve("thumbnail" + StorageUtil.getExtension(message.getKey()));
 
             // Only process if message matches our storage type
-            if (message.getStorageType().equals(getStorageType())) {
+            if (matchesStorageType(message.getStorageType())) {
                 // Download original file
                 downloadOriginal(message.getKey(), originalFile);
 
@@ -96,6 +96,17 @@ public abstract class AbstractFileProcessingService implements FileProcessor {
     }
     
     protected abstract String generateUrl(String key);
+
+    /**
+     * Returns {@code true} if the given Service Bus message's {@code storageType} should be
+     * routed to this processor. Defaults to an exact match against {@link #getStorageType()};
+     * overridden by {@link AzureBlobFileProcessingService} to also accept the legacy {@code "s3"}
+     * literal for backward compatibility with messages produced before the Azure Blob Storage
+     * migration.
+     */
+    protected boolean matchesStorageType(String messageStorageType) {
+        return messageStorageType.equals(getStorageType());
+    }
 
     protected void generateThumbnail(Path input, Path output) throws IOException {
         log.info("Generating thumbnail for: {}", input);

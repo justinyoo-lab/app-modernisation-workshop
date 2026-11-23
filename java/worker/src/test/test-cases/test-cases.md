@@ -68,7 +68,7 @@ Publish one message to queue `image-processing` with body:
 
 **Resource Verification**
 
-- A file `sample_thumbnail.jpg` exists in the local storage directory, is a readable JPEG image, with `max(width, height) = 600` and `min(width, height) = 400` (aspect ratio of the 300x200 original preserved exactly, since 600/300 = 400/200).
+- A file `sample_thumbnail.jpg` exists in the local storage directory, is a readable JPEG image, with dimensions `300x200` (the 300x200 original is not upscaled, since the thumbnail generator's "do not scale up" guard leaves images already at or below the 600px bound unchanged).
 - The message is acknowledged and does not remain available for redelivery on queue `image-processing`.
 
 **Negative Verification**
@@ -117,7 +117,7 @@ Publish one message to queue `image-processing` with body:
 
 **Resource Verification**
 
-- An object `11111111-1111-4111-8111-111111111111-sample_thumbnail.jpg` exists in the container, content-type `image/jpeg`, a readable JPEG image with `max(width, height) = 600` and `min(width, height) = 400`.
+- An object `11111111-1111-4111-8111-111111111111-sample_thumbnail.jpg` exists in the container, content-type `image/jpeg`, a readable JPEG image with dimensions `300x200` (the 300x200 original is not upscaled, since the thumbnail generator's "do not scale up" guard leaves images already at or below the 600px bound unchanged).
 - The `image_metadata` row with `s3Key = 11111111-1111-4111-8111-111111111111-sample.jpg` now has `thumbnailKey = 11111111-1111-4111-8111-111111111111-sample_thumbnail.jpg` and a non-null `thumbnailUrl`.
 - The message is acknowledged and does not remain available for redelivery on queue `image-processing`.
 
@@ -215,7 +215,7 @@ Publish one message to queue `image-processing` with body:
 
 **Resource Verification**
 
-- An object `22222222-2222-4222-8222-222222222222-sample-portrait_thumbnail.png` exists in the container, content-type `image/png`, a readable PNG image with `height = 600` and `width = 300` (aspect ratio of the 150x300 original preserved exactly), and the image's color model reports an alpha channel.
+- An object `22222222-2222-4222-8222-222222222222-sample-portrait_thumbnail.png` exists in the container, content-type `image/png`, a readable PNG image with dimensions `150x300` (the 150x300 original is not upscaled, since the thumbnail generator's "do not scale up" guard leaves images already at or below the 600px bound unchanged), and the image's color model reports an alpha channel.
 - The `image_metadata` row with `s3Key = 22222222-2222-4222-8222-222222222222-sample-portrait.png` now has `thumbnailKey = 22222222-2222-4222-8222-222222222222-sample-portrait_thumbnail.png` and a non-null `thumbnailUrl`.
 
 **Negative Verification**
@@ -311,7 +311,7 @@ Publish one message to queue `image-processing` with body:
 
 **Resource Verification**
 
-- An object `테스트 이미지_thumbnail.png` exists in the container, content-type `image/png`, a readable PNG image with `height = 600` and `width = 300`.
+- An object `테스트 이미지_thumbnail.png` exists in the container, content-type `image/png`, a readable PNG image with dimensions `150x300` (the 150x300 original is not upscaled, since the thumbnail generator's "do not scale up" guard leaves images already at or below the 600px bound unchanged).
 - The `image_metadata` row with `s3Key = 테스트 이미지.png` now has `thumbnailKey = 테스트 이미지_thumbnail.png` and a non-null `thumbnailUrl`.
 
 **Negative Verification**

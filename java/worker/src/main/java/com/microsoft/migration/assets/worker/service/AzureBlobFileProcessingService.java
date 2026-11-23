@@ -85,6 +85,14 @@ public class AzureBlobFileProcessingService extends AbstractFileProcessingServic
     }
 
     @Override
+    protected boolean matchesStorageType(String messageStorageType) {
+        // Accept both the current "azure-blob" literal and the legacy "s3" literal still produced
+        // by callers/messages predating the Azure Blob Storage migration, preserving the
+        // ImageProcessingMessage contract's backward compatibility.
+        return "azure-blob".equals(messageStorageType) || "s3".equals(messageStorageType);
+    }
+
+    @Override
     protected String generateUrl(String key) {
         // Non-dev-profile thumbnails are never exposed via a Blob SAS URL (no public access, no
         // indefinite SAS). The web application streams bytes through its own controller instead;
